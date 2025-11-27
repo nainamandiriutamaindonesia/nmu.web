@@ -18,9 +18,9 @@
 
     <style>
          :root {
-            --matcha: #8BA989;
-            --matcha-dark: #7BAE7F;
-            --matcha-light: #A8C6A9;
+            --matcha: #2E8B57;
+            --matcha-light: #3CB371;
+            --matcha-dark: #228B22;
             --text-grey: #2a2a2a;
             --text-light: #6b7280;
         }
@@ -147,19 +147,337 @@
             color: white;
             transform: translateY(-2px);
         }
+        /* Animasi Keyframes Baru */
         
-         :root {
-            --matcha: #6FB879;
-            /* hijau lebih terang */
-            --matcha-dark: #5aa468;
-            /* hijau lebih pekat */
-            --matcha-light: #CDE8C8;
-            /* hijau muda lebih cerah */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px) rotate(-3deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotate(0);
+            }
+        }
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%,
+            100% {
+                box-shadow: 0 0 25px rgba(46, 139, 87, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 35px rgba(46, 139, 87, 0.7);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) skewX(-15deg);
+            }
+            100% {
+                transform: translateX(200%) skewX(-15deg);
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(20px);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.05) translateY(-5px);
+            }
+            80% {
+                opacity: 1;
+                transform: scale(0.95) translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        @keyframes textGlow {
+            0%,
+            100% {
+                text-shadow: 0 0 5px rgba(46, 139, 87, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 15px rgba(46, 139, 87, 0.6);
+            }
+        }
+        /* Kelas Animasi */
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        .animate-slideInLeft {
+            animation: slideInLeft 1.2s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .animate-bounceIn {
+            animation: bounceIn 1s ease-out forwards;
+        }
+        
+        .animate-textGlow {
+            animation: textGlow 2s ease-in-out infinite;
+        }
+        /* Efek Hover Modern */
+        
+        .photo-hover-effect {
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .photo-hover-effect:hover {
+            transform: scale(1.03) rotate(-1deg);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .text-hover-effect {
+            transition: all 0.3s ease;
+        }
+        
+        .text-hover-effect:hover {
+            transform: translateX(8px);
+            color: var(--matcha);
+        }
+        
+        .badge-hover {
+            transition: all 0.4s ease;
+        }
+        
+        .badge-hover:hover {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--matcha-light), var(--matcha));
+            color: white;
+        }
+        /* Efek Shimmer */
+        
+        .shimmer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .group:hover .shimmer-overlay {
+            animation: shimmer 1.5s ease-out;
+        }
+        /* Stagger Animation untuk Konten */
+        
+        .stagger-item {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .stagger-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .stagger-item:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        .stagger-item:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+        
+        .stagger-item:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+        
+        .stagger-item:nth-child(5) {
+            animation-delay: 0.9s;
+        }
+        /* Border Animation */
+        
+        .border-animation {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .border-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--matcha), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .border-animation:hover::before {
+            left: 100%;
+        }
+        /* Animasi untuk partnership cards */
+        
+        .partnership-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .partnership-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .partnership-card:hover::before {
+            left: 100%;
+        }
+        
+        .partnership-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        /* Animasi untuk icons */
+        
+        .partnership-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .partnership-card:hover .partnership-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* Animasi untuk list items */
+        
+        .feature-item {
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideInLeft 0.6s ease forwards;
+        }
+        
+        .feature-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .feature-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .feature-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .feature-item:hover {
+            transform: translateX(8px);
+            color: white !important;
+        }
+        
+        .feature-item:hover i {
+            color: #3CB371 !important;
+            transform: scale(1.2);
+        }
+        /* Animasi untuk tombol */
+        
+        .partnership-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .partnership-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(46, 139, 87, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .partnership-button:hover::before {
+            left: 100%;
+        }
+        
+        .partnership-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        /* Pulse effect pada hover card */
+        
+        @keyframes pulse-glow-white {
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            }
+        }
+        
+        .partnership-card:hover {
+            animation: pulse-glow-white 2s ease-in-out infinite;
+        }
+        /* Responsive adjustments */
+        
+        @media (max-width: 768px) {
+            .partnership-card:hover {
+                transform: translateY(-5px);
+            }
+            .partnership-button:hover {
+                transform: scale(1.02);
+            }
         }
     </style>
 </head>
 
-<body class="bg-white text-grey">
+<body class="bg-white text-gray-800">
 
     <!-- Loading Bar -->
     <div class="loading-bar" id="loadingBar"></div>
@@ -169,7 +487,7 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 bg-[var(--matcha)] rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-lg">N</span>
+                    <img src="assets/logonmu.jpg" alt="Logo nmu" class="w-12 h-12 object-contain">
                 </div>
                 <h1 class="font-extrabold text-2xl" style="color:var(--matcha);">PT. NAINA MANDIRI UTAMA</h1>
             </div>
@@ -180,7 +498,7 @@
                 <a href="#services" class="text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">Layanan</a>
                 <a href="#why" class="text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">Why Us?</a>
                 <a href="#partnership" class="text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">Kerjasama</a>
-                <a href="sales.html" class="ext-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">Sales</a>
+                <a href="sales.html" class="text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">Sales</a>
             </nav>
 
             <!-- Mobile Menu Button -->
@@ -197,14 +515,13 @@
                 <a href="#services" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">Layanan</a>
                 <a href="#why" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">Why Us?</a>
                 <a href="#partnership" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">Kerjasama</a>
-                <a href="#sales " class="block texr-gray-700 hover:text[var(--matcha)] font-semibold tramsition-colours">sales</a>
+                <a href="sales.html" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">Sales</a>
             </div>
         </div>
     </header>
 
     <!-- HERO SECTION -->
     <section id="home" class="relative w-full min-h-screen pt-16 bg-cover bg-center bg-no-repeat" style="background-image: url('images/header.jpg');">
-
         <!-- Gradient lebih cerah -->
         <div class="absolute inset-0 bg-gradient-to-br from-[var(--matcha-light)]/10 to-[var(--matcha)]/10"></div>
 
@@ -218,66 +535,142 @@
                     <span class="text-[var(--matcha)] font-extrabold"> CUAN 2026 </span>
                 </h1>
 
-                <p class="text-xl text-black-200 mb-8 leading-relaxed">
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
                     Kami sebagai mitra strategis yang siap menghadirkan produk herbal berkualitas untuk kesehatan keluarga Indonesia.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4">
                     <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});" class="btn-primary">
-                    <i class="fas fa-leaf mr-2"></i> Siap Perluas Distribusi
-                </button>
+                        <i class="fas fa-leaf mr-2"></i> Siap Perluas Distribusi
+                    </button>
 
                     <button onclick="document.getElementById('partnership').scrollIntoView({behavior:'smooth'});" class="btn-secondary">
-                    <i class="fas fa-handshake mr-2"></i> Jadi Mitra Sekarang
-                </button>
+                        <i class="fas fa-handshake mr-2"></i> Jadi Mitra Sekarang
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div class="animate-bounce">
-            <i class="fas fa-chevron-down text-[var(--matcha)] text-2xl"></i>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div class="animate-bounce">
+                <i class="fas fa-chevron-down text-[var(--matcha)] text-2xl"></i>
+            </div>
         </div>
-    </div>
     </section>
 
     <!-- ABOUT US SECTION -->
     <section id="about" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
+                <!-- Bagian Foto dengan Animasi Baru -->
+                <div class="animate-slideInLeft">
                     <div class="relative">
-                        <div class="w-full h-96 bg-gradient-to-br from-[var(--matcha-light)] to-[var(--matcha)] rounded-2xl overflow-hidden shadow-2xl">
-                            <div class="absolute inset-0 bg-black/10"></div>
+                        <!-- Container foto dengan efek dekoratif baru -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl group photo-hover-effect border-animation">
+                            <!-- Background pattern dengan animasi -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-[var(--matcha-light)]/15 to-[var(--matcha)]/8 z-0"></div>
+
+                            <!-- Shimmer Effect -->
+                            <div class="shimmer-overlay"></div>
+
+                            <!-- Foto utama dengan parallax effect -->
+                            <div class="relative z-10 h-96 overflow-hidden">
+                                <img src="assets/nmu.jpg" alt="PT. NAINA MANDIRI UTAMA - Distributor Herbal" class="w-full h-full object-cover transform transition-all duration-1000 group-hover:scale-110">
+
+                                <!-- Overlay gradient animasi -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-all duration-700"></div>
+                            </div>
+
+                            <!-- Border animasi pada hover -->
+                            <div class="absolute inset-0 border-3 border-transparent rounded-2xl group-hover:border-[var(--matcha)] group-hover:animate-pulse-glow transition-all duration-500 z-20"></div>
+
+                            <!-- Elemen dekoratif corner animasi -->
+                            <div class="absolute top-6 right-6 w-10 h-10 border-t-2 border-r-2 border-[var(--matcha)] rounded-tr-2xl z-30 opacity-0 group-hover:opacity-100 transition-all duration-700 transform group-hover:scale-110"></div>
+                            <div class="absolute bottom-6 left-6 w-10 h-10 border-b-2 border-l-2 border-[var(--matcha)] rounded-bl-2xl z-30 opacity-0 group-hover:opacity-100 transition-all duration-700 transform group-hover:scale-110" style="transition-delay: 0.1s;"></div>
+
+                            <!-- Floating elements dengan animasi -->
+                            <div class="absolute -top-4 -left-4 w-8 h-8 bg-[var(--matcha-light)] rounded-full opacity-80 animate-float z-30"></div>
+                            <div class="absolute -bottom-4 -right-4 w-6 h-6 bg-[var(--matcha)] rounded-full opacity-70 animate-float z-30" style="animation-delay: 1.5s;"></div>
                         </div>
-                        <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-[var(--matcha-light)] rounded-2xl shadow-xl"></div>
+
+                        <!-- Floating badge dengan animasi baru -->
+                        <div class="absolute -bottom-6 -left-4 bg-white py-3 px-5 rounded-xl shadow-lg z-20 border border-[var(--matcha-light)] badge-hover animate-bounceIn" style="animation-delay: 1.2s;">
+                            <div class="flex items-center space-x-3">
+                                <div class="relative">
+                                    <div class="w-3 h-3 bg-[var(--matcha)] rounded-full animate-ping absolute opacity-60"></div>
+                                    <div class="w-3 h-3 bg-[var(--matcha)] rounded-full relative"></div>
+                                </div>
+                                <span class="text-sm font-semibold text-gray-700 whitespace-nowrap">Produk Herbal Berkualitas</span>
+                            </div>
+                        </div>
+
+                        <!-- Decorative element dengan animasi -->
+                        <div class="absolute -top-8 -right-8 w-20 h-20 bg-[var(--matcha-light)]/25 rounded-full animate-float z-10" style="animation-delay: 2s;"></div>
                     </div>
                 </div>
 
-                <div class="fade-in">
-                    <span class="text-[var(--matcha)] font-semibold text-sm uppercase tracking-wider">Tentang Kami</span>
-                    <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-6">PT. NAINA MANDIRI UTAMA</h2>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                        Kami bergerak di bidang distribusi produk herbal dan obat tradisional. Kami hadir sebagai penghubung antara produsen dan pasar dengan menyediakan sistem distribusi yang cepat, aman, dan terintegrasi.
-                        <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                <!-- Bagian Konten dengan Animasi Bertahap -->
+                <div class="space-y-6">
+                    <div class="stagger-item">
+                        <span class="text-[var(--matcha)] font-semibold text-sm uppercase tracking-wider bg-[var(--matcha-light)]/10 py-2 px-4 rounded-full animate-textGlow">
+                            Tentang Kami
+                        </span>
+                    </div>
+
+                    <div class="stagger-item">
+                        <h2 class="text-4xl font-bold text-gray-800 leading-tight">
+                            PT. NAINA MANDIRI UTAMA
+                            <div class="w-24 h-1 bg-gradient-to-r from-[var(--matcha-light)] to-[var(--matcha)] mt-3 rounded-full"></div>
+                        </h2>
+                    </div>
+
+                    <div class="stagger-item">
+                        <p class="text-gray-600 text-lg leading-relaxed transition-all duration-300 hover:bg-gray-50 hover:px-4 hover:py-3 hover:rounded-lg hover:shadow-md">
+                            Kami bergerak di bidang distribusi produk herbal dan obat tradisional. Kami hadir sebagai penghubung antara produsen dan pasar dengan menyediakan sistem distribusi yang cepat, aman, dan terintegrasi.
+                        </p>
+                    </div>
+
+                    <div class="stagger-item">
+                        <p class="text-gray-600 text-lg leading-relaxed transition-all duration-300 hover:bg-gray-50 hover:px-4 hover:py-3 hover:rounded-lg hover:shadow-md">
                             Kami membuka peluang usaha dan program kemitraan bagi individu maupun perusahaan yang ingin membangun bisnis di sektor pendistribusian herbal dan obat tradisional. Dengan dukungan produk bersertifikat, dan strategi pemasaran yang terbukti efektif, kami
                             berkomitmen membantu mitra mendapatkan keuntungan yang stabil dan memperluas pasar ke berbagai wilayah diseluruh Indonesia.
-                            <div class="flex flex-wrap gap-4">
-                                <div class="flex items-center space-x-2">
-                                    <div class="w-3 h-3 bg-[var(--matcha)] rounded-full"></div>
-                                    <span class="text-gray-700 font-medium">100% Bahan Alami</span>
+                        </p>
+                    </div>
+
+                    <div class="stagger-item">
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex items-center space-x-3 group cursor-pointer text-hover-effect">
+                                <div class="relative">
+                                    <div class="w-4 h-4 bg-[var(--matcha)] rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                                    <div class="absolute inset-0 w-4 h-4 bg-[var(--matcha)] rounded-full opacity-0 group-hover:opacity-30 group-hover:animate-ping"></div>
                                 </div>
-                                <div class="flex items-center space-x-2">
-                                    <div class="w-3 h-3 bg-[var(--matcha)] rounded-full"></div>
-                                    <span class="text-gray-700 font-medium">Terdaftar BPOM</span>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <div class="w-3 h-3 bg-[var(--matcha)] rounded-full"></div>
-                                    <span class="text-gray-700 font-medium">Halal MUI</span>
-                                </div>
+                                <span class="text-gray-700 font-medium">100% Bahan Alami</span>
                             </div>
+                            <div class="flex items-center space-x-3 group cursor-pointer text-hover-effect">
+                                <div class="relative">
+                                    <div class="w-4 h-4 bg-[var(--matcha)] rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                                    <div class="absolute inset-0 w-4 h-4 bg-[var(--matcha)] rounded-full opacity-0 group-hover:opacity-30 group-hover:animate-ping" style="animation-delay: 0.1s;"></div>
+                                </div>
+                                <span class="text-gray-700 font-medium">Terdaftar BPOM</span>
+                            </div>
+                            <div class="flex items-center space-x-3 group cursor-pointer text-hover-effect">
+                                <div class="relative">
+                                    <div class="w-4 h-4 bg-[var(--matcha)] rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                                    <div class="absolute inset-0 w-4 h-4 bg-[var(--matcha)] rounded-full opacity-0 group-hover:opacity-30 group-hover:animate-ping" style="animation-delay: 0.2s;"></div>
+                                </div>
+                                <span class="text-gray-700 font-medium">Halal MUI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Button dengan Animasi -->
+                    <div class="stagger-item pt-4">
+                        <button class="bg-gradient-to-r from-[var(--matcha-light)] to-[var(--matcha)] text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center group">
+                            <span>Pelajari Lebih Lanjut</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -381,6 +774,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <span class="text-[var(--matcha)] font-semibold text-sm uppercase tracking-wider">Mengapa Memilih Kami</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-4">Keunggulan Naima</h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">
                     Berbagai alasan mengapa produk herbal kami menjadi pilihan terbaik untuk kesehatan keluarga Indonesia.
                 </p>
@@ -390,7 +784,7 @@
                 <!-- FEATURE 1 -->
                 <div class="feature-box rounded-2xl p-8 text-center fade-in">
                     <div class="w-20 h-20 bg-[var(--matcha)]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-leaf text-[var(--matcha)] text-3xl"></i>
+                        <i class="fas fa-network-wired text-[var(--matcha)] text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Jaringan Distribusi Luas</h3>
                     <p class="text-gray-600 leading-relaxed">
@@ -401,7 +795,7 @@
                 <!-- FEATURE 2 -->
                 <div class="feature-box rounded-2xl p-8 text-center fade-in">
                     <div class="w-20 h-20 bg-[var(--matcha)]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-shield-alt text-[var(--matcha)] text-3xl"></i>
+                        <i class="fas fa-shipping-fast text-[var(--matcha)] text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Sistem Logistik Effisien</h3>
                     <p class="text-gray-600 leading-relaxed">
@@ -412,17 +806,19 @@
                 <!-- FEATURE 3 -->
                 <div class="feature-box rounded-2xl p-8 text-center fade-in">
                     <div class="w-20 h-20 bg-[var(--matcha)]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-shield-alt text-[var(--matcha)] text-3xl"></i>
+                        <i class="fas fa-users text-[var(--matcha)] text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Tim Sales Berpengalaman</h3>
                     <p class="text-gray-600 leading-relaxed">
                         Pendistribusian herbal fast moving dan mudah di jual.
+                    </p>
                 </div>
             </div>
+        </div>
     </section>
 
-    <!-- PARTNERSHIP SECTION -->
-    <section id="partnership" class="py-20 bg-gradient-to-br from-[var(--matcha-light)] to-[var(--matcha)]">
+    <!-- PARTNERSHIP SECTION YANG DISEMPURNAKAN -->
+    <section id="partnership" class="py-20 bg-gradient-to-br from-[var(--matcha)] to-[var(--matcha-dark)]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <span class="text-white/90 font-semibold text-sm uppercase tracking-wider">Berkolaborasi Bersama</span>
@@ -433,9 +829,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- PARTNERSHIP CARD -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 fade-in">
-                    <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                <!-- KERJASAMA BISNIS CARD -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 fade-in partnership-card">
+                    <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 partnership-icon">
                         <i class="fas fa-handshake text-white text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4">Kerjasama Bisnis</h3>
@@ -443,24 +839,29 @@
                         Program kerjasama untuk perusahaan, distributor, dan retailer yang ingin mengembangkan produk herbal berkualitas bersama Naima.
                     </p>
                     <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-white/90">
+                        <li class="flex items-center text-white/90 feature-item">
                             <i class="fas fa-check-circle text-white/80 mr-3"></i> Sistem distribusi terintegrasi
                         </li>
-                        <li class="flex items-center text-white/90">
+                        <li class="flex items-center text-white/90 feature-item">
                             <i class="fas fa-check-circle text-white/80 mr-3"></i> Dukungan pemasaran komprehensif
                         </li>
-                        <li class="flex items-center text-white/90">
+                        <li class="flex items-center text-white/90 feature-item">
                             <i class="fas fa-check-circle text-white/80 mr-3"></i> Training dan pengembangan
                         </li>
                     </ul>
-                    <button class="w-full bg-white text-[var(--matcha)] font-semibold py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">
-                        Ajukan Kerjasama
-                    </button>
+
+                    <!-- Tombol Google Forms -->
+                    <a href="https://bit.ly/FORMCUAN2026" target="_blank" rel="noopener noreferrer" class="block w-full bg-white text-[var(--matcha)] font-semibold py-3 px-6 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 partnership-button group">
+                        <span class="flex items-center justify-center">
+                            Ajukan Kerjasama
+                            <i class="fas fa-external-link-alt ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </a>
                 </div>
 
-                <!-- PARTNERSHIP CARD -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 fade-in">
-                    <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                <!-- PROGRAM KEMITRAAN CARD -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 fade-in partnership-card">
+                    <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 partnership-icon">
                         <i class="fas fa-users text-white text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4">Program Kemitraan</h3>
@@ -468,51 +869,56 @@
                         Bergabung sebagai mitra resmi Naima dan dapatkan peluang usaha yang menguntungkan dengan dukungan penuh dari kami.
                     </p>
                     <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-white/90">
+                        <li class="flex items-center text-white/90 feature-item">
                             <i class="fas fa-check-circle text-white/80 mr-3"></i> Modal terjangkau
                         </li>
-                        <li class="flex items-center text-white/90">
+                        <li class="flex items-center text-white/90 feature-item">
                             <i class="fas fa-check-circle text-white/80 mr-3"></i> Bimbingan bisnis lengkap
                         </li>
-                        <li class="flex items-center text-white/90">
+                        <li class="flex items-center text-white/90 feature-item">
                             <i class="fas fa-check-circle text-white/80 mr-3"></i> Potensi penghasilan menarik
                         </li>
                     </ul>
-                    <button class="w-full bg-white text-[var(--matcha)] font-semibold py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">
-                        Daftar Jadi Mitra
-                    </button>
+
+                    <!-- Tombol Google Forms -->
+                    <a href="https://bit.ly/FORMCUAN2026" target="_blank" rel="noopener noreferrer" class="block w-full bg-white text-[var(--matcha)] font-semibold py-3 px-6 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 partnership-button group">
+                        <span class="flex items-center justify-center">
+                            Daftar Jadi Mitra
+                            <i class="fas fa-external-link-alt ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER YANG DISEMPURNAKAN -->
     <footer class="w-full bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
                 <!-- COMPANY INFO -->
                 <div>
                     <div class="flex items-center space-x-3 mb-6">
                         <div class="w-10 h-10 bg-[var(--matcha)] rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">N</span>
+                            <img src="assets/logonmu.jpg" alt="Logo nmu" class="w-12 h-12 object-contain">
                         </div>
-                        <h3 class="font-bold text-xl">PT. Naima Mandiri Utama</h3>
+                        <h3 class="font-bold text-xl">PT. NAINA MANDIRI UTAMA</h3>
                     </div>
                     <p class="text-gray-400 leading-relaxed text-sm mb-6">
                         Perusahaan herbal terpercaya yang menghadirkan solusi kesehatan alami berkualitas tinggi untuk keluarga Indonesia dengan standar internasional.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors">
-                            <i class="fab fa-facebook-f"></i>
+                        <a href="https://youtube.com/@nmuoff1c1al?si=tRp2M7w9bu8WAnR6" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors">
+                            <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors">
+                        <a href="https://www.instagram.com/nainamandiriutama?igsh=MWx1bmw4MnAzZ2djbw==" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors">
-                            <i class="fab fa-twitter"></i>
+                        <a href="https://www.tiktok.com/@nmu_distributor?_r=1&_t=ZS-91jvZiQkLJZ" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors">
+                            <i class="fab fa-tiktok"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
+                        <a href="https://wa.me/6285710008579" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors">
+                            <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
                 </div>
@@ -524,16 +930,16 @@
                         <div class="flex items-start space-x-3">
                             <i class="fas fa-map-marker-alt text-[var(--matcha)] mt-1"></i>
                             <p class="text-gray-400 text-sm">
-                                Jl. Contoh No. 123<br> Jakarta Selatan, 12345<br> Indonesia
+                                Jl. Benda Ceger Kp. Pabuaran Blok A, RT. 03 RW. 02 Kel. Cimuning<br> Kec. Mustikajaya, Kota Bekasi, Jawa Barat 17155<br> Indonesia
                             </p>
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-phone text-[var(--matcha)]"></i>
-                            <p class="text-gray-400 text-sm">+62 21 1234 5678</p>
+                            <p class="text-gray-400 text-sm">62+ 831-9934-9933</p>
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-envelope text-[var(--matcha)]"></i>
-                            <p class="text-gray-400 text-sm">info@naima.co.id</p>
+                            <p class="text-gray-400 text-sm">nainamandiriutamaindonesia@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -547,7 +953,7 @@
                         <li><a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">Layanan</a></li>
                         <li><a href="#why" class="text-gray-400 hover:text-white transition-colors text-sm">Why Us?</a></li>
                         <li><a href="#partnership" class="text-gray-400 hover:text-white transition-colors text-sm">Kerjasama</a></li>
-                        <li><a href="#sales" class="text-gray-400 hover:text-white transition-colours text-sm">sales</a></li>
+                        <li><a href="sales.html" class="text-gray-400 hover:text-white transition-colors text-sm">Sales</a></li>
                     </ul>
                 </div>
 
@@ -569,7 +975,7 @@
             <!-- COPYRIGHT -->
             <div class="border-t border-gray-800 mt-12 pt-8 text-center">
                 <p class="text-gray-500 text-sm">
-                    © 2024 PT. Naima Mandiri Utama. All rights reserved.
+                    © 2024 PT. NAINA MANDIRI UTAMA. All rights reserved.
                     <span class="text-[var(--matcha)]">Dibuat dengan ❤️ untuk Indonesia</span>
                 </p>
             </div>
@@ -577,7 +983,7 @@
     </footer>
 
     <!-- WA Floating Button -->
-    <a href="https://wa.me/628123456789" class="wa-btn" target="_blank">
+    <a href="https://wa.me/6283199349933" class="wa-btn" target="_blank">
         <i class="fab fa-whatsapp text-white text-2xl"></i>
     </a>
 
