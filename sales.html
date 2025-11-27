@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tim Sales - PT Naima Mandiri Utama</title>
+    <meta name="description" content="Tim sales profesional PT Naima Mandiri Utama siap membantu Anda dengan solusi herbal terbaik">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+         :root {
+            --matcha: #8BA989;
+            --matcha-dark: #7BAE7F;
+            --matcha-light: #A8C6A9;
+            --text-grey: #2a2a2a;
+            --text-light: #6b7280;
+        }
+        
+        body {
+            font-family: 'Barlow', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f3f4f6;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border-color: var(--matcha-light);
+        }
+        
+        .feature-box {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .wa-btn {
+            position: fixed;
+            right: 25px;
+            bottom: 30px;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: #22c55e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .wa-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.4);
+        }
+        
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--matcha), var(--matcha-dark));
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn-primary {
+            background: var(--matcha);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--matcha);
+        }
+        
+        .btn-primary:hover {
+            background: var(--matcha-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 169, 137, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--matcha);
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--matcha);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--matcha);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .sales-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+            border: 1px solid #f3f4f6;
+        }
+        
+        .sales-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border-color: var(--matcha-light);
+        }
+        
+        .web-link {
+            color: var(--matcha);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .web-link:hover {
+            color: var(--matcha-dark);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-grey">
+
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <!-- NAVBAR -->
+    <header class="w-full fixed z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-[var(--matcha)] rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-lg">N</span>
+                </div>
+                <h1 class="font-extrabold text-2xl" style="color:var(--matcha);">PT. Naima Mandiri Utama</h1>
+            </div>
+
+            <nav class="hidden md:flex gap-8 font-semibold">
+                <a href="index.html" class="text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">Home</a>
+                <a href="index.html#about" class="text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">Tentang</a>
+                <a href="index.html#services" class="text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">Layanan</a>
+                <a href="sales.html" class="text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300">Tim Sales</a>
+                <a href="index.html#partnership" class="text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">Kerjasama</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-700" id="mobileMenuButton">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden bg-white border-t border-gray-200 hidden" id="mobileMenu">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">Home</a>
+                <a href="index.html#about" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">Tentang</a>
+                <a href="index.html#services" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">Layanan</a>
+                <a href="index.html#why" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors"></a>
+                <a href="sales.html" class="block text-[var(--matcha)] font-semibold transition-colors ">Tim Sales</a>
+                <a href="index.html#partnership " class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors ">Kerjasama</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative w-full min-h-screen pt-16 ">
+        <div class="absolute inset-0 bg-gradient-to-br from-[var(--matcha-light)]/20 to-[var(--matcha)]/10 "></div>
+        <div class="absolute inset-0 bg-black/10 "></div>
+
+        <div class="relative h-full flex items-center px-6 md:px-16 max-w-7xl mx-auto ">
+            <div class="max-w-2xl fade-in ">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 leading-tight mb-6 ">
+                    Tim Sales
+                    <span class="text-[var(--matcha)] ">Profesional</span> Kami
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed ">
+                    Bertemu dengan tim sales berpengalaman kami yang siap membantu Anda menemukan solusi herbal terbaik untuk kesehatan dan bisnis Anda.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 ">
+                    <button onclick="document.getElementById( 'team').scrollIntoView({behavior: 'smooth'}); " class="btn-primary ">
+                        <i class="fas fa-users mr-2 "></i> Lihat Tim Sales
+                    </button>
+                    <button onclick="document.getElementById( 'contact').scrollIntoView({behavior: 'smooth'}); " class="btn-secondary ">
+                        <i class="fas fa-phone mr-2 "></i> Hubungi Kami
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 ">
+            <div class="animate-bounce ">
+                <i class="fas fa-chevron-down text-[var(--matcha)] text-2xl "></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="py-16 bg-gray-50 ">
+        <div class="max-w-7xl mx-auto px-6 ">
+            <div class="text-center mb-16 fade-in ">
+                <span class="text-[var(--matcha)] font-semibold text-sm uppercase tracking-wider ">Mengapa Memilih Tim Kami</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-4 ">Keunggulan Tim Sales Naima</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto ">
+                    Tim sales profesional kami siap memberikan pelayanan terbaik dengan pengalaman dan pengetahuan mendalam tentang produk herbal.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+                <div class="feature-box rounded-2xl p-8 text-center fade-in ">
+                    <div class="w-20 h-20 bg-[var(--matcha)]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 ">
+                        <i class="fas fa-user-tie text-[var(--matcha)] text-3xl "></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 ">Profesional Berpengalaman</h3>
+                    <p class="text-gray-600 leading-relaxed ">
+                        Tim sales kami memiliki pengalaman luas di industri herbal dengan pengetahuan mendalam tentang produk dan pasar.
+                    </p>
+                </div>
+
+                <div class="feature-box rounded-2xl p-8 text-center fade-in ">
+                    <div class="w-20 h-20 bg-[var(--matcha)]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 ">
+                        <i class="fas fa-handshake text-[var(--matcha)] text-3xl "></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 ">Pendekatan Personal</h3>
+                    <p class="text-gray-600 leading-relaxed ">
+                        Kami memahami setiap klien memiliki kebutuhan unik dan memberikan solusi yang tepat sesuai kondisi Anda.
+                    </p>
+                </div>
+
+                <div class="feature-box rounded-2xl p-8 text-center fade-in ">
+                    <div class="w-20 h-20 bg-[var(--matcha)]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 ">
+                        <i class="fas fa-headset text-[var(--matcha)] text-3xl "></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 ">Dukungan 24/7</h3>
+                    <p class="text-gray-600 leading-relaxed ">
+                        Tim kami siap membantu kapan saja dengan layanan responsif dan solutif untuk semua kebutuhan Anda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SALES TEAM SECTION -->
+    <section id="team " class="py-20 bg-white ">
+        <div class="max-w-7xl mx-auto px-6 ">
+            <div class="text-center mb-16 fade-in ">
+                <span class="text-[var(--matcha)] font-semibold text-sm uppercase tracking-wider ">Tim Kami</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-4 ">Tim Sales Profesional</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto ">
+                    Kenali tim sales kami yang siap membantu kebutuhan bisnis Anda dengan solusi herbal terbaik.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+                <!-- SALES 1 -->
+                <div class="sales-card rounded-2xl overflow-hidden fade-in ">
+                    <div class="relative ">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80 " class="w-full h-64 object-cover " alt="Ahmad Wijaya
+                    - Sales Manager ">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 ">
+                            <h3 class="text-xl font-bold text-white ">Ahmad Wijaya</h3>
+                            <p class="text-[var(--matcha-light)] text-sm ">Sales Manager</p>
+                        </div>
+                    </div>
+                    <div class="p-6 ">
+                        <p class="text-gray-600 text-sm mb-4 ">
+                            Berpengalaman lebih dari 10 tahun dalam bidang sales dan marketing herbal. Spesialisasi dalam solusi B2B dan corporate partnership.
+                        </p>
+
+                        <div class="space-y-2 mb-6 ">
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-phone text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">+62 812-3456-7890</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-envelope text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">ahmad.wijaya@naima.co.id</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-globe text-[var(--matcha)] mr-3 w-5 "></i>
+                                <a href="https://www.ahmadwijaya-sales.com " target="_blank " class="web-link text-sm ">
+                                    www.ahmadwijaya-sales.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-3 ">
+                            <a href="https://wa.me/6281234567890 " class="flex-1 bg-[var(--matcha)] text-white text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha-dark)] transition-colors ">
+                                <i class="fab fa-whatsapp mr-1 "></i> WhatsApp
+                            </a>
+                            <a href="https://www.ahmadwijaya-sales.com " target="_blank " class="flex-1 bg-transparent border border-[var(--matcha)] text-[var(--matcha)] text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha)] hover:text-white
+                    transition-colors ">
+                                <i class="fas fa-globe mr-1 "></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALES 2 -->
+                <div class="sales-card rounded-2xl overflow-hidden fade-in ">
+                    <div class="relative ">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80 " class="w-full h-64 object-cover " alt="Sari Dewi
+                    - Senior Sales Executive ">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 ">
+                            <h3 class="text-xl font-bold text-white ">Sari Dewi</h3>
+                            <p class="text-[var(--matcha-light)] text-sm ">Senior Sales Executive</p>
+                        </div>
+                    </div>
+                    <div class="p-6 ">
+                        <p class="text-gray-600 text-sm mb-4 ">
+                            Spesialis dalam pengembangan pasar retail dan FMCG. Memiliki jaringan luas di industri consumer goods selama 8 tahun.
+                        </p>
+
+                        <div class="space-y-2 mb-6 ">
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-phone text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">+62 813-9876-5432</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-envelope text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">sari.dewi@naima.co.id</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-globe text-[var(--matcha)] mr-3 w-5 "></i>
+                                <a href="https://www.saridewi-consultant.com " target="_blank " class="web-link text-sm ">
+                                    www.saridewi-consultant.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-3 ">
+                            <a href="https://wa.me/6281398765432 " class="flex-1 bg-[var(--matcha)] text-white text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha-dark)] transition-colors ">
+                                <i class="fab fa-whatsapp mr-1 "></i> WhatsApp
+                            </a>
+                            <a href="https://www.saridewi-consultant.com " target="_blank " class="flex-1 bg-transparent border border-[var(--matcha)] text-[var(--matcha)] text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha)] hover:text-white
+                    transition-colors ">
+                                <i class="fas fa-globe mr-1 "></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALES 3 -->
+                <div class="sales-card rounded-2xl overflow-hidden fade-in ">
+                    <div class="relative ">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80 " class="w-full h-64 object-cover " alt="Budi Santoso
+                    - Account Executive ">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 ">
+                            <h3 class="text-xl font-bold text-white ">Budi Santoso</h3>
+                            <p class="text-[var(--matcha-light)] text-sm ">Account Executive</p>
+                        </div>
+                    </div>
+                    <div class="p-6 ">
+                        <p class="text-gray-600 text-sm mb-4 ">
+                            Fokus pada client relationship management dan after-sales service. Berpengalaman 6 tahun dalam menjaga kepuasan pelanggan.
+                        </p>
+
+                        <div class="space-y-2 mb-6 ">
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-phone text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">+62 811-2233-4455</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-envelope text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">budi.santoso@naima.co.id</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-globe text-[var(--matcha)] mr-3 w-5 "></i>
+                                <a href="https://www.budisantoso-business.com " target="_blank " class="web-link text-sm ">
+                                    www.budisantoso-business.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-3 ">
+                            <a href="https://wa.me/6281122334455 " class="flex-1 bg-[var(--matcha)] text-white text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha-dark)] transition-colors ">
+                                <i class="fab fa-whatsapp mr-1 "></i> WhatsApp
+                            </a>
+                            <a href="https://www.budisantoso-business.com " target="_blank " class="flex-1 bg-transparent border border-[var(--matcha)] text-[var(--matcha)] text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha)] hover:text-white
+                    transition-colors ">
+                                <i class="fas fa-globe mr-1 "></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALES 4 -->
+                <div class="sales-card rounded-2xl overflow-hidden fade-in ">
+                    <div class="relative ">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80 " class="w-full h-64 object-cover " alt="Maya Sari
+                    - Business Development ">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 ">
+                            <h3 class="text-xl font-bold text-white ">Maya Sari</h3>
+                            <p class="text-[var(--matcha-light)] text-sm ">Business Development</p>
+                        </div>
+                    </div>
+                    <div class="p-6 ">
+                        <p class="text-gray-600 text-sm mb-4 ">
+                            Ahli dalam identifikasi peluang pasar baru dan pengembangan strategi ekspansi bisnis. Berpengalaman 7 tahun di bidang B2B.
+                        </p>
+
+                        <div class="space-y-2 mb-6 ">
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-phone text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">+62 817-5544-3322</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-envelope text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">maya.sari@naima.co.id</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-globe text-[var(--matcha)] mr-3 w-5 "></i>
+                                <a href="https://www.mayasari-development.com " target="_blank " class="web-link text-sm ">
+                                    www.mayasari-development.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-3 ">
+                            <a href="https://wa.me/6281755443322 " class="flex-1 bg-[var(--matcha)] text-white text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha-dark)] transition-colors ">
+                                <i class="fab fa-whatsapp mr-1 "></i> WhatsApp
+                            </a>
+                            <a href="https://www.mayasari-development.com " target="_blank " class="flex-1 bg-transparent border border-[var(--matcha)] text-[var(--matcha)] text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha)] hover:text-white
+                    transition-colors ">
+                                <i class="fas fa-globe mr-1 "></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALES 5 -->
+                <div class="sales-card rounded-2xl overflow-hidden fade-in ">
+                    <div class="relative ">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80 " class="w-full h-64 object-cover " alt="Rizki Pratama
+                    - Sales Consultant ">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 ">
+                            <h3 class="text-xl font-bold text-white ">Rizki Pratama</h3>
+                            <p class="text-[var(--matcha-light)] text-sm ">Sales Consultant</p>
+                        </div>
+                    </div>
+                    <div class="p-6 ">
+                        <p class="text-gray-600 text-sm mb-4 ">
+                            Konsultan sales dengan spesialisasi solusi teknologi dan digital transformation. Membantu lebih dari 50 perusahaan meningkatkan efisiensi.
+                        </p>
+
+                        <div class="space-y-2 mb-6 ">
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-phone text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">+62 815-6677-8899</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-envelope text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">rizki.pratama@naima.co.id</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-globe text-[var(--matcha)] mr-3 w-5 "></i>
+                                <a href="https://www.rizkipratama-tech.com " target="_blank " class="web-link text-sm ">
+                                    www.rizkipratama-tech.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-3 ">
+                            <a href="https://wa.me/6281566778899 " class="flex-1 bg-[var(--matcha)] text-white text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha-dark)] transition-colors ">
+                                <i class="fab fa-whatsapp mr-1 "></i> WhatsApp
+                            </a>
+                            <a href="https://www.rizkipratama-tech.com " target="_blank " class="flex-1 bg-transparent border border-[var(--matcha)] text-[var(--matcha)] text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha)] hover:text-white
+                    transition-colors ">
+                                <i class="fas fa-globe mr-1 "></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALES 6 -->
+                <div class="sales-card rounded-2xl overflow-hidden fade-in ">
+                    <div class="relative ">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80 " class="w-full h-64 object-cover " alt="Diana Putri
+                    - Key Account Manager ">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 ">
+                            <h3 class="text-xl font-bold text-white ">Diana Putri</h3>
+                            <p class="text-[var(--matcha-light)] text-sm ">Key Account Manager</p>
+                        </div>
+                    </div>
+                    <div class="p-6 ">
+                        <p class="text-gray-600 text-sm mb-4 ">
+                            Mengelola hubungan dengan klien korporat utama. Berpengalaman 9 tahun dalam mempertahankan dan mengembangkan account bernilai tinggi.
+                        </p>
+
+                        <div class="space-y-2 mb-6 ">
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-phone text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">+62 812-9988-7766</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-envelope text-[var(--matcha)] mr-3 w-5 "></i>
+                                <span class="text-gray-700 ">diana.putri@naima.co.id</span>
+                            </div>
+                            <div class="flex items-center text-sm ">
+                                <i class="fas fa-globe text-[var(--matcha)] mr-3 w-5 "></i>
+                                <a href="https://www.dianaputri-account.com " target="_blank " class="web-link text-sm ">
+                                    www.dianaputri-account.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-3 ">
+                            <a href="https://wa.me/6281299887766 " class="flex-1 bg-[var(--matcha)] text-white text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha-dark)] transition-colors ">
+                                <i class="fab fa-whatsapp mr-1 "></i> WhatsApp
+                            </a>
+                            <a href="https://www.dianaputri-account.com " target="_blank " class="flex-1 bg-transparent border border-[var(--matcha)] text-[var(--matcha)] text-center py-2 rounded-lg font-semibold hover:bg-[var(--matcha)] hover:text-white
+                    transition-colors ">
+                                <i class="fas fa-globe mr-1 "></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="contact " class="py-20 bg-gradient-to-br from-[var(--matcha-light)] to-[var(--matcha)] ">
+        <div class="max-w-4xl mx-auto px-6 text-center ">
+            <div class="fade-in ">
+                <h2 class="text-4xl font-bold text-white mb-6 ">Siap Bekerja Sama Dengan Tim Kami?</h2>
+                <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto ">
+                    Hubungi tim sales kami sekarang untuk konsultasi gratis dan temukan solusi herbal terbaik untuk bisnis Anda.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center ">
+                    <a href="https://wa.me/628123456789 " class="bg-white text-[var(--matcha)] font-semibold py-3 px-8 rounded-xl hover:bg-gray-100 transition-colors inline-flex items-center ">
+                        <i class="fab fa-whatsapp mr-2 "></i> Hubungi via WhatsApp
+                    </a>
+                    <a href="tel:+622112345678 " class="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-xl hover:bg-white hover:text-[var(--matcha)] transition-colors inline-flex items-center ">
+                        <i class="fas fa-phone mr-2 "></i> Telepon Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="w-full bg-gray-900 text-white py-16 ">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 ">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 ">
+                <!-- COMPANY INFO -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6 ">
+                        <div class="w-10 h-10 bg-[var(--matcha)] rounded-lg flex items-center justify-center ">
+                            <span class="text-white font-bold text-lg ">N</span>
+                        </div>
+                        <h3 class="font-bold text-xl ">PT. Naima Mandiri Utama</h3>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed text-sm mb-6 ">
+                        Perusahaan herbal terpercaya yang menghadirkan solusi kesehatan alami berkualitas tinggi untuk keluarga Indonesia dengan standar internasional.
+                    </p>
+                    <div class="flex space-x-4 ">
+                        <a href="# " class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors ">
+                            <i class="fab fa-facebook-f "></i>
+                        </a>
+                        <a href="# " class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors ">
+                            <i class="fab fa-instagram "></i>
+                        </a>
+                        <a href="# " class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors ">
+                            <i class="fab fa-twitter "></i>
+                        </a>
+                        <a href="# " class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--matcha)] transition-colors ">
+                            <i class="fab fa-linkedin-in "></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CONTACT INFO -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-6 ">Kontak Kami</h3>
+                    <div class="space-y-4 ">
+                        <div class="flex items-start space-x-3 ">
+                            <i class="fas fa-map-marker-alt text-[var(--matcha)] mt-1 "></i>
+                            <p class="text-gray-400 text-sm ">
+                                Jl. Contoh No. 123<br> Jakarta Selatan, 12345<br> Indonesia
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 ">
+                            <i class="fas fa-phone text-[var(--matcha)] "></i>
+                            <p class="text-gray-400 text-sm ">+62 21 1234 5678</p>
+                        </div>
+                        <div class="flex items-center space-x-3 ">
+                            <i class="fas fa-envelope text-[var(--matcha)] "></i>
+                            <p class="text-gray-400 text-sm ">info@naima.co.id</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QUICK LINKS -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-6 ">Tautan Cepat</h3>
+                    <ul class="space-y-3 ">
+                        <li><a href="index.html " class="text-gray-400 hover:text-white transition-colors text-sm ">Beranda</a></li>
+                        <li><a href="index.html#about " class="text-gray-400 hover:text-white transition-colors text-sm ">Tentang Kami</a></li>
+                        <li><a href="index.html#services " class="text-gray-400 hover:text-white transition-colors text-sm ">Layanan</a></li>
+
+                        <li><a href="index.html#partnership " class="text-gray-400 hover:text-white transition-colors text-sm ">Kerjasama</a></li>
+                    </ul>
+                </div>
+
+                <!-- NEWSLETTER -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-6 ">Newsletter</h3>
+                    <p class="text-gray-400 text-sm mb-4 ">
+                        Dapatkan informasi terbaru tentang produk dan promo spesial dari Naima.
+                    </p>
+                    <div class="flex ">
+                        <input type="email " placeholder="Email Anda " class="bg-gray-800 text-white px-4 py-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-[var(--matcha)] w-full text-sm ">
+                        <button class="bg-[var(--matcha)] text-white px-4 rounded-r-lg hover:bg-[var(--matcha-dark)] transition-colors ">
+                            <i class="fas fa-paper-plane "></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COPYRIGHT -->
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center ">
+                <p class="text-gray-500 text-sm ">
+                    © 2024 PT. Naima Mandiri Utama. All rights reserved.
+                    <span class="text-[var(--matcha)] ">Dibuat dengan ❤️ untuk Indonesia</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WA Floating Button -->
+    <a href="https://wa.me/628123456789 " class="wa-btn " target="_blank ">
+        <i class="fab fa-whatsapp text-white text-2xl "></i>
+    </a>
+
+    <script>
+        // Loading Bar Animation
+        window.addEventListener('load', function() {
+            const loadingBar = document.getElementById('loadingBar');
+            loadingBar.style.width = '100%';
+            setTimeout(() => {
+                loadingBar.style.opacity = '0';
+            }, 500);
+        });
+
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', fadeInOnScroll);
+        fadeInOnScroll(); // Initial check
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="# "]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
