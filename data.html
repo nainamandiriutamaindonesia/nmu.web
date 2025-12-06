@@ -1,0 +1,3212 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Wilayah Jabodetabek - PT. NAINA MANDIRI UTAMA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Library untuk export Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Animate.css untuk animasi -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+         :root {
+            --matcha: #2E8B57;
+            --matcha-light: #3CB371;
+            --matcha-dark: #228B22;
+            --matcha-gradient: linear-gradient(135deg, var(--matcha-light), var(--matcha));
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+        /* Loading Animation */
+        
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--matcha-gradient);
+            transform: translateX(-100%);
+            z-index: 9999;
+        }
+        
+        .loading-bar.loading {
+            animation: loading 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes loading {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        /* Floating Animation */
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        /* Pulse Animation */
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        /* Slide In Animation */
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.5s ease-out;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.5s ease-out;
+        }
+        
+        .slide-in-up {
+            animation: slideInUp 0.5s ease-out;
+        }
+        /* Fade In Animation */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        /* Hover Effects */
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        /* Card Styles */
+        
+        .dropdown-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dropdown-card:hover {
+            border-color: var(--matcha-light);
+            box-shadow: 0 20px 40px rgba(46, 139, 87, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .selected-item {
+            background: var(--matcha-gradient);
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
+        }
+        
+        .selected-item .text-gray-500 {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+        /* Region Badges */
+        
+        .region-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .badge-dki {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .badge-bogor {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        
+        .badge-depok {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .badge-tangerang {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .badge-bekasi {
+            background: #e8eaf6;
+            color: #303f9f;
+        }
+        
+        .badge-jakarta {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .badge-jabar {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .badge-banten {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        /* Step Indicator */
+        
+        .step-indicator {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+        
+        .step-active {
+            background: var(--matcha-gradient);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.4);
+        }
+        
+        .step-inactive {
+            background: #f1f5f9;
+            color: #94a3b8;
+            border-color: #e2e8f0;
+        }
+        /* Store Card */
+        
+        .store-card {
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .store-card:hover {
+            border-left-color: var(--matcha);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .store-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--matcha-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .store-card:hover::before {
+            opacity: 1;
+        }
+        /* Modal Styling */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            transform: translateY(-30px);
+            opacity: 0;
+            animation: slideInUp 0.4s ease-out 0.1s forwards;
+        }
+        
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--matcha);
+        }
+        /* Notification */
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--matcha-gradient);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(46, 139, 87, 0.4);
+            z-index: 9999;
+            transform: translateX(120%);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        /* Progress Bar Animation */
+        
+        .progress-bar-inner {
+            height: 6px;
+            background: var(--matcha-gradient);
+            border-radius: 3px;
+            transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        /* Floating Action Button */
+        
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--matcha-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 10px 30px rgba(46, 139, 87, 0.4);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .fab:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 15px 40px rgba(46, 139, 87, 0.6);
+        }
+        /* Custom Scrollbar */
+        
+         ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: var(--matcha-light);
+            border-radius: 4px;
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: var(--matcha);
+        }
+        /* Glowing Border */
+        
+        .glow-border {
+            position: relative;
+        }
+        
+        .glow-border::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--matcha-gradient);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .glow-border:hover::after {
+            opacity: 1;
+        }
+        /* Ripple Effect */
+        
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.6);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .ripple:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        /* Hero Section Glow */
+        
+        .hero-glow {
+            position: relative;
+        }
+        
+        .hero-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(46, 139, 87, 0.3), transparent 70%);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="fab">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification hidden">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span id="notificationText"></span>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('exportModal')">&times;</span>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 slide-in-left">Export Data Agen</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Format File:</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="exportToExcel()" class="bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition-all duration-300 hover-lift ripple">
+                            <i class="fas fa-file-excel mr-2"></i>Excel (.xlsx)
+                        </button>
+                        <button onclick="exportToPDF()" class="bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 transition-all duration-300 hover-lift ripple">
+                            <i class="fas fa-file-pdf mr-2"></i>PDF (.pdf)
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Data:</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="exportType" value="all" checked class="mr-2">
+                            <span>Semua Agen di Kecamatan</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="exportType" value="filtered" class="mr-2">
+                            <span>Agen yang Ditampilkan Saja</span>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Kolom Data:</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" checked class="mr-2" id="colNama"> Nama Toko
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" checked class="mr-2" id="colAlamat"> Alamat
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" checked class="mr-2" id="colTelepon"> Telepon
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" checked class="mr-2" id="colJenis"> Jenis Agen
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" checked class="mr-2" id="colRating"> Rating
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2" id="colKode"> Kode Wilayah
+                        </label>
+                    </div>
+                </div>
+                <button onclick="processExport()" class="w-full bg-[var(--matcha)] text-white py-3 rounded-lg hover:bg-[var(--matcha-dark)] transition-all duration-300 hover-lift ripple pulse">
+                    <i class="fas fa-download mr-2"></i>Export Data
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('shareModal')">&times;</span>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 slide-in-left">Bagikan Data Agen</h3>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Platform:</label>
+                <div class="share-options">
+                    <div class="share-option" onclick="shareViaWhatsApp()">
+                        <i class="fab fa-whatsapp text-3xl text-green-500 mb-2"></i>
+                        <span class="text-sm font-medium">WhatsApp</span>
+                    </div>
+                    <div class="share-option" onclick="shareViaEmail()">
+                        <i class="fas fa-envelope text-3xl text-red-500 mb-2"></i>
+                        <span class="text-sm font-medium">Email</span>
+                    </div>
+                    <div class="share-option" onclick="copyShareLink()">
+                        <i class="fas fa-link text-3xl text-blue-500 mb-2"></i>
+                        <span class="text-sm font-medium">Salin Link</span>
+                    </div>
+                    <div class="share-option" onclick="shareViaTelegram()">
+                        <i class="fab fa-telegram text-3xl text-blue-400 mb-2"></i>
+                        <span class="text-sm font-medium">Telegram</span>
+                    </div>
+                    <div class="share-option" onclick="printData()">
+                        <i class="fas fa-print text-3xl text-gray-600 mb-2"></i>
+                        <span class="text-sm font-medium">Print</span>
+                    </div>
+                    <div class="share-option" onclick="downloadAsText()">
+                        <i class="fas fa-file-alt text-3xl text-gray-700 mb-2"></i>
+                        <span class="text-sm font-medium">TXT File</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Link untuk dibagikan:</label>
+                <div class="flex">
+                    <input type="text" id="shareLink" readonly class="flex-1 border border-gray-300 rounded-l-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--matcha)]">
+                    <button onclick="copyShareLink()" class="bg-[var(--matcha)] text-white px-4 py-2 rounded-r-lg hover:bg-[var(--matcha-dark)] transition-all duration-300 ripple">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-4 text-sm text-gray-600">
+                <i class="fas fa-info-circle mr-2"></i> Data akan dibagikan dalam format yang mudah dibaca
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="w-full fixed z-50 bg-white/90 backdrop-blur-md shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-[var(--matcha)] rounded-lg flex items-center justify-center shadow-lg hover-lift">
+                        <img src="assets/logonmu.jpg" alt="Logo NMU" class="w-12 h-12 object-contain rounded-lg">
+                    </div>
+                    <h1 class="font-extrabold text-2xl" style="color:var(--matcha);">PT. NAINA MANDIRI UTAMA</h1>
+                </a>
+            </div>
+
+            <nav class="hidden md:flex gap-8 font-semibold">
+                <a href="index.html" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Beranda
+                </a>
+                <a href="index.html#about" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Tentang Kami
+                </a>
+                <a href="index.html#services" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Layanan kami
+                </a>
+                <a href="index.html#article" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Artikel
+                </a>
+                <a href="index.html#partnership" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Kerja sama
+                </a>
+                <a href="sales.html" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    </i>Team Sales
+                </a>
+                <a href="data.html" class="nav-link active text-[var(--matcha)] font-semibold transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[var(--matcha)]">
+                    Data Agen
+                </a>
+                <a href="produk.html" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Produk
+                </a>
+            </nav>
+
+            <button class="md:hidden text-gray-700 hover:text-[var(--matcha)] transition-colors" id="mobileMenuButton">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <div class="md:hidden bg-white border-t border-gray-200 hidden animate__animated animate__fadeInDown" id="mobileMenu">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors hover:pl-2 duration-300">Home</a>
+                <a href="index.html#about" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors hover:pl-2 duration-300">Tentang</a>
+                <a href="index.html#services" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors hover:pl-2 duration-300">Layanan</a>
+                <a href="index.html#why" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors hover:pl-2 duration-300">Why Us?</a>
+                <a href="index.html#partnership" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors hover:pl-2 duration-300">Kerjasama</a>
+                <a href="sales.html" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors hover:pl-2 duration-300">Tim Sales</a>
+                <a href="data.html" class="block text-[var(--matcha)] font-semibold hover:pl-2 duration-300">Data Agen</a>
+                <a href="produk.html" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors hover:pl-2 duration-300">produk</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-glow bg-gradient-to-br from-[var(--matcha-light)] to-[var(--matcha)] text-white py-20 mt-16 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <div class="floating mb-6">
+                <i class="fas fa-map-marked-alt text-5xl text-white/80"></i>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate__animated animate__fadeInDown">Data Wilayah Jabodetabek</h1>
+            <div class="w-32 h-1.5 bg-white/80 rounded-full mx-auto mb-8 animate__animated animate__fadeInLeft"></div>
+            <p class="text-xl max-w-3xl mx-auto opacity-90 mb-8 animate__animated animate__fadeInUp">
+                Temukan toko/agen terdekat di daerah Anda dengan navigasi wilayah yang mudah
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <i class="fas fa-store mr-2"></i> 250+ Agen
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <i class="fas fa-map-pin mr-2"></i> 12 Kota/Kabupaten
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <i class="fas fa-star mr-2"></i> Rating Terverifikasi
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Progress Steps -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 slide-in-up glow-border">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 md:mb-0">Pilih Wilayah</h2>
+                    <button id="resetBtn" class="text-[var(--matcha)] hover:text-[var(--matcha-dark)] transition-all duration-300 hover-lift px-4 py-2 rounded-lg border border-[var(--matcha)] hover:bg-[var(--matcha)] hover:text-white ripple">
+                        <i class="fas fa-redo mr-2"></i>Reset Pilihan
+                    </button>
+                </div>
+
+                <div class="flex items-center space-x-4 mb-8">
+                    <div class="flex items-center">
+                        <div class="step-indicator step-inactive">1</div>
+                        <span class="text-sm font-medium text-gray-500">Provinsi</span>
+                    </div>
+                    <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="progress-bar-inner h-2 rounded-full" id="progressBar" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="step-indicator step-inactive">2</div>
+                        <span class="text-sm font-medium text-gray-500">Kota/Kabupaten</span>
+                    </div>
+                    <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-2 bg-gray-200 rounded-full"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="step-indicator step-inactive">3</div>
+                        <span class="text-sm font-medium text-gray-500">Kecamatan</span>
+                    </div>
+                </div>
+
+                <!-- Selected Info -->
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 mb-6 hidden shadow-inner" id="selectedInfo">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                            <div class="text-gray-600 text-sm mb-1">Provinsi</div>
+                            <div class="font-bold text-[var(--matcha)] text-lg" id="selectedProvinsi">-</div>
+                        </div>
+                        <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                            <div class="text-gray-600 text-sm mb-1">Kota/Kabupaten</div>
+                            <div class="font-bold text-[var(--matcha)] text-lg" id="selectedKota">-</div>
+                        </div>
+                        <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                            <div class="text-gray-600 text-sm mb-1">Kecamatan</div>
+                            <div class="font-bold text-[var(--matcha)] text-lg" id="selectedKecamatan">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown Sections -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Provinsi Section -->
+                <div class="dropdown-card p-6 animate__animated animate__fadeInLeft">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <div class="w-10 h-10 bg-[var(--matcha)] rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-map text-white"></i>
+                        </div>
+                        Pilih Provinsi
+                    </h3>
+                    <div class="space-y-3 max-h-96 overflow-y-auto pr-2" id="provinsiList">
+                        <!-- Provinsi items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Kota/Kabupaten Section -->
+                <div class="dropdown-card p-6 opacity-50" id="kotaSection">
+                    <h3 class="text-xl font-bold text-gray-500 mb-6 flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-city text-white"></i>
+                        </div>
+                        Pilih Kota/Kabupaten
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-4">Pilih provinsi terlebih dahulu</p>
+                    <div class="space-y-3 max-h-96 overflow-y-auto pr-2 hidden" id="kotaList">
+                        <!-- Kota items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Kecamatan Section -->
+                <div class="dropdown-card p-6 opacity-50" id="kecamatanSection">
+                    <h3 class="text-xl font-bold text-gray-500 mb-6 flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-location-dot text-white"></i>
+                        </div>
+                        Pilih Kecamatan
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-4">Pilih kota/kabupaten terlebih dahulu</p>
+                    <div class="space-y-3 max-h-96 overflow-y-auto pr-2 hidden" id="kecamatanList">
+                        <!-- Kecamatan items will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toko/Agen Section -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 mt-12 hidden slide-in-up" id="tokoSection">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="text-2xl font-bold text-gray-800 flex items-center">
+                            <div class="w-12 h-12 bg-[var(--matcha)] rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-store text-white text-xl"></i>
+                            </div>
+                            <div>
+                                Toko/Agen di
+                                <span id="selectedKecamatanTitle" class="text-[var(--matcha)] ml-2"></span>
+                                <div class="text-sm font-normal text-gray-600 mt-1" id="storeCount">(0 agen)</div>
+                            </div>
+                        </h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="openExportModal()" class="bg-[var(--matcha)] text-white px-6 py-3 rounded-xl hover:bg-[var(--matcha-dark)] transition-all duration-300 hover-lift ripple shadow-lg flex items-center">
+                            <i class="fas fa-download mr-2"></i>Export Data
+                        </button>
+                        <button onclick="openShareModal()" class="bg-white text-[var(--matcha)] border-2 border-[var(--matcha)] px-6 py-3 rounded-xl hover:bg-[var(--matcha)] hover:text-white transition-all duration-300 hover-lift ripple shadow-lg flex items-center">
+                            <i class="fas fa-share mr-2"></i>Bagikan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Options -->
+                <div class="mb-8 p-6 bg-gradient-to-r from-gray-50 to-green-50 rounded-xl shadow-inner">
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <span class="text-gray-700 font-medium flex items-center">
+                            <i class="fas fa-filter mr-2 text-[var(--matcha)]"></i>Filter:
+                        </span>
+                        <select id="filterJenis" class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--matcha)] transition-all duration-300" onchange="applyFilters()">
+                            <option value="all">Semua Jenis</option>
+                            <option value="Agen Utama">Agen Utama</option>
+                            <option value="Distributor">Distributor</option>
+                            <option value="Sub Agen">Sub Agen</option>
+                        </select>
+                        <select id="filterRating" class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--matcha)] transition-all duration-300" onchange="applyFilters()">
+                            <option value="all">Semua Rating</option>
+                            <option value="4.5">★★★★☆ 4.5+</option>
+                            <option value="4.0">★★★★☆ 4.0+</option>
+                            <option value="3.5">★★★☆☆ 3.5+</option>
+                        </select>
+                        <button onclick="resetFilters()" class="text-gray-600 hover:text-[var(--matcha)] transition-colors text-sm hover-lift px-3 py-2 rounded-lg bg-white border border-gray-300">
+                            <i class="fas fa-times mr-1"></i>Reset Filter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Toko List Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="tokoList">
+                    <!-- Toko items will be loaded here -->
+                </div>
+
+                <div class="text-center py-12 hidden" id="noStoreMessage">
+                    <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-store-slash text-3xl text-gray-300"></i>
+                    </div>
+                    <h4 class="text-xl font-medium text-gray-600 mb-3">Belum ada toko/agen terdaftar</h4>
+                    <p class="text-gray-500 text-sm max-w-md mx-auto">Toko/agen di kecamatan ini sedang dalam proses verifikasi. Silakan cek kembali beberapa waktu mendatang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="animate__animated animate__fadeInUp">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <div class="w-8 h-8 bg-[var(--matcha)] rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        PT. NAINA MANDIRI UTAMA
+                    </h3>
+                    <p class="text-gray-400 text-sm">
+                        Distributor produk herbal dan obat tradisional berkualitas dengan sertifikasi BPOM dan Halal MUI.
+                    </p>
+                </div>
+
+                <div class="animate__animated animate__fadeInUp animate__delay-1s">
+                    <h4 class="font-bold mb-4 flex items-center">
+                        <i class="fas fa-link mr-2 text-[var(--matcha)]"></i>Tautan Cepat
+                    </h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Beranda</a></li>
+                        <li><a href="tentang.html" class="text-gray-400 hover:text-white transition-colors hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Tentang Kami</a></li>
+                        <li><a href="data-wilayah.html" class="text-gray-400 hover:text-white transition-colors hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Data Wilayah</a></li>
+                        <li><a href="kerjasama.html" class="text-gray-400 hover:text-white transition-colors hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Kerjasama</a></li>
+                    </ul>
+                </div>
+
+                <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                    <h4 class="font-bold mb-4 flex items-center">
+                        <i class="fas fa-address-card mr-2 text-[var(--matcha)]"></i>Kontak Kami
+                    </h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-start hover:text-white transition-colors">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-[var(--matcha)]"></i>
+                            <span>Jl. Benda Ceger Kp. Pabuaran Blok A, RT. 03 RW. 02 Kel. Cimuning<br>Kec. Mustikajaya, Kota Bekasi</span>
+                        </li>
+                        <li class="flex items-center hover:text-white transition-colors">
+                            <i class="fas fa-phone mr-3 text-[var(--matcha)]"></i>
+                            <span>+62 831-9934-9933</span>
+                        </li>
+                        <li class="flex items-center hover:text-white transition-colors">
+                            <i class="fas fa-envelope mr-3 text-[var(--matcha)]"></i>
+                            <span>nainamandiriutamaindonesia@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="animate__animated animate__fadeInUp animate__delay-3s">
+                    <h4 class="font-bold mb-4 flex items-center">
+                        <i class="fas fa-share-alt mr-2 text-[var(--matcha)]"></i>Ikuti Kami
+                    </h4>
+                    <div class="flex space-x-3">
+                        <a href="https://youtube.com/@nmuoff1c1al?si=tRp2M7w9bu8WAnR6" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-all duration-300 hover-lift hover:rotate-12">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.instagram.com/nainamandiriutama?igsh=MWx1bmw4MnAzZ2djbw==" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-pink-600 transition-all duration-300 hover-lift hover:rotate-12">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@nmu_distributor?_r=1&_t=ZS-91jvZiQkLJZ" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-900 transition-all duration-300 hover-lift hover:rotate-12">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/6285710008579" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-300 hover-lift hover:rotate-12">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm animate__animated animate__fadeIn">
+                <p>&copy; 2024 PT. NAINA MANDIRI UTAMA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Wilayah Jabodetabek yang Lengkap
+        const wilayahData = {
+            provinsi: [{
+                id: '31',
+                nama: 'DKI Jakarta',
+                kode: '31'
+            }, {
+                id: '32',
+                nama: 'Jawa Barat',
+                kode: '32'
+            }, {
+                id: '36',
+                nama: 'Banten',
+                kode: '36'
+            }],
+            kota: [
+                // DKI Jakarta
+                {
+                    id: '31.71',
+                    nama: 'Jakarta Pusat',
+                    provinsiId: '31',
+                    kode: '31.71',
+                    daerah: 'dki'
+                }, {
+                    id: '31.72',
+                    nama: 'Jakarta Utara',
+                    provinsiId: '31',
+                    kode: '31.72',
+                    daerah: 'dki'
+                }, {
+                    id: '31.73',
+                    nama: 'Jakarta Barat',
+                    provinsiId: '31',
+                    kode: '31.73',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74',
+                    nama: 'Jakarta Selatan',
+                    provinsiId: '31',
+                    kode: '31.74',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75',
+                    nama: 'Jakarta Timur',
+                    provinsiId: '31',
+                    kode: '31.75',
+                    daerah: 'dki'
+                },
+                // Jawa Barat - Bogor
+                {
+                    id: '32.71',
+                    nama: 'Kota Bogor',
+                    provinsiId: '32',
+                    kode: '32.71',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01',
+                    nama: 'Kabupaten Bogor',
+                    provinsiId: '32',
+                    kode: '32.01',
+                    daerah: 'bogor'
+                },
+                // Jawa Barat - Depok
+                {
+                    id: '32.74',
+                    nama: 'Kota Depok',
+                    provinsiId: '32',
+                    kode: '32.74',
+                    daerah: 'depok'
+                },
+                // Jawa Barat - Bekasi
+                {
+                    id: '32.75',
+                    nama: 'Kota Bekasi',
+                    provinsiId: '32',
+                    kode: '32.75',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16',
+                    nama: 'Kabupaten Bekasi',
+                    provinsiId: '32',
+                    kode: '32.16',
+                    daerah: 'bekasi'
+                },
+                // Banten - Tangerang
+                {
+                    id: '36.71',
+                    nama: 'Kota Tangerang',
+                    provinsiId: '36',
+                    kode: '36.71',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.74',
+                    nama: 'Kota Tangerang Selatan',
+                    provinsiId: '36',
+                    kode: '36.74',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01',
+                    nama: 'Kabupaten Tangerang',
+                    provinsiId: '36',
+                    kode: '36.01',
+                    daerah: 'tangerang'
+                }
+            ],
+            kecamatan: [
+                // === DKI JAKARTA ===
+                // Jakarta Pusat
+                {
+                    id: '31.71.01',
+                    nama: 'Gambir',
+                    kotaId: '31.71',
+                    kode: '31.71.01',
+                    daerah: 'dki'
+                }, {
+                    id: '31.71.02',
+                    nama: 'Sawah Besar',
+                    kotaId: '31.71',
+                    kode: '31.71.02',
+                    daerah: 'dki'
+                }, {
+                    id: '31.71.03',
+                    nama: 'Kemayoran',
+                    kotaId: '31.71',
+                    kode: '31.71.03',
+                    daerah: 'dki'
+                }, {
+                    id: '31.71.04',
+                    nama: 'Senen',
+                    kotaId: '31.71',
+                    kode: '31.71.04',
+                    daerah: 'dki'
+                }, {
+                    id: '31.71.05',
+                    nama: 'Cempaka Putih',
+                    kotaId: '31.71',
+                    kode: '31.71.05',
+                    daerah: 'dki'
+                }, {
+                    id: '31.71.06',
+                    nama: 'Menteng',
+                    kotaId: '31.71',
+                    kode: '31.71.06',
+                    daerah: 'dki'
+                }, {
+                    id: '31.71.07',
+                    nama: 'Tanah Abang',
+                    kotaId: '31.71',
+                    kode: '31.71.07',
+                    daerah: 'dki'
+                }, {
+                    id: '31.71.08',
+                    nama: 'Johar Baru',
+                    kotaId: '31.71',
+                    kode: '31.71.08',
+                    daerah: 'dki'
+                },
+
+                // Jakarta Utara
+                {
+                    id: '31.72.01',
+                    nama: 'Penjaringan',
+                    kotaId: '31.72',
+                    kode: '31.72.01',
+                    daerah: 'dki'
+                }, {
+                    id: '31.72.02',
+                    nama: 'Tanjung Priok',
+                    kotaId: '31.72',
+                    kode: '31.72.02',
+                    daerah: 'dki'
+                }, {
+                    id: '31.72.03',
+                    nama: 'Koja',
+                    kotaId: '31.72',
+                    kode: '31.72.03',
+                    daerah: 'dki'
+                }, {
+                    id: '31.72.04',
+                    nama: 'Cilincing',
+                    kotaId: '31.72',
+                    kode: '31.72.04',
+                    daerah: 'dki'
+                }, {
+                    id: '31.72.05',
+                    nama: 'Pademangan',
+                    kotaId: '31.72',
+                    kode: '31.72.05',
+                    daerah: 'dki'
+                }, {
+                    id: '31.72.06',
+                    nama: 'Kelapa Gading',
+                    kotaId: '31.72',
+                    kode: '31.72.06',
+                    daerah: 'dki'
+                },
+
+                // Jakarta Barat
+                {
+                    id: '31.73.01',
+                    nama: 'Cengkareng',
+                    kotaId: '31.73',
+                    kode: '31.73.01',
+                    daerah: 'dki'
+                }, {
+                    id: '31.73.02',
+                    nama: 'Grogol Petamburan',
+                    kotaId: '31.73',
+                    kode: '31.73.02',
+                    daerah: 'dki'
+                }, {
+                    id: '31.73.03',
+                    nama: 'Taman Sari',
+                    kotaId: '31.73',
+                    kode: '31.73.03',
+                    daerah: 'dki'
+                }, {
+                    id: '31.73.04',
+                    nama: 'Tambora',
+                    kotaId: '31.73',
+                    kode: '31.73.04',
+                    daerah: 'dki'
+                }, {
+                    id: '31.73.05',
+                    nama: 'Kebon Jeruk',
+                    kotaId: '31.73',
+                    kode: '31.73.05',
+                    daerah: 'dki'
+                }, {
+                    id: '31.73.06',
+                    nama: 'Kalideres',
+                    kotaId: '31.73',
+                    kode: '31.73.06',
+                    daerah: 'dki'
+                }, {
+                    id: '31.73.07',
+                    nama: 'Palmerah',
+                    kotaId: '31.73',
+                    kode: '31.73.07',
+                    daerah: 'dki'
+                }, {
+                    id: '31.73.08',
+                    nama: 'Kembangan',
+                    kotaId: '31.73',
+                    kode: '31.73.08',
+                    daerah: 'dki'
+                },
+
+                // Jakarta Selatan
+                {
+                    id: '31.74.01',
+                    nama: 'Tebet',
+                    kotaId: '31.74',
+                    kode: '31.74.01',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74.02',
+                    nama: 'Setiabudi',
+                    kotaId: '31.74',
+                    kode: '31.74.02',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74.03',
+                    nama: 'Mampang Prapatan',
+                    kotaId: '31.74',
+                    kode: '31.74.03',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74.04',
+                    nama: 'Pasar Minggu',
+                    kotaId: '31.74',
+                    kode: '31.74.04',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74.05',
+                    nama: 'Kebayoran Lama',
+                    kotaId: '31.74',
+                    kode: '31.74.05',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74.06',
+                    nama: 'Cilandak',
+                    kotaId: '31.74',
+                    kode: '31.74.06',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74.07',
+                    nama: 'Kebayoran Baru',
+                    kotaId: '31.74',
+                    kode: '31.74.07',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74.08',
+                    nama: 'Pancoran',
+                    kotaId: '31.74',
+                    kode: '31.74.08',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74.09',
+                    nama: 'Jagakarsa',
+                    kotaId: '31.74',
+                    kode: '31.74.09',
+                    daerah: 'dki'
+                }, {
+                    id: '31.74.10',
+                    nama: 'Pesanggrahan',
+                    kotaId: '31.74',
+                    kode: '31.74.10',
+                    daerah: 'dki'
+                },
+
+                // Jakarta Timur
+                {
+                    id: '31.75.01',
+                    nama: 'Matraman',
+                    kotaId: '31.75',
+                    kode: '31.75.01',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75.02',
+                    nama: 'Pulogadung',
+                    kotaId: '31.75',
+                    kode: '31.75.02',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75.03',
+                    nama: 'Jatinegara',
+                    kotaId: '31.75',
+                    kode: '31.75.03',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75.04',
+                    nama: 'Kramat Jati',
+                    kotaId: '31.75',
+                    kode: '31.75.04',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75.05',
+                    nama: 'Pasar Rebo',
+                    kotaId: '31.75',
+                    kode: '31.75.05',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75.06',
+                    nama: 'Cakung',
+                    kotaId: '31.75',
+                    kode: '31.75.06',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75.07',
+                    nama: 'Duren Sawit',
+                    kotaId: '31.75',
+                    kode: '31.75.07',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75.08',
+                    nama: 'Makasar',
+                    kotaId: '31.75',
+                    kode: '31.75.08',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75.09',
+                    nama: 'Ciracas',
+                    kotaId: '31.75',
+                    kode: '31.75.09',
+                    daerah: 'dki'
+                }, {
+                    id: '31.75.10',
+                    nama: 'Cipayung',
+                    kotaId: '31.75',
+                    kode: '31.75.10',
+                    daerah: 'dki'
+                },
+
+                // === BOGOR ===
+                // Kota Bogor
+                {
+                    id: '32.71.01',
+                    nama: 'Bogor Selatan',
+                    kotaId: '32.71',
+                    kode: '32.71.01',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.71.02',
+                    nama: 'Bogor Timur',
+                    kotaId: '32.71',
+                    kode: '32.71.02',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.71.03',
+                    nama: 'Bogor Utara',
+                    kotaId: '32.71',
+                    kode: '32.71.03',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.71.04',
+                    nama: 'Bogor Tengah',
+                    kotaId: '32.71',
+                    kode: '32.71.04',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.71.05',
+                    nama: 'Bogor Barat',
+                    kotaId: '32.71',
+                    kode: '32.71.05',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.71.06',
+                    nama: 'Tanah Sereal',
+                    kotaId: '32.71',
+                    kode: '32.71.06',
+                    daerah: 'bogor'
+                },
+
+                // Kabupaten Bogor
+                {
+                    id: '32.01.01',
+                    nama: 'Cibinong',
+                    kotaId: '32.01',
+                    kode: '32.01.01',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01.02',
+                    nama: 'Gunung Putri',
+                    kotaId: '32.01',
+                    kode: '32.01.02',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01.03',
+                    nama: 'Citeureup',
+                    kotaId: '32.01',
+                    kode: '32.01.03',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01.04',
+                    nama: 'Sukaraja',
+                    kotaId: '32.01',
+                    kode: '32.01.04',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01.05',
+                    nama: 'Babakan Madang',
+                    kotaId: '32.01',
+                    kode: '32.01.05',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01.06',
+                    nama: 'Jonggol',
+                    kotaId: '32.01',
+                    kode: '32.01.06',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01.07',
+                    nama: 'Cileungsi',
+                    kotaId: '32.01',
+                    kode: '32.01.07',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01.08',
+                    nama: 'Cariu',
+                    kotaId: '32.01',
+                    kode: '32.01.08',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01.09',
+                    nama: 'Sukamakmur',
+                    kotaId: '32.01',
+                    kode: '32.01.09',
+                    daerah: 'bogor'
+                }, {
+                    id: '32.01.10',
+                    nama: 'Parung',
+                    kotaId: '32.01',
+                    kode: '32.01.10',
+                    daerah: 'bogor'
+                },
+
+                // === DEPOK ===
+                {
+                    id: '32.74.01',
+                    nama: 'Sawangan',
+                    kotaId: '32.74',
+                    kode: '32.74.01',
+                    daerah: 'depok'
+                }, {
+                    id: '32.74.02',
+                    nama: 'Pancoran Mas',
+                    kotaId: '32.74',
+                    kode: '32.74.02',
+                    daerah: 'depok'
+                }, {
+                    id: '32.74.03',
+                    nama: 'Cipayung',
+                    kotaId: '32.74',
+                    kode: '32.74.03',
+                    daerah: 'depok'
+                }, {
+                    id: '32.74.04',
+                    nama: 'Sukmajaya',
+                    kotaId: '32.74',
+                    kode: '32.74.04',
+                    daerah: 'depok'
+                }, {
+                    id: '32.74.05',
+                    nama: 'Cilodong',
+                    kotaId: '32.74',
+                    kode: '32.74.05',
+                    daerah: 'depok'
+                }, {
+                    id: '32.74.06',
+                    nama: 'Limo',
+                    kotaId: '32.74',
+                    kode: '32.74.06',
+                    daerah: 'depok'
+                }, {
+                    id: '32.74.07',
+                    nama: 'Beji',
+                    kotaId: '32.74',
+                    kode: '32.74.07',
+                    daerah: 'depok'
+                }, {
+                    id: '32.74.08',
+                    nama: 'Cimanggis',
+                    kotaId: '32.74',
+                    kode: '32.74.08',
+                    daerah: 'depok'
+                }, {
+                    id: '32.74.09',
+                    nama: 'Tapos',
+                    kotaId: '32.74',
+                    kode: '32.74.09',
+                    daerah: 'depok'
+                }, {
+                    id: '32.74.10',
+                    nama: 'Bojongsari',
+                    kotaId: '32.74',
+                    kode: '32.74.10',
+                    daerah: 'depok'
+                },
+
+                // === BEKASI ===
+                // Kota Bekasi
+                {
+                    id: '32.75.01',
+                    nama: 'Bekasi Timur',
+                    kotaId: '32.75',
+                    kode: '32.75.01',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.75.02',
+                    nama: 'Bekasi Barat',
+                    kotaId: '32.75',
+                    kode: '32.75.02',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.75.03',
+                    nama: 'Bekasi Utara',
+                    kotaId: '32.75',
+                    kode: '32.75.03',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.75.04',
+                    nama: 'Bekasi Selatan',
+                    kotaId: '32.75',
+                    kode: '32.75.04',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.75.05',
+                    nama: 'Rawalumbu',
+                    kotaId: '32.75',
+                    kode: '32.75.05',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.75.06',
+                    nama: 'Medan Satria',
+                    kotaId: '32.75',
+                    kode: '32.75.06',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.75.07',
+                    nama: 'Bantar Gebang',
+                    kotaId: '32.75',
+                    kode: '32.75.07',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.75.08',
+                    nama: 'Pondok Gede',
+                    kotaId: '32.75',
+                    kode: '32.75.08',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.75.09',
+                    nama: 'Jatiasih',
+                    kotaId: '32.75',
+                    kode: '32.75.09',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.75.10',
+                    nama: 'Jati Sempurna',
+                    kotaId: '32.75',
+                    kode: '32.75.10',
+                    daerah: 'bekasi'
+                },
+
+                // Kabupaten Bekasi
+                {
+                    id: '32.16.01',
+                    nama: 'Cikarang Pusat',
+                    kotaId: '32.16',
+                    kode: '32.16.01',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16.02',
+                    nama: 'Cikarang Selatan',
+                    kotaId: '32.16',
+                    kode: '32.16.02',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16.03',
+                    nama: 'Cikarang Timur',
+                    kotaId: '32.16',
+                    kode: '32.16.03',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16.04',
+                    nama: 'Cikarang Utara',
+                    kotaId: '32.16',
+                    kode: '32.16.04',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16.05',
+                    nama: 'Cikarang Barat',
+                    kotaId: '32.16',
+                    kode: '32.16.05',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16.06',
+                    nama: 'Tambun Selatan',
+                    kotaId: '32.16',
+                    kode: '32.16.06',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16.07',
+                    nama: 'Tambun Utara',
+                    kotaId: '32.16',
+                    kode: '32.16.07',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16.08',
+                    nama: 'Babelan',
+                    kotaId: '32.16',
+                    kode: '32.16.08',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16.09',
+                    nama: 'Bojongmangu',
+                    kotaId: '32.16',
+                    kode: '32.16.09',
+                    daerah: 'bekasi'
+                }, {
+                    id: '32.16.10',
+                    nama: 'Karangbahagia',
+                    kotaId: '32.16',
+                    kode: '32.16.10',
+                    daerah: 'bekasi'
+                },
+
+                // === TANGERANG ===
+                // Kota Tangerang
+                {
+                    id: '36.71.01',
+                    nama: 'Tangerang',
+                    kotaId: '36.71',
+                    kode: '36.71.01',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.71.02',
+                    nama: 'Jatiuwung',
+                    kotaId: '36.71',
+                    kode: '36.71.02',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.71.03',
+                    nama: 'Batuceper',
+                    kotaId: '36.71',
+                    kode: '36.71.03',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.71.04',
+                    nama: 'Benda',
+                    kotaId: '36.71',
+                    kode: '36.71.04',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.71.05',
+                    nama: 'Cipondoh',
+                    kotaId: '36.71',
+                    kode: '36.71.05',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.71.06',
+                    nama: 'Ciledug',
+                    kotaId: '36.71',
+                    kode: '36.71.06',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.71.07',
+                    nama: 'Karawaci',
+                    kotaId: '36.71',
+                    kode: '36.71.07',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.71.08',
+                    nama: 'Periuk',
+                    kotaId: '36.71',
+                    kode: '36.71.08',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.71.09',
+                    nama: 'Neglasari',
+                    kotaId: '36.71',
+                    kode: '36.71.09',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.71.10',
+                    nama: 'Pinang',
+                    kotaId: '36.71',
+                    kode: '36.71.10',
+                    daerah: 'tangerang'
+                },
+
+                // Kota Tangerang Selatan
+                {
+                    id: '36.74.01',
+                    nama: 'Serpong',
+                    kotaId: '36.74',
+                    kode: '36.74.01',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.74.02',
+                    nama: 'Serpong Utara',
+                    kotaId: '36.74',
+                    kode: '36.74.02',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.74.03',
+                    nama: 'Pondok Aren',
+                    kotaId: '36.74',
+                    kode: '36.74.03',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.74.04',
+                    nama: 'Ciputat',
+                    kotaId: '36.74',
+                    kode: '36.74.04',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.74.05',
+                    nama: 'Ciputat Timur',
+                    kotaId: '36.74',
+                    kode: '36.74.05',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.74.06',
+                    nama: 'Pamulang',
+                    kotaId: '36.74',
+                    kode: '36.74.06',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.74.07',
+                    nama: 'Setu',
+                    kotaId: '36.74',
+                    kode: '36.74.07',
+                    daerah: 'tangerang'
+                },
+
+                // Kabupaten Tangerang
+                {
+                    id: '36.01.01',
+                    nama: 'Tigaraksa',
+                    kotaId: '36.01',
+                    kode: '36.01.01',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01.02',
+                    nama: 'Jambe',
+                    kotaId: '36.01',
+                    kode: '36.01.02',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01.03',
+                    nama: 'Cisoka',
+                    kotaId: '36.01',
+                    kode: '36.01.03',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01.04',
+                    nama: 'Kresek',
+                    kotaId: '36.01',
+                    kode: '36.01.04',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01.05',
+                    nama: 'Kronjo',
+                    kotaId: '36.01',
+                    kode: '36.01.05',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01.06',
+                    nama: 'Mauk',
+                    kotaId: '36.01',
+                    kode: '36.01.06',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01.07',
+                    nama: 'Kemiri',
+                    kotaId: '36.01',
+                    kode: '36.01.07',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01.08',
+                    nama: 'Sukadiri',
+                    kotaId: '36.01',
+                    kode: '36.01.08',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01.09',
+                    nama: 'Rajeg',
+                    kotaId: '36.01',
+                    kode: '36.01.09',
+                    daerah: 'tangerang'
+                }, {
+                    id: '36.01.10',
+                    nama: 'Pasar Kemis',
+                    kotaId: '36.01',
+                    kode: '36.01.10',
+                    daerah: 'tangerang'
+                }
+            ],
+            toko: [
+                // === TOKO DI JAKARTA PUSAT ===
+                {
+                    id: '1',
+                    nama: 'Agen NMU Thamrin',
+                    alamat: 'Jl. M.H. Thamrin No. 10, Gambir',
+                    telepon: '021-1234567',
+                    kecamatanId: '31.71.01',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '2',
+                    nama: 'Toko Herbal Monas',
+                    alamat: 'Jl. Medan Merdeka Utara No. 5, Gambir',
+                    telepon: '021-1234568',
+                    kecamatanId: '31.71.01',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '3',
+                    nama: 'NMU Harmoni Center',
+                    alamat: 'Jl. Gajah Mada No. 25, Gambir',
+                    telepon: '021-1234569',
+                    kecamatanId: '31.71.01',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '4',
+                    nama: 'Herbal Sawah Besar',
+                    alamat: 'Jl. Pasar Baru No. 25, Sawah Besar',
+                    telepon: '021-2345678',
+                    kecamatanId: '31.71.02',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '5',
+                    nama: 'NMU Kemayoran',
+                    alamat: 'Jl. Benyamin Sueb No. 8, Kemayoran',
+                    telepon: '021-3456789',
+                    kecamatanId: '31.71.03',
+                    jenis: 'Agen Utama',
+                    rating: 4.9
+                }, {
+                    id: '6',
+                    nama: 'Herbal Kemayoran Indah',
+                    alamat: 'Jl. Kemayoran Barat No. 20, Kemayoran',
+                    telepon: '021-3456790',
+                    kecamatanId: '31.71.03',
+                    jenis: 'Sub Agen',
+                    rating: 4.2
+                }, {
+                    id: '7',
+                    nama: 'Agen Rajawali NMU',
+                    alamat: 'Jl. Rajawali No. 5, Kemayoran',
+                    telepon: '021-3456791',
+                    kecamatanId: '31.71.03',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '8',
+                    nama: 'Toko Sehat Kemayoran',
+                    alamat: 'Jl. Kemayoran Timur No. 15, Kemayoran',
+                    telepon: '021-3456792',
+                    kecamatanId: '31.71.03',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '9',
+                    nama: 'Herbal Sehat Senen',
+                    alamat: 'Jl. Stasiun Senen No. 15, Senen',
+                    telepon: '021-4567890',
+                    kecamatanId: '31.71.04',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '10',
+                    nama: 'NMU Kwitang',
+                    alamat: 'Jl. Kwitang No. 7, Senen',
+                    telepon: '021-4567891',
+                    kecamatanId: '31.71.04',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '11',
+                    nama: 'Agen Bungur NMU',
+                    alamat: 'Jl. Bungur Besar No. 22, Senen',
+                    telepon: '021-4567892',
+                    kecamatanId: '31.71.04',
+                    jenis: 'Distributor',
+                    rating: 4.4
+                }, {
+                    id: '12',
+                    nama: 'Toko Herbal Senen Raya',
+                    alamat: 'Jl. Senen Raya No. 30, Senen',
+                    telepon: '021-4567893',
+                    kecamatanId: '31.71.04',
+                    jenis: 'Sub Agen',
+                    rating: 4.1
+                }, {
+                    id: '13',
+                    nama: 'NMU Cempaka Putih',
+                    alamat: 'Jl. Letjen Suprapto No. 12, Cempaka Putih',
+                    telepon: '021-5678901',
+                    kecamatanId: '31.71.05',
+                    jenis: 'Distributor',
+                    rating: 4.6
+                }, {
+                    id: '14',
+                    nama: 'Agen Rawasari NMU',
+                    alamat: 'Jl. Rawasari Selatan No. 9, Cempaka Putih',
+                    telepon: '021-5678902',
+                    kecamatanId: '31.71.05',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '15',
+                    nama: 'Toko Herbal Menteng',
+                    alamat: 'Jl. Menteng Raya No. 45, Menteng',
+                    telepon: '021-6789012',
+                    kecamatanId: '31.71.06',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '16',
+                    nama: 'Herbal Tanah Abang',
+                    alamat: 'Jl. Kebon Kacang No. 15, Tanah Abang',
+                    telepon: '021-7890123',
+                    kecamatanId: '31.71.07',
+                    jenis: 'Distributor',
+                    rating: 4.4
+                }, {
+                    id: '17',
+                    nama: 'Agen Tanah Abang NMU',
+                    alamat: 'Jl. Tanah Abang Timur No. 22, Tanah Abang',
+                    telepon: '021-7890124',
+                    kecamatanId: '31.71.07',
+                    jenis: 'Agen Utama',
+                    rating: 4.6
+                }, {
+                    id: '18',
+                    nama: 'Toko Sehat Johar Baru',
+                    alamat: 'Jl. Johar Baru No. 8, Johar Baru',
+                    telepon: '021-8901234',
+                    kecamatanId: '31.71.08',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '19',
+                    nama: 'NMU Johar Baru Plaza',
+                    alamat: 'Jl. Johar Baru Utara No. 12, Johar Baru',
+                    telepon: '021-8901235',
+                    kecamatanId: '31.71.08',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                },
+
+                // === TOKO DI JAKARTA UTARA ===
+                {
+                    id: '20',
+                    nama: 'NMU Kelapa Gading',
+                    alamat: 'Jl. Boulevard Raya No. 45, Kelapa Gading',
+                    telepon: '021-6789012',
+                    kecamatanId: '31.72.06',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '21',
+                    nama: 'Herbal Gading Mall',
+                    alamat: 'Jl. Kelapa Gading Boulevard No. 8, Kelapa Gading',
+                    telepon: '021-6789013',
+                    kecamatanId: '31.72.06',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '22',
+                    nama: 'Agen Gading Kirana NMU',
+                    alamat: 'Jl. Gading Kirana Timur No. 15, Kelapa Gading',
+                    telepon: '021-6789014',
+                    kecamatanId: '31.72.06',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '23',
+                    nama: 'Toko Sehat Kelapa Gading',
+                    alamat: 'Jl. Pegangsaan Dua No. 22, Kelapa Gading',
+                    telepon: '021-6789015',
+                    kecamatanId: '31.72.06',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '24',
+                    nama: 'NMU Gading Serpong',
+                    alamat: 'Jl. Gading Serpong No. 10, Kelapa Gading',
+                    telepon: '021-6789016',
+                    kecamatanId: '31.72.06',
+                    jenis: 'Distributor',
+                    rating: 4.4
+                }, {
+                    id: '25',
+                    nama: 'Agen Sehat Pluit',
+                    alamat: 'Jl. Pluit Raya No. 22, Penjaringan',
+                    telepon: '021-7890123',
+                    kecamatanId: '31.72.01',
+                    jenis: 'Distributor',
+                    rating: 4.6
+                }, {
+                    id: '26',
+                    nama: 'NMU Muara Baru',
+                    alamat: 'Jl. Muara Baru Ujung No. 7, Penjaringan',
+                    telepon: '021-7890124',
+                    kecamatanId: '31.72.01',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '27',
+                    nama: 'Toko Herbal Ancol',
+                    alamat: 'Jl. Lodan Timur No. 5, Penjaringan',
+                    telepon: '021-7890125',
+                    kecamatanId: '31.72.01',
+                    jenis: 'Sub Agen',
+                    rating: 4.2
+                }, {
+                    id: '28',
+                    nama: 'Agen Pluit Indah NMU',
+                    alamat: 'Jl. Pluit Indah No. 15, Penjaringan',
+                    telepon: '021-7890126',
+                    kecamatanId: '31.72.01',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '29',
+                    nama: 'Toko Herbal Tanjung Priok',
+                    alamat: 'Jl. Enggano No. 12, Tanjung Priok',
+                    telepon: '021-8901234',
+                    kecamatanId: '31.72.02',
+                    jenis: 'Sub Agen',
+                    rating: 4.2
+                }, {
+                    id: '30',
+                    nama: 'NMU Priok Center',
+                    alamat: 'Jl. Yos Sudarso No. 25, Tanjung Priok',
+                    telepon: '021-8901235',
+                    kecamatanId: '31.72.02',
+                    jenis: 'Agen Utama',
+                    rating: 4.6
+                }, {
+                    id: '31',
+                    nama: 'Agen Kebon Bawang NMU',
+                    alamat: 'Jl. Kebon Bawang No. 8, Tanjung Priok',
+                    telepon: '021-8901236',
+                    kecamatanId: '31.72.02',
+                    jenis: 'Distributor',
+                    rating: 4.4
+                }, {
+                    id: '32',
+                    nama: 'Herbal Koja Sehat',
+                    alamat: 'Jl. Lagoa Raya No. 15, Koja',
+                    telepon: '021-9012345',
+                    kecamatanId: '31.72.03',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '33',
+                    nama: 'NMU Koja Plaza',
+                    alamat: 'Jl. Koja Utara No. 22, Koja',
+                    telepon: '021-9012346',
+                    kecamatanId: '31.72.03',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '34',
+                    nama: 'Agen Koja NMU',
+                    alamat: 'Jl. Koja Barat No. 8, Koja',
+                    telepon: '021-9012347',
+                    kecamatanId: '31.72.03',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '35',
+                    nama: 'Herbal Cilincing Mart',
+                    alamat: 'Jl. Cilincing Raya No. 88, Cilincing',
+                    telepon: '021-0123456',
+                    kecamatanId: '31.72.04',
+                    jenis: 'Distributor',
+                    rating: 4.4
+                }, {
+                    id: '36',
+                    nama: 'NMU Marunda',
+                    alamat: 'Jl. Marunda Raya No. 20, Cilincing',
+                    telepon: '021-0123457',
+                    kecamatanId: '31.72.04',
+                    jenis: 'Sub Agen',
+                    rating: 4.0
+                }, {
+                    id: '37',
+                    nama: 'Agen Cilincing NMU',
+                    alamat: 'Jl. Raya Cilincing No. 33, Cilincing',
+                    telepon: '021-0123458',
+                    kecamatanId: '31.72.04',
+                    jenis: 'Agen Utama',
+                    rating: 4.5
+                }, {
+                    id: '38',
+                    nama: 'Toko Herbal Pademangan',
+                    alamat: 'Jl. Pademangan Barat No. 12, Pademangan',
+                    telepon: '021-1234567',
+                    kecamatanId: '31.72.05',
+                    jenis: 'Sub Agen',
+                    rating: 4.2
+                }, {
+                    id: '39',
+                    nama: 'NMU Pademangan Indah',
+                    alamat: 'Jl. Pademangan Timur No. 22, Pademangan',
+                    telepon: '021-1234568',
+                    kecamatanId: '31.72.05',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                },
+
+                // === TOKO DI BOGOR ===
+                {
+                    id: '40',
+                    nama: 'NMU Bogor Selatan',
+                    alamat: 'Jl. Raya Pajajaran No. 50, Bogor Selatan',
+                    telepon: '0251-234567',
+                    kecamatanId: '32.71.01',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '41',
+                    nama: 'Herbal Bogor Timur NMU',
+                    alamat: 'Jl. Bogor Timur Raya No. 22, Bogor Timur',
+                    telepon: '0251-234568',
+                    kecamatanId: '32.71.02',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '42',
+                    nama: 'Agen Bogor Utara NMU',
+                    alamat: 'Jl. Bogor Utara Raya No. 15, Bogor Utara',
+                    telepon: '0251-234569',
+                    kecamatanId: '32.71.03',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '43',
+                    nama: 'NMU Bogor Tengah',
+                    alamat: 'Jl. Suryakencana No. 15, Bogor Tengah',
+                    telepon: '0251-234570',
+                    kecamatanId: '32.71.04',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '44',
+                    nama: 'Herbal Bogor Barat',
+                    alamat: 'Jl. Bogor Barat Raya No. 8, Bogor Barat',
+                    telepon: '0251-234571',
+                    kecamatanId: '32.71.05',
+                    jenis: 'Distributor',
+                    rating: 4.4
+                }, {
+                    id: '45',
+                    nama: 'Agen Tanah Sereal NMU',
+                    alamat: 'Jl. Tanah Sereal No. 12, Tanah Sereal',
+                    telepon: '0251-234572',
+                    kecamatanId: '32.71.06',
+                    jenis: 'Sub Agen',
+                    rating: 4.2
+                }, {
+                    id: '46',
+                    nama: 'NMU Cibinong Center',
+                    alamat: 'Jl. Raya Jakarta-Bogor KM 42, Cibinong',
+                    telepon: '021-8765432',
+                    kecamatanId: '32.01.01',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '47',
+                    nama: 'Herbal Gunung Putri',
+                    alamat: 'Jl. Raya Gunung Putri No. 25, Gunung Putri',
+                    telepon: '021-8765433',
+                    kecamatanId: '32.01.02',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '48',
+                    nama: 'Agen Citeureup NMU',
+                    alamat: 'Jl. Raya Citeureup No. 18, Citeureup',
+                    telepon: '021-8765434',
+                    kecamatanId: '32.01.03',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '49',
+                    nama: 'NMU Sukaraja',
+                    alamat: 'Jl. Raya Sukaraja No. 33, Sukaraja',
+                    telepon: '021-8765435',
+                    kecamatanId: '32.01.04',
+                    jenis: 'Agen Utama',
+                    rating: 4.6
+                }, {
+                    id: '50',
+                    nama: 'Herbal Babakan Madang',
+                    alamat: 'Jl. Raya Babakan Madang No. 15, Babakan Madang',
+                    telepon: '021-8765436',
+                    kecamatanId: '32.01.05',
+                    jenis: 'Distributor',
+                    rating: 4.4
+                },
+
+                // === TOKO DI DEPOK ===
+                {
+                    id: '51',
+                    nama: 'Agen NMU Depok',
+                    alamat: 'Jl. Margonda Raya No. 25, Pancoran Mas',
+                    telepon: '021-9876543',
+                    kecamatanId: '32.74.02',
+                    jenis: 'Distributor',
+                    rating: 4.6
+                }, {
+                    id: '52',
+                    nama: 'NMU Depok Jaya',
+                    alamat: 'Jl. Depok Jaya No. 8, Pancoran Mas',
+                    telepon: '021-9876544',
+                    kecamatanId: '32.74.02',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '53',
+                    nama: 'Herbal Sawangan NMU',
+                    alamat: 'Jl. Raya Sawangan No. 12, Sawangan',
+                    telepon: '021-9876545',
+                    kecamatanId: '32.74.01',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '54',
+                    nama: 'Agen Cipayung NMU',
+                    alamat: 'Jl. Cipayung Raya No. 15, Cipayung',
+                    telepon: '021-9876546',
+                    kecamatanId: '32.74.03',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '55',
+                    nama: 'NMU Sukmajaya',
+                    alamat: 'Jl. Sukmajaya Raya No. 22, Sukmajaya',
+                    telepon: '021-9876547',
+                    kecamatanId: '32.74.04',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '56',
+                    nama: 'Herbal Cilodong',
+                    alamat: 'Jl. Raya Cilodong No. 18, Cilodong',
+                    telepon: '021-9876548',
+                    kecamatanId: '32.74.05',
+                    jenis: 'Sub Agen',
+                    rating: 4.2
+                }, {
+                    id: '57',
+                    nama: 'Agen Limo NMU',
+                    alamat: 'Jl. Limo Raya No. 12, Limo',
+                    telepon: '021-9876549',
+                    kecamatanId: '32.74.06',
+                    jenis: 'Distributor',
+                    rating: 4.4
+                }, {
+                    id: '58',
+                    nama: 'NMU Beji Center',
+                    alamat: 'Jl. Beji Raya No. 25, Beji',
+                    telepon: '021-9876550',
+                    kecamatanId: '32.74.07',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '59',
+                    nama: 'Herbal Cimanggis',
+                    alamat: 'Jl. Raya Cimanggis No. 15, Cimanggis',
+                    telepon: '021-9876551',
+                    kecamatanId: '32.74.08',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '60',
+                    nama: 'Agen Tapos NMU',
+                    alamat: 'Jl. Tapos Raya No. 8, Tapos',
+                    telepon: '021-9876552',
+                    kecamatanId: '32.74.09',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                },
+
+                // === TOKO DI BEKASI ===
+                {
+                    id: '61',
+                    nama: 'NMU Bekasi Timur',
+                    alamat: 'Jl. Jend. Ahmad Yani No. 88, Bekasi Timur',
+                    telepon: '021-8765432',
+                    kecamatanId: '32.75.01',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '62',
+                    nama: 'Herbal Bekasi Barat NMU',
+                    alamat: 'Jl. Bekasi Barat Raya No. 15, Bekasi Barat',
+                    telepon: '021-8765433',
+                    kecamatanId: '32.75.02',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '63',
+                    nama: 'Agen Bekasi Utara NMU',
+                    alamat: 'Jl. Bekasi Utara Raya No. 8, Bekasi Utara',
+                    telepon: '021-8765434',
+                    kecamatanId: '32.75.03',
+                    jenis: 'Sub Agen',
+                    rating: 4.4
+                }, {
+                    id: '64',
+                    nama: 'NMU Bekasi Selatan',
+                    alamat: 'Jl. Bekasi Selatan Raya No. 22, Bekasi Selatan',
+                    telepon: '021-8765435',
+                    kecamatanId: '32.75.04',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '65',
+                    nama: 'Herbal Rawalumbu',
+                    alamat: 'Jl. Rawalumbu Raya No. 15, Rawalumbu',
+                    telepon: '021-8765436',
+                    kecamatanId: '32.75.05',
+                    jenis: 'Distributor',
+                    rating: 4.6
+                }, {
+                    id: '66',
+                    nama: 'Agen Medan Satria NMU',
+                    alamat: 'Jl. Medan Satria Raya No. 12, Medan Satria',
+                    telepon: '021-8765437',
+                    kecamatanId: '32.75.06',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '67',
+                    nama: 'NMU Bantar Gebang',
+                    alamat: 'Jl. Bantar Gebang Raya No. 8, Bantar Gebang',
+                    telepon: '021-8765438',
+                    kecamatanId: '32.75.07',
+                    jenis: 'Agen Utama',
+                    rating: 4.9
+                }, {
+                    id: '68',
+                    nama: 'Herbal Pondok Gede',
+                    alamat: 'Jl. Pondok Gede Raya No. 25, Pondok Gede',
+                    telepon: '021-8765439',
+                    kecamatanId: '32.75.08',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '69',
+                    nama: 'Agen Jatiasih NMU',
+                    alamat: 'Jl. Jatiasih Raya No. 18, Jatiasih',
+                    telepon: '021-8765440',
+                    kecamatanId: '32.75.09',
+                    jenis: 'Sub Agen',
+                    rating: 4.4
+                }, {
+                    id: '70',
+                    nama: 'NMU Jati Sempurna',
+                    alamat: 'Jl. Jati Sempurna Raya No. 12, Jati Sempurna',
+                    telepon: '021-8765441',
+                    kecamatanId: '32.75.10',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '71',
+                    nama: 'Herbal Cikarang Pusat',
+                    alamat: 'Jl. Raya Cikarang No. 45, Cikarang Pusat',
+                    telepon: '021-8965432',
+                    kecamatanId: '32.16.01',
+                    jenis: 'Distributor',
+                    rating: 4.7
+                }, {
+                    id: '72',
+                    nama: 'Agen Cikarang Selatan NMU',
+                    alamat: 'Jl. Raya Cikarang Selatan No. 22, Cikarang Selatan',
+                    telepon: '021-8965433',
+                    kecamatanId: '32.16.02',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '73',
+                    nama: 'NMU Cikarang Timur',
+                    alamat: 'Jl. Raya Cikarang Timur No. 15, Cikarang Timur',
+                    telepon: '021-8965434',
+                    kecamatanId: '32.16.03',
+                    jenis: 'Agen Utama',
+                    rating: 4.9
+                }, {
+                    id: '74',
+                    nama: 'Herbal Cikarang Utara',
+                    alamat: 'Jl. Raya Cikarang Utara No. 8, Cikarang Utara',
+                    telepon: '021-8965435',
+                    kecamatanId: '32.16.04',
+                    jenis: 'Distributor',
+                    rating: 4.6
+                }, {
+                    id: '75',
+                    nama: 'Agen Cikarang Barat NMU',
+                    alamat: 'Jl. Raya Cikarang Barat No. 12, Cikarang Barat',
+                    telepon: '021-8965436',
+                    kecamatanId: '32.16.05',
+                    jenis: 'Sub Agen',
+                    rating: 4.4
+                }, {
+                    id: '76',
+                    nama: 'NMU Tambun Selatan',
+                    alamat: 'Jl. Raya Tambun Selatan No. 25, Tambun Selatan',
+                    telepon: '021-8965437',
+                    kecamatanId: '32.16.06',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '77',
+                    nama: 'Herbal Tambun Utara',
+                    alamat: 'Jl. Raya Tambun Utara No. 18, Tambun Utara',
+                    telepon: '021-8965438',
+                    kecamatanId: '32.16.07',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '78',
+                    nama: 'Agen Babelan NMU',
+                    alamat: 'Jl. Raya Babelan No. 15, Babelan',
+                    telepon: '021-8965439',
+                    kecamatanId: '32.16.08',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '79',
+                    nama: 'NMU Bojongmangu',
+                    alamat: 'Jl. Raya Bojongmangu No. 12, Bojongmangu',
+                    telepon: '021-8965440',
+                    kecamatanId: '32.16.09',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '80',
+                    nama: 'Herbal Karangbahagia',
+                    alamat: 'Jl. Raya Karangbahagia No. 8, Karangbahagia',
+                    telepon: '021-8965441',
+                    kecamatanId: '32.16.10',
+                    jenis: 'Distributor',
+                    rating: 4.6
+                },
+
+                // === TOKO DI TANGERANG ===
+                {
+                    id: '81',
+                    nama: 'Herbal Tangerang NMU',
+                    alamat: 'Jl. Jend. Sudirman No. 33, Tangerang',
+                    telepon: '021-7654321',
+                    kecamatanId: '36.71.01',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '82',
+                    nama: 'NMU Tangerang Center',
+                    alamat: 'Jl. Tangerang Raya No. 22, Tangerang',
+                    telepon: '021-7654322',
+                    kecamatanId: '36.71.01',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '83',
+                    nama: 'Agen Jatiuwung NMU',
+                    alamat: 'Jl. Jatiuwung Raya No. 15, Jatiuwung',
+                    telepon: '021-7654323',
+                    kecamatanId: '36.71.02',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '84',
+                    nama: 'Toko Herbal Batuceper',
+                    alamat: 'Jl. Batuceper Raya No. 8, Batuceper',
+                    telepon: '021-7654324',
+                    kecamatanId: '36.71.03',
+                    jenis: 'Distributor',
+                    rating: 4.4
+                }, {
+                    id: '85',
+                    nama: 'NMU Benda Plaza',
+                    alamat: 'Jl. Benda Raya No. 12, Benda',
+                    telepon: '021-7654325',
+                    kecamatanId: '36.71.04',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '86',
+                    nama: 'Herbal Cipondoh',
+                    alamat: 'Jl. Cipondoh Raya No. 25, Cipondoh',
+                    telepon: '021-7654326',
+                    kecamatanId: '36.71.05',
+                    jenis: 'Sub Agen',
+                    rating: 4.2
+                }, {
+                    id: '87',
+                    nama: 'Agen Ciledug NMU',
+                    alamat: 'Jl. Ciledug Raya No. 18, Ciledug',
+                    telepon: '021-7654327',
+                    kecamatanId: '36.71.06',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '88',
+                    nama: 'NMU Karawaci Mall',
+                    alamat: 'Jl. Karawaci Baru No. 15, Karawaci',
+                    telepon: '021-7654328',
+                    kecamatanId: '36.71.07',
+                    jenis: 'Agen Utama',
+                    rating: 4.9
+                }, {
+                    id: '89',
+                    nama: 'Herbal Periuk',
+                    alamat: 'Jl. Periuk Raya No. 8, Periuk',
+                    telepon: '021-7654329',
+                    kecamatanId: '36.71.08',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '90',
+                    nama: 'Agen Neglasari NMU',
+                    alamat: 'Jl. Neglasari Raya No. 12, Neglasari',
+                    telepon: '021-7654330',
+                    kecamatanId: '36.71.09',
+                    jenis: 'Distributor',
+                    rating: 4.6
+                }, {
+                    id: '91',
+                    nama: 'NMU Pinang Center',
+                    alamat: 'Jl. Pinang Raya No. 22, Pinang',
+                    telepon: '021-7654331',
+                    kecamatanId: '36.71.10',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }, {
+                    id: '92',
+                    nama: 'Herbal Serpong NMU',
+                    alamat: 'Jl. Serpong Raya No. 35, Serpong',
+                    telepon: '021-7654332',
+                    kecamatanId: '36.74.01',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '93',
+                    nama: 'Agen Serpong Utara NMU',
+                    alamat: 'Jl. Serpong Utara Raya No. 18, Serpong Utara',
+                    telepon: '021-7654333',
+                    kecamatanId: '36.74.02',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '94',
+                    nama: 'NMU Pondok Aren',
+                    alamat: 'Jl. Pondok Aren Raya No. 25, Pondok Aren',
+                    telepon: '021-7654334',
+                    kecamatanId: '36.74.03',
+                    jenis: 'Agen Utama',
+                    rating: 4.8
+                }, {
+                    id: '95',
+                    nama: 'Herbal Ciputat',
+                    alamat: 'Jl. Ciputat Raya No. 15, Ciputat',
+                    telepon: '021-7654335',
+                    kecamatanId: '36.74.04',
+                    jenis: 'Distributor',
+                    rating: 4.6
+                }, {
+                    id: '96',
+                    nama: 'Agen Ciputat Timur NMU',
+                    alamat: 'Jl. Ciputat Timur Raya No. 12, Ciputat Timur',
+                    telepon: '021-7654336',
+                    kecamatanId: '36.74.05',
+                    jenis: 'Sub Agen',
+                    rating: 4.2
+                }, {
+                    id: '97',
+                    nama: 'NMU Pamulang',
+                    alamat: 'Jl. Pamulang Raya No. 28, Pamulang',
+                    telepon: '021-7654337',
+                    kecamatanId: '36.74.06',
+                    jenis: 'Agen Utama',
+                    rating: 4.9
+                }, {
+                    id: '98',
+                    nama: 'Herbal Setu',
+                    alamat: 'Jl. Setu Raya No. 8, Setu',
+                    telepon: '021-7654338',
+                    kecamatanId: '36.74.07',
+                    jenis: 'Distributor',
+                    rating: 4.5
+                }, {
+                    id: '99',
+                    nama: 'Agen Tigaraksa NMU',
+                    alamat: 'Jl. Tigaraksa Raya No. 22, Tigaraksa',
+                    telepon: '021-7654339',
+                    kecamatanId: '36.01.01',
+                    jenis: 'Sub Agen',
+                    rating: 4.3
+                }, {
+                    id: '100',
+                    nama: 'NMU Jambe Center',
+                    alamat: 'Jl. Jambe Raya No. 15, Jambe',
+                    telepon: '021-7654340',
+                    kecamatanId: '36.01.02',
+                    jenis: 'Agen Utama',
+                    rating: 4.7
+                }
+            ]
+        };
+
+        let selectedProvinsi = null;
+        let selectedKota = null;
+        let selectedKecamatan = null;
+        let filteredToko = [];
+
+        // DOM Elements
+        const provinsiList = document.getElementById('provinsiList');
+        const kotaList = document.getElementById('kotaList');
+        const kecamatanList = document.getElementById('kecamatanList');
+        const kotaSection = document.getElementById('kotaSection');
+        const kecamatanSection = document.getElementById('kecamatanSection');
+        const selectedInfo = document.getElementById('selectedInfo');
+        const tokoSection = document.getElementById('tokoSection');
+        const tokoList = document.getElementById('tokoList');
+        const noStoreMessage = document.getElementById('noStoreMessage');
+        const progressBar = document.getElementById('progressBar');
+        const resetBtn = document.getElementById('resetBtn');
+        const selectedKecamatanTitle = document.getElementById('selectedKecamatanTitle');
+        const storeCount = document.getElementById('storeCount');
+        const fab = document.getElementById('fab');
+        const loadingBar = document.getElementById('loadingBar');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            startLoadingAnimation();
+            loadProvinsi();
+            setupEventListeners();
+            setupScrollEvents();
+        });
+
+        function startLoadingAnimation() {
+            loadingBar.classList.add('loading');
+            setTimeout(() => {
+                loadingBar.classList.remove('loading');
+                loadingBar.style.display = 'none';
+            }, 1500);
+        }
+
+        function setupEventListeners() {
+            resetBtn.addEventListener('click', resetSelection);
+
+            // Navbar mobile menu
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    }
+                });
+            }
+        }
+
+        function setupScrollEvents() {
+            window.addEventListener('scroll', function() {
+                // Show/hide FAB
+                if (window.scrollY > 300) {
+                    fab.style.display = 'flex';
+                    fab.classList.add('animate__animated', 'animate__fadeInUp');
+                } else {
+                    fab.style.display = 'none';
+                }
+
+                // Navbar shadow
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 10) {
+                    navbar.classList.add('shadow-lg');
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                }
+            });
+        }
+
+        function loadProvinsi() {
+            provinsiList.innerHTML = '';
+            wilayahData.provinsi.forEach((provinsi, index) => {
+                const item = document.createElement('div');
+                item.className = `p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all duration-300 provinsi-item hover-lift animate__animated animate__fadeInUp`;
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.dataset.id = provinsi.id;
+
+                // Tentukan badge berdasarkan nama provinsi
+                let badgeClass = 'badge-jakarta';
+                if (provinsi.nama.includes('Jawa Barat')) {
+                    badgeClass = 'badge-jabar';
+                } else if (provinsi.nama.includes('Banten')) {
+                    badgeClass = 'badge-banten';
+                }
+
+                item.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-[var(--matcha)] rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-landmark text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">${provinsi.nama}</div>
+                                <div class="text-sm text-gray-500">Kode: ${provinsi.kode}</div>
+                            </div>
+                        </div>
+                        <span class="region-badge ${badgeClass} hover:scale-110 transition-transform">${provinsi.nama}</span>
+                    </div>
+                `;
+                item.addEventListener('click', () => selectProvinsi(provinsi, item));
+                provinsiList.appendChild(item);
+            });
+        }
+
+        function selectProvinsi(provinsi, element) {
+            // Reset previous selections
+            resetKotaSelection();
+            selectedKota = null;
+            selectedKecamatan = null;
+
+            selectedProvinsi = provinsi;
+
+            // Remove all selected-item classes from provinsi items
+            document.querySelectorAll('.provinsi-item').forEach(item => {
+                item.classList.remove('selected-item');
+            });
+
+            // Animation for selection
+            element.classList.add('selected-item');
+            element.classList.add('animate__animated', 'animate__pulse');
+            setTimeout(() => {
+                element.classList.remove('animate__pulse');
+            }, 500);
+
+            // Enable kota section with animation
+            kotaSection.classList.remove('opacity-50');
+            kotaSection.classList.add('animate__animated', 'animate__fadeIn');
+            kotaSection.querySelector('h3').classList.remove('text-gray-500');
+            kotaSection.querySelector('h3').classList.add('text-gray-800');
+            kotaSection.querySelector('div').classList.remove('bg-gray-300');
+            kotaSection.querySelector('div').classList.add('bg-[var(--matcha)]');
+            kotaSection.querySelector('p').classList.add('hidden');
+            kotaList.classList.remove('hidden');
+
+            // Load kota
+            loadKota(provinsi.id);
+
+            // Reset kecamatan section
+            kecamatanSection.classList.add('opacity-50');
+            kecamatanSection.querySelector('h3').classList.add('text-gray-500');
+            kecamatanSection.querySelector('h3').classList.remove('text-gray-800');
+            kecamatanSection.querySelector('div').classList.remove('bg-[var(--matcha)]');
+            kecamatanSection.querySelector('div').classList.add('bg-gray-300');
+            kecamatanSection.querySelector('p').classList.remove('hidden');
+            kecamatanList.classList.add('hidden');
+            kecamatanList.innerHTML = '';
+
+            // Hide toko section
+            tokoSection.classList.add('hidden');
+            tokoList.innerHTML = '';
+
+            // Update progress
+            updateProgress(33);
+            updateSelectedInfo();
+            showNotification(`Provinsi ${provinsi.nama} dipilih`, 'success');
+        }
+
+        function resetKotaSelection() {
+            // Reset kota selection
+            document.querySelectorAll('.kota-item').forEach(item => {
+                item.classList.remove('selected-item');
+            });
+            selectedKota = null;
+        }
+
+        function loadKota(provinsiId) {
+            kotaList.innerHTML = '';
+            const filteredKota = wilayahData.kota.filter(kota => kota.provinsiId === provinsiId);
+
+            filteredKota.forEach((kota, index) => {
+                const item = document.createElement('div');
+                item.className = `p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all duration-300 kota-item hover-lift animate__animated animate__fadeInUp`;
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.dataset.id = kota.id;
+                item.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-city text-gray-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">${kota.nama}</div>
+                                <div class="text-sm text-gray-500">Kode: ${kota.kode}</div>
+                            </div>
+                        </div>
+                        <span class="region-badge badge-${kota.daerah} hover:scale-110 transition-transform">${getDaerahName(kota.daerah)}</span>
+                    </div>
+                `;
+                item.addEventListener('click', () => selectKota(kota, item));
+                kotaList.appendChild(item);
+            });
+        }
+
+        function selectKota(kota, element) {
+            // Reset previous kota selections
+            document.querySelectorAll('.kota-item').forEach(item => {
+                item.classList.remove('selected-item');
+            });
+
+            selectedKota = kota;
+            selectedKecamatan = null;
+
+            // Animation for selection
+            element.classList.add('selected-item');
+            element.classList.add('animate__animated', 'animate__pulse');
+            setTimeout(() => {
+                element.classList.remove('animate__pulse');
+            }, 500);
+
+            // Enable kecamatan section with animation
+            kecamatanSection.classList.remove('opacity-50');
+            kecamatanSection.classList.add('animate__animated', 'animate__fadeIn');
+            kecamatanSection.querySelector('h3').classList.remove('text-gray-500');
+            kecamatanSection.querySelector('h3').classList.add('text-gray-800');
+            kecamatanSection.querySelector('div').classList.remove('bg-gray-300');
+            kecamatanSection.querySelector('div').classList.add('bg-[var(--matcha)]');
+            kecamatanSection.querySelector('p').classList.add('hidden');
+            kecamatanList.classList.remove('hidden');
+
+            // Load kecamatan
+            loadKecamatan(kota.id);
+
+            // Hide toko section
+            tokoSection.classList.add('hidden');
+            tokoList.innerHTML = '';
+
+            // Update progress
+            updateProgress(66);
+            updateSelectedInfo();
+            showNotification(`Kota ${kota.nama} dipilih`, 'success');
+        }
+
+        function loadKecamatan(kotaId) {
+            kecamatanList.innerHTML = '';
+            const filteredKecamatan = wilayahData.kecamatan.filter(kecamatan => kecamatan.kotaId === kotaId);
+
+            filteredKecamatan.forEach((kecamatan, index) => {
+                const item = document.createElement('div');
+                item.className = `p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all duration-300 kecamatan-item hover-lift animate__animated animate__fadeInUp`;
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.dataset.id = kecamatan.id;
+                item.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-map-marker-alt text-gray-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">${kecamatan.nama}</div>
+                                <div class="text-sm text-gray-500">Kode: ${kecamatan.kode}</div>
+                            </div>
+                        </div>
+                        <span class="region-badge badge-${kecamatan.daerah} hover:scale-110 transition-transform">${getDaerahName(kecamatan.daerah)}</span>
+                    </div>
+                `;
+                item.addEventListener('click', () => selectKecamatan(kecamatan, item));
+                kecamatanList.appendChild(item);
+            });
+        }
+
+        function selectKecamatan(kecamatan, element) {
+            // Reset previous kecamatan selections
+            document.querySelectorAll('.kecamatan-item').forEach(item => {
+                item.classList.remove('selected-item');
+            });
+
+            selectedKecamatan = kecamatan;
+
+            // Animation for selection
+            element.classList.add('selected-item');
+            element.classList.add('animate__animated', 'animate__pulse');
+            setTimeout(() => {
+                element.classList.remove('animate__pulse');
+            }, 500);
+
+            // Load toko/agen
+            loadToko(kecamatan.id);
+
+            // Update progress
+            updateProgress(100);
+            updateSelectedInfo();
+            showNotification(`Kecamatan ${kecamatan.nama} dipilih`, 'success');
+        }
+
+        function loadToko(kecamatanId) {
+            tokoList.innerHTML = '';
+            filteredToko = wilayahData.toko.filter(toko => toko.kecamatanId === kecamatanId);
+
+            if (filteredToko.length > 0) {
+                noStoreMessage.classList.add('hidden');
+                tokoSection.classList.remove('hidden');
+                tokoSection.classList.add('animate__animated', 'animate__fadeInUp');
+                selectedKecamatanTitle.textContent = selectedKecamatan.nama;
+                storeCount.textContent = `(${filteredToko.length} agen ditemukan)`;
+
+                // Apply initial filters
+                applyFilters();
+            } else {
+                tokoSection.classList.remove('hidden');
+                tokoSection.classList.add('animate__animated', 'animate__fadeInUp');
+                noStoreMessage.classList.remove('hidden');
+                noStoreMessage.classList.add('animate__animated', 'animate__fadeIn');
+                selectedKecamatanTitle.textContent = selectedKecamatan.nama;
+            }
+
+            // Scroll to toko section with smooth animation
+            setTimeout(() => {
+                tokoSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 300);
+        }
+
+        function renderTokoList(tokoArray) {
+            tokoList.innerHTML = '';
+
+            if (tokoArray.length === 0) {
+                tokoList.innerHTML = `
+                <div class="col-span-3 text-center py-12 animate__animated animate__fadeIn">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-search text-2xl text-gray-300"></i>
+                    </div>
+                    <h4 class="text-lg font-medium text-gray-600 mb-2">Tidak ada agen yang sesuai</h4>
+                    <p class="text-gray-500 text-sm">Coba ubah filter pencarian Anda</p>
+                </div>
+            `;
+                return;
+            }
+
+            tokoArray.forEach((toko, index) => {
+                const item = document.createElement('div');
+                item.className = `store-card animate__animated animate__fadeInUp`;
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.innerHTML = `
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-lg mb-2">${toko.nama}</h4>
+                            <span class="inline-block px-3 py-1 ${getJenisClass(toko.jenis)} rounded-full text-xs font-medium">
+                                ${toko.jenis}
+                            </span>
+                        </div>
+                        <div class="flex items-center bg-yellow-50 px-3 py-1 rounded-lg">
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-bold text-yellow-700">${toko.rating}</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3 mb-5">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gray-400 mt-1 mr-3 text-sm"></i>
+                            <span class="text-gray-600 text-sm">${toko.alamat}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-gray-400 mr-3 text-sm"></i>
+                            <span class="text-gray-600 text-sm">${toko.telepon}</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="https://wa.me/${toko.telepon.replace(/\D/g, '')}" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-2.5 rounded-lg transition-all duration-300 hover-lift text-sm font-medium ripple">
+                            <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                        </a>
+                        <button onclick="showDirections('${toko.alamat}')" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2.5 rounded-lg transition-all duration-300 hover-lift text-sm font-medium ripple">
+                            <i class="fas fa-directions mr-2"></i>Maps
+                        </button>
+                    </div>
+                </div>
+            `;
+                tokoList.appendChild(item);
+            });
+        }
+
+        function applyFilters() {
+            if (!selectedKecamatan) return;
+
+            let filtered = [...filteredToko];
+            const jenisFilter = document.getElementById('filterJenis').value;
+            const ratingFilter = document.getElementById('filterRating').value;
+
+            if (jenisFilter !== 'all') {
+                filtered = filtered.filter(toko => toko.jenis === jenisFilter);
+            }
+
+            if (ratingFilter !== 'all') {
+                const minRating = parseFloat(ratingFilter);
+                filtered = filtered.filter(toko => toko.rating >= minRating);
+            }
+
+            renderTokoList(filtered);
+            storeCount.textContent = `(${filtered.length} agen ditemukan)`;
+        }
+
+        function resetFilters() {
+            document.getElementById('filterJenis').value = 'all';
+            document.getElementById('filterRating').value = 'all';
+            applyFilters();
+            showNotification('Filter direset', 'info');
+        }
+
+        function getJenisClass(jenis) {
+            switch (jenis) {
+                case 'Agen Utama':
+                    return 'bg-green-100 text-green-800 hover:bg-green-200 transition-colors';
+                case 'Distributor':
+                    return 'bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors';
+                case 'Sub Agen':
+                    return 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 transition-colors';
+                default:
+                    return 'bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors';
+            }
+        }
+
+        function getDaerahName(daerah) {
+            switch (daerah) {
+                case 'dki':
+                    return 'DKI Jakarta';
+                case 'bogor':
+                    return 'Bogor';
+                case 'depok':
+                    return 'Depok';
+                case 'tangerang':
+                    return 'Tangerang';
+                case 'bekasi':
+                    return 'Bekasi';
+                case 'jabar':
+                    return 'Jawa Barat';
+                case 'banten':
+                    return 'Banten';
+                default:
+                    return daerah;
+            }
+        }
+
+        function updateProgress(percentage) {
+            progressBar.style.width = percentage + '%';
+
+            // Update step indicators
+            const steps = document.querySelectorAll('.step-indicator');
+            steps.forEach((step, index) => {
+                if (percentage >= (index + 1) * 33) {
+                    step.classList.add('step-active');
+                    step.classList.remove('step-inactive');
+                    step.classList.add('animate__animated', 'animate__pulse');
+                    setTimeout(() => step.classList.remove('animate__pulse'), 500);
+                } else {
+                    step.classList.remove('step-active');
+                    step.classList.add('step-inactive');
+                }
+            });
+        }
+
+        function updateSelectedInfo() {
+            document.getElementById('selectedProvinsi').textContent = selectedProvinsi ? selectedProvinsi.nama : '-';
+            document.getElementById('selectedKota').textContent = selectedKota ? selectedKota.nama : '-';
+            document.getElementById('selectedKecamatan').textContent = selectedKecamatan ? selectedKecamatan.nama : '-';
+
+            if (selectedProvinsi) {
+                selectedInfo.classList.remove('hidden');
+                selectedInfo.classList.add('animate__animated', 'animate__fadeIn');
+            } else {
+                selectedInfo.classList.add('hidden');
+            }
+        }
+
+        function resetSelection() {
+            selectedProvinsi = null;
+            selectedKota = null;
+            selectedKecamatan = null;
+
+            // Animation for reset
+            const resetAnimation = document.createElement('div');
+            resetAnimation.className = 'fixed inset-0 bg-white/80 flex items-center justify-center z-50 animate__animated animate__fadeOut';
+            resetAnimation.style.animationDuration = '0.5s';
+            document.body.appendChild(resetAnimation);
+
+            setTimeout(() => {
+                document.body.removeChild(resetAnimation);
+
+                // Reset UI
+                document.querySelectorAll('.provinsi-item, .kota-item, .kecamatan-item').forEach(item => {
+                    item.classList.remove('selected-item');
+                });
+
+                kotaSection.classList.add('opacity-50');
+                kotaSection.querySelector('h3').classList.add('text-gray-500');
+                kotaSection.querySelector('h3').classList.remove('text-gray-800');
+                kotaSection.querySelector('div').classList.remove('bg-[var(--matcha)]');
+                kotaSection.querySelector('div').classList.add('bg-gray-300');
+                kotaSection.querySelector('p').classList.remove('hidden');
+                kotaList.classList.add('hidden');
+
+                kecamatanSection.classList.add('opacity-50');
+                kecamatanSection.querySelector('h3').classList.add('text-gray-500');
+                kecamatanSection.querySelector('h3').classList.remove('text-gray-800');
+                kecamatanSection.querySelector('div').classList.remove('bg-[var(--matcha)]');
+                kecamatanSection.querySelector('div').classList.add('bg-gray-300');
+                kecamatanSection.querySelector('p').classList.remove('hidden');
+                kecamatanList.classList.add('hidden');
+
+                tokoSection.classList.add('hidden');
+                selectedInfo.classList.add('hidden');
+
+                // Reset progress
+                updateProgress(0);
+                showNotification('Pilihan direset', 'info');
+            }, 500);
+        }
+
+        // ========== EXPORT FUNCTIONS ==========
+        function openExportModal() {
+            document.getElementById('exportModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            d
+            const modal = document.getElementById(modalId);
+            modal.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                modal.style.animation = '';
+            }, 300);
+        }
+
+        function processExport() {
+            showNotification('Fitur export akan segera tersedia', 'info');
+        }
+
+        // ========== SHARE FUNCTIONS ==========
+        function openShareModal() {
+            const modal = document.getElementById('shareModal');
+            modal.style.display = 'block';
+            showNotification('Fitur share akan segera tersedia', 'info');
+        }
+
+        function showDirections(address) {
+            const encodedAddress = encodeURIComponent(address);
+            const url = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+            window.open(url, '_blank');
+            showNotification('Membuka Google Maps...', 'info');
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const text = document.getElementById('notificationText');
+
+            // Set icon based on type
+            let icon = 'fa-info-circle';
+            if (type === 'success') icon = 'fa-check-circle';
+            if (type === 'error') icon = 'fa-exclamation-circle';
+
+            notification.innerHTML = `<i class="fas ${icon} mr-2"></i><span id="notificationText">${message}</span>`;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show', 'animate__animated', 'animate__fadeInRight');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // URL parameter handling
+        function checkUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const provinsiId = urlParams.get('provinsi');
+            const kotaId = urlParams.get('kota');
+            const kecamatanId = urlParams.get('kecamatan');
+
+            if (provinsiId) {
+                const provinsi = wilayahData.provinsi.find(p => p.id === provinsiId);
+                if (provinsi) {
+                    // Wait for DOM to load
+                    setTimeout(() => {
+                        const provinsiItem = document.querySelector(`.provinsi-item[data-id="${provinsiId}"]`);
+                        if (provinsiItem) {
+                            provinsiItem.click();
+
+                            setTimeout(() => {
+                                if (kotaId) {
+                                    const kota = wilayahData.kota.find(k => k.id === kotaId);
+                                    if (kota) {
+                                        const kotaItem = document.querySelector(`.kota-item[data-id="${kotaId}"]`);
+                                        if (kotaItem) {
+                                            kotaItem.click();
+
+                                            setTimeout(() => {
+                                                if (kecamatanId) {
+                                                    const kecamatan = wilayahData.kecamatan.find(k => k.id === kecamatanId);
+                                                    if (kecamatan) {
+                                                        const kecamatanItem = document.querySelector(`.kecamatan-item[data-id="${kecamatanId}"]`);
+                                                        if (kecamatanItem) {
+                                                            kecamatanItem.click();
+                                                        }
+                                                    }
+                                                }
+                                            }, 300);
+                                        }
+                                    }
+                                }
+                            }, 300);
+                        }
+                    }, 500);
+                }
+            }
+        }
+
+        // Initialize URL parameters check
+        setTimeout(() => {
+            checkUrlParams();
+        }, 1000);
+    </script>
+</body>
+
+</html>
