@@ -1,0 +1,2427 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distributor Produk Herbal - PT Naina Mandiri Utama</title>
+    <meta name="description" content="Distributor resmi produk herbal berkualitas, aman bersertifikat BPOM & Halal berkhasiat untuk membantu kesehatan keluarga Indonesia">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+         :root {
+            --matcha: #8BA989;
+            --matcha-dark: #7BAE7F;
+            --matcha-light: #A8C6A9;
+            --matcha-extra-light: #F0F7F0;
+            --text-primary: #1F2937;
+            --text-secondary: #6B7280;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #F9FAFB;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Barlow', sans-serif;
+            color: var(--text-primary);
+        }
+        
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--matcha), var(--matcha-dark));
+            color: var(--white);
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 169, 137, 0.3);
+        }
+        
+        .produk-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            position: relative;
+            border: 1px solid #F3F4F6;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .produk-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .produk-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 169, 137, 0.12);
+            border-color: var(--matcha-light);
+        }
+        
+        .badge-promo {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .badge-bpom {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .badge-halal {
+            position: absolute;
+            top: 48px;
+            left: 12px;
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .produk-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--matcha-extra-light), #F9FAFB);
+        }
+        
+        .produk-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px;
+        }
+        
+        .produk-card:hover .produk-image img {
+            transform: scale(1.1);
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: var(--matcha-extra-light);
+            color: var(--matcha-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 2px;
+            border: 1px solid rgba(139, 169, 137, 0.2);
+            transition: all 0.3s ease;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .category-tag:hover {
+            background: var(--matcha);
+            color: var(--white);
+        }
+        
+        .wa-btn {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #22C55E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .wa-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.4);
+        }
+        
+        .filter-btn {
+            background: var(--white);
+            border: 2px solid var(--matcha-light);
+            color: var(--matcha-dark);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            margin: 4px;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--matcha), var(--matcha-dark));
+            color: var(--white);
+            border-color: var(--matcha-dark);
+            box-shadow: 0 4px 12px rgba(139, 169, 137, 0.2);
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 169, 137, 0.15);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .price-old {
+            text-decoration: line-through;
+            color: #9CA3AF;
+            font-size: 0.9rem;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .price-new {
+            color: #EF4444;
+            font-weight: 700;
+            font-size: 1.25rem;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .rating {
+            color: #FBBF24;
+        }
+        
+        .stok-tersedia {
+            display: inline-block;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .produk-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .btn-detail {
+            flex: 1;
+            background: var(--matcha-light);
+            color: var(--text-primary);
+            padding: 12px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--matcha-light);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            min-height: 44px;
+            text-align: center;
+        }
+        
+        .btn-detail:hover {
+            background: var(--matcha);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 169, 137, 0.3);
+        }
+        
+        .btn-beli {
+            flex: 1;
+            background: linear-gradient(135deg, var(--matcha), var(--matcha-dark));
+            color: var(--white);
+            padding: 12px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--matcha-dark);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            min-height: 44px;
+            text-align: center;
+        }
+        
+        .btn-beli:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 169, 137, 0.3);
+            background: linear-gradient(135deg, var(--matcha-dark), var(--matcha));
+        }
+        
+        .search-bar {
+            background: var(--white);
+            border: 2px solid var(--matcha-light);
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 500px;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--matcha);
+            box-shadow: 0 0 0 4px rgba(139, 169, 137, 0.1);
+        }
+        /* MODAL DETAIL PRODUK */
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.3s ease-out;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--matcha);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            border: 2px solid var(--white);
+            font-size: 1.2rem;
+        }
+        
+        .close-modal:hover {
+            background: var(--matcha-dark);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .modal-image {
+            background: linear-gradient(135deg, var(--matcha-extra-light), #F9FAFB);
+            border-radius: 16px;
+            overflow: hidden;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .modal-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .modal-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .modal-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .modal-price-new {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #EF4444;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .modal-price-old {
+            font-size: 1.2rem;
+            color: #9CA3AF;
+            text-decoration: line-through;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .modal-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .modal-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .detail-icon {
+            color: var(--matcha);
+            font-size: 1.2rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .detail-content h4 {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .detail-content p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        .modal-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .modal-contact {
+            background: var(--matcha-extra-light);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--matcha);
+        }
+        
+        .modal-contact h4 {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .modal-contact p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-wa {
+            flex: 1;
+            background: linear-gradient(135deg, #22C55E, #16A34A);
+            color: var(--white);
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .btn-wa:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+        }
+        
+        .btn-telp {
+            flex: 1;
+            background: linear-gradient(135deg, var(--matcha), var(--matcha-dark));
+            color: var(--white);
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .btn-telp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 169, 137, 0.3);
+        }
+        /* Animations */
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Hero Section Animation */
+        
+        .hero-title {
+            background: linear-gradient(135deg, var(--matcha-dark), var(--matcha));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        /* Loading Animation */
+        
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--matcha), var(--matcha-dark));
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 30px;
+            }
+            .modal-image {
+                height: 300px;
+            }
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            .modal-price-new {
+                font-size: 1.5rem;
+            }
+            .contact-buttons {
+                flex-direction: column;
+            }
+            .produk-card {
+                margin-bottom: 20px;
+            }
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+                margin: 3px;
+            }
+            .search-bar {
+                max-width: 100%;
+                padding: 12px 20px;
+            }
+            .produk-image {
+                height: 180px;
+            }
+            .produk-actions {
+                flex-direction: row;
+                gap: 8px;
+            }
+            .btn-detail,
+            .btn-beli {
+                padding: 12px 6px;
+                font-size: 0.9rem;
+                min-height: 42px;
+            }
+        }
+        /* Grid animation */
+        
+        .grid-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        /* ANIMASI BARU UNTUK FILTER */
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+                filter: blur(5px);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(15px) scale(0.97);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        
+        @keyframes fadeOutDown {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+                filter: blur(5px);
+            }
+        }
+        
+        @keyframes cardBounce {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-8px) scale(1.02);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        .animate-fade-out {
+            animation: fadeOutDown 0.3s ease-out forwards;
+        }
+        
+        .animate-slide-in-left {
+            animation: slideInLeft 0.4s ease-out forwards;
+        }
+        
+        .animate-slide-in-right {
+            animation: slideInRight 0.4s ease-out forwards;
+        }
+        /* Efek glow untuk produk yang baru muncul */
+        
+        @keyframes glowPulse {
+            0%,
+            100% {
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(139, 169, 137, 0.3);
+            }
+        }
+        
+        .produk-card.animate-fade-in-up {
+            animation: fadeInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, glowPulse 2s ease-in-out 0.5s;
+        }
+        /* Responsive animation */
+        
+        @media (max-width: 768px) {
+            @keyframes fadeInUp {
+                0% {
+                    opacity: 0;
+                    transform: translateY(20px) scale(0.98);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <!-- NAVBAR -->
+    <header class="w-full fixed z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-[var(--matcha)] rounded-lg flex items-center justify-center">
+                        <img src="logonmu.jpg" alt="logonmu.jp" class="w-12 h-12 object-contain">
+                    </div>
+                    <h1 class="font-extrabold text-2xl" style="color:var(--matcha);">PT. NAINA MANDIRI UTAMA</h1>
+                </a>
+            </div>
+
+            <nav class="hidden md:flex gap-8 font-semibold">
+                <a href="index.html" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Beranda
+                </a>
+                <a href="index.html#about" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Tentang Kami
+                </a>
+                <a href="index.html#services" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Layanan Kami
+                </a>
+                <a href="index.html#articles" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Artikel
+                </a>
+                <a href="index.html#partnership" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Kerja sama
+                </a>
+                <a href="sales.html" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Team Sales
+                </a>
+                <a href="data.html" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Data Agen
+                </a>
+                <a href="produk.html" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                    Produk
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-700" id="mobileMenuButton">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden bg-white border-t border-gray-200 hidden" id="mobileMenu">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">
+                    <i class="fas fa-home mr-2"></i>Beranda
+                </a>
+                <a href="index.html#about" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">
+                    <i class="fas fa-info-circle mr-2"></i>Tentang Kami
+                </a>
+                <a href="index.html#services" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">
+                    <i class="fas fa-concierge-bell mr-2"></i>Layanan Kami
+                </a>
+                <a href="index.html#why" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">
+                    <i class="fas fa-star mr-2"></i>artikel
+                </a>
+                <a href="index.html#partnership" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">
+                    <i class="fas fa-handshake mr-2"></i>Kerja sama
+                </a>
+                <a href="sales.html" class="block text-gray-700 hover:text-[var(--matcha)] font-semibold transition-colors">
+                    <i class="fas fa-users mr-2"></i>Team Sales
+                </a>
+                <a href="data.html" class="block text-[var(--matcha)] font-semibold transition-colors">
+                    <i class="fas fa-map-marker-alt mr-2"></i>Data Agen
+                </a>
+                <a href="produk.html" class="block text-[var(--matcha)] font-semibold transition-colors">
+                    <i class="fas fa-box mr-2"></i>produk
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION PRODUK -->
+    <section class="relative w-full min-h-[50vh] pt-20 bg-gradient-to-br from-[var(--matcha-extra-light)] to-white">
+        <div class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 hero-title">
+                    Produk Herbal Aman dan Berkualitas
+                </h1>
+
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Hadirkan produk herbal yang aman dan bersertifikasi BPOM, Halal, berkhasiat dengan harga terjangkau untuk membantu kesehatan keluarga Anda
+                </p>
+
+                <!-- Search Bar -->
+                <div class="max-w-2xl mx-auto mb-8 fade-in-element">
+                    <div class="relative">
+                        <input type="text" id="searchProduk" placeholder="Cari produk herbal..." class="search-bar pl-14 pr-6 py-4 text-lg shadow-sm focus:shadow-md transition-shadow">
+                        <i class="fas fa-search absolute left-6 top-1/2 transform -translate-y-1/2 text-[var(--matcha)] text-xl"></i>
+                    </div>
+                </div>
+
+                <div class="mt-8 fade-in-element" style="animation-delay: 0.3s;">
+                    <a href="#produk-list" class="btn-primary inline-flex items-center shadow-md hover:shadow-lg">
+                        <i class="fas fa-arrow-down mr-3"></i> Jelajahi Produk
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave Divider -->
+        <div class="absolute bottom-0 left-0 right-0 overflow-hidden">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+                      fill="currentColor" class="text-gray-50"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- FILTER SECTION -->
+    <section class="py-8 bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="fade-in-element">
+                    <h3 class="text-lg font-semibold text-gray-800">
+                        <i class="fas fa-filter mr-2 text-[var(--matcha)]"></i>Filter Kategori
+                    </h3>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-2 fade-in-element" style="animation-delay: 0.2s;">
+                    <button class="filter-btn active" data-filter="all">Semua Produk</button>
+                    <button class="filter-btn" data-filter="madu-hitam">Madu Hitam Pahit</button>
+                    <button class="filter-btn" data-filter="cuka-apel">Cuka Apel</button>
+                    <button class="filter-btn" data-filter="madu-anak">Madu Anak</button>
+                    <button class="filter-btn" data-filter="minyak-zaitun">Minyak Zaitun</button>
+                    <button class="filter-btn" data-filter="sari-kurma">Sari Kurma</button>
+                    <button class="filter-btn" data-filter="susu-etawa">Susu Etawa</button>
+                    <button class="filter-btn" data-filter="jahe-merah">Jahe Merah</button>
+                    <button class="filter-btn" data-filter="cuka-nanas">Cuka Nanas</button>
+                    <button class="filter-btn" data-filter="vco">Virgin Coconut Oil (VCO)</button>
+                    <button class="filter-btn" data-filter="cuka-noni">Cuka Noni</button>
+                    <button class="filter-btn" data-filter="botanikal">Minuman Botanikal</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUK LIST SECTION - DIUBAH MENJADI 13 PRODUK -->
+    <section id="produk-list" class="py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+                <!-- PRODUK 1: CUKA APEL -->
+                <div class="produk-card grid-item" data-category="cuka-apel fermentasi detoks">
+                    <div class="badge-promo">ASLI MALANG</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="cukaapel.jpg" alt="Cuka Apel Royal Sultan">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Cuka Apel Royal Sultan</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Produk ini telah terdaftar BPOM, sehingga aman dikonsumsi sebagai bagian dari gaya hidup sehat. Cuka apel ini dikenal sebagai apple cider vinegar yang dapat membantu menjaga kesehatan pencernaan dan metabolisme tubuh.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">cuka apel royal sultan</span>
+                            <span class="category-tag">manfaat cuka apel</span>
+                            <span class="category-tag">cuka apel untuk diet</span>
+                            <span class="category-tag">apple cider vinegar asli</span>
+                            <span class="category-tag">cuka apel bpom</span>
+                            <span class="category-tag">cuka apel kesehatan</span>
+                            <span class="category-tag">CukaApelAlami</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 35.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">320ml</div>
+                        </div>
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(1)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(1)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 2: MADU HITAM PAHIT -->
+                <div class="produk-card grid-item" data-category="madu-hitam">
+                    <div class="badge-promo">PELOPOR MADU HITAM PAHIT</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="maduhitam.jpg" alt="Ratu Lebah Madu Hitam Pahit Plus Herbal">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Ratu Lebah Madu Hitam Pahit Plus Herbal</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Meningkatkan daya tahan tubuh dengan kombinasi madu hitam dan herbal pilihan membantu penderita diabetes dan maag kronis.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">madu hitam pahit</span>
+                            <span class="category-tag">obat diabetes</span>
+                            <span class="category-tag">maag</span>
+                            <span class="category-tag">ratu lebah</span>
+                            <span class="category-tag">madu hitam pahit asli</span>
+                            <span class="category-tag">manfaat madu hitam pahit</span>
+                            <span class="category-tag">cara konsumsi madu hitam pahit</span>
+                            <span class="category-tag">Ratu lebah</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 47.500</div>
+                            </div>
+                            <div class="text-sm text-gray-500">470g</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(2)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(2)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 3: D & AGOL -->
+                <div class="produk-card grid-item" data-category="madu-anak kurma nafsu-makan anak">
+                    <div class="badge-promo">RASA JERUK</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="d&agol.jpg" alt="Ratu Lebah D&Agol">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Ratu Lebah Junior D&AGOL</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Madu pilihan dan sari kurma yang diformulasikan khusus untuk membantu meningkatkan daya tahan tubuh, nafsu makan, dan stamina anak. Cocok untuk anak yang aktif, susah makan, atau sering kelelahan. Dengan rasa jeruk yang pasti disukai anak
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">penambah nafsu makan</span>
+                            <span class="category-tag">madu ratu lebah anak</span>
+                            <span class="category-tag">nafsu makan anak</span>
+                            <span class="category-tag">ratu lebah junior</span>
+                            <span class="category-tag">madu anak aman dikonsumsi</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 30.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">150g</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(3)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(3)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 4: JAHE MERAH SACHET -->
+                <div class="produk-card grid-item" data-category="jahe-merah">
+                    <div class="badge-promo">TEMAN HANGAT SETIAP SAAT</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="jaherl.jpg" alt="Jahe Merah Ratu Lebah">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Jahe Merah Ratu Lebah Sachet 20 gram</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            minuman herbal alami berbahan jahe merah pilihan yang dikenal kaya gingerol dan shogaol. Diproses higienis dengan standar mutu tinggi, Jahe Merah Ratu Lebah membantu menghangatkan tubuh, meningkatkan stamina, dan menjaga daya tahan tubuh
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">jahe merah ratu lebah</span>
+                            <span class="category-tag">minuman jahe merah</span>
+                            <span class="category-tag">jahe merah untuk stamina</span>
+                            <span class="category-tag">jahe merah ratu lebah untuk daya tahan tubuh</span>
+                            <span class="category-tag">jahe merah ratu lebah asli</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 12.500</div>
+                            </div>
+                            <div class="text-sm text-gray-500">10 sachet</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(4)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(4)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 5: ETAWA VANILA -->
+                <div class="produk-card grid-item" data-category="susu-etawa">
+                    <div class="badge-promo">ETAWA RASA VANILA</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="etawa.jpg" alt="Ratu Lebah Etawa Putih Jahe">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Ratu Lebah Etawa Putih Vanila</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Etawa Putih Ratu Lebah rasa Vanila merupakan susu kambing etawa bubuk berkualitas tinggi dengan cita rasa vanila yang lembut dan tidak prengus. Diproses secara higienis untuk menjaga kandungan nutrisi alami, cocok dikonsumsi anak-anak hingga dewasa.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">etawa putih ratu lebah</span>
+                            <span class="category-tag">susu kambing bubuk</span>
+                            <span class="category-tag">manfaat susu kambing</span>
+                            <span class="category-tag">manfaat susu etawa</span>
+                            <span class="category-tag">etawa original</span>
+                            <span class="category-tag">susu etawa halal bpom</span>
+                            <span class="category-tag">susu kambing etawa</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 35.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">10 sachet</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(5)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(5)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 6: ETAWA PUTIH JAHE -->
+                <div class="produk-card grid-item" data-category="susu-etawa">
+                    <div class="badge-promo">ETAWA RASA JAHE</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="etawa.jpg" alt="Ratu Lebah Etawa Putih JAHE">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Ratu Lebah Etawa Putih Jahe</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Susu Etawa Putih dikenal kaya akan protein, kalsium, dan nutrisi penting yang mudah dicerna tubuh. Dipadukan dengan jahe yang berkhasiat membantu menghangatkan tubuh, melancarkan pencernaan, dan meningkatkan stamina. Rasa gurih susu Etawa berpadu sempurna
+                            dengan sensasi hangat jahe, tanpa bau prengus.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">susu etawa asli</span>
+                            <span class="category-tag">susu etawa jahe</span>
+                            <span class="category-tag">susu etawa jahe cocok diminum setiap hari</span>
+                            <span class="category-tag">susu kambing etawa jahe praktis</span>
+                            <span class="category-tag">susu etawa jahe untuk pencernaan</span>
+                            <span class="category-tag">minuman susu etawa jahe untuk kesehatan</span>
+                            <span class="category-tag">susu etawa jahe tanpa bau prengus</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 35.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">10 sachet</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(6)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(6)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 7: VCO -->
+                <div class="produk-card grid-item" data-category="vco">
+                    <div class="badge-promo">PROSES ALAMI</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="vco.jpg" alt="VCO Tunas Bening">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">VCO Tunas Bening</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            VCO Tunas Bening dikenal kaya akan asam laurat yang bermanfaat untuk membantu menjaga daya tahan tubuh, mendukung kesehatan pencernaan, serta menjaga kesehatan kulit dan rambut. Cocok dikonsumsi sebagai suplemen harian, campuran makanan, maupun untuk
+                            perawatan luar.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">MinyakKelapaMurni</span>
+                            <span class="category-tag">ProdukHerbal</span>
+                            <span class="category-tag">virgin coconut oil bening berkualitas</span>
+                            <span class="category-tag">vco murni asli dari kelapa pilihan</span>
+                            <span class="category-tag">vco murni asli dari kelapa pilihan</span>
+                            <span class="category-tag">vco tunas bening ratu lebah asli</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 35.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">120ml</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(7)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(7)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 8: MEDINA -->
+                <div class="produk-card grid-item" data-category="minyak-zaitun">
+                    <div class="badge-promo">EXTRA VIRGIN 100%</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="medina.jpg" alt="Medina Olive Oil Extra Virgin">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Medina Olive Oil Extra Virgin</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Minyak zaitun extra virgin dikenal kaya akan antioksidan dan lemak sehat (asam oleat) yang bermanfaat untuk membantu menjaga kesehatan jantung, pencernaan, serta mendukung daya tahan tubuh. Cocok dikonsumsi sebagai pendamping makanan sehat, campuran salad,
+                            atau diminum langsung sesuai kebutuhan.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Kaya antioksidan & lemak sehat</span>
+                            <span class="category-tag">Membantu menjaga kesehatan jantung</span>
+                            <span class="category-tag">MinyakZaitunExtraVirgin</span>
+                            <span class="category-tag">olive oil extra virgin untuk pencernaan</span>
+                            <span class="category-tag">RatuLebah</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 85.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">325ml</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(8)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(8)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 9: CUKA NANAS -->
+                <div class="produk-card grid-item" data-category="cuka-nanas">
+                    <div class="badge-promo">ASLI NANAS SUBANG</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="cukananas.jpg" alt="Cuka Nanas Royal Sultan">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Cuka Nanas Royal Sultan</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Cuka nanas dikenal membantu melancarkan pencernaan, mendukung metabolisme, serta menjaga daya tahan tubuh. Cocok dikonsumsi sebagai minuman kesehatan harian dengan dicampur air, madu, atau digunakan sebagai campuran makanan dan minuman sehat.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Terbuat dari nanas pilihan berkualitas</span>
+                            <span class="category-tag">Rasa asam segar alami</span>
+                            <span class="category-tag">cuka nanas untuk metabolisme tubuh</span>
+                            <span class="category-tag">cuka nanas royal sultan halal</span>
+                            <span class="category-tag">ProdukHerbal</span>
+                            <span class="category-tag">Mendukung daya tahan tubuh</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 40.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">500ml</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(9)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(9)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 10: CUKA NONI -->
+                <div class="produk-card grid-item" data-category="cuka-noni">
+                    <div class="badge-promo">RASA BILBERRY</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="royalnoni.jpg" alt="Cuka Noni Royal Sultan">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Cuka Noni Royal Sultan</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Cuka noni dikenal membantu mendukung daya tahan tubuh, melancarkan pencernaan, serta menjaga metabolisme. Kandungan senyawa alami hasil fermentasi menjadikan produk ini cocok dikonsumsi sebagai minuman kesehatan harian atau sebagai campuran minuman sehat
+                            lainnya.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Terbuat dari buah mengkudu (noni) pilihan</span>
+                            <span class="category-tag">HALAL & aman dikonsumsi</span>
+                            <span class="category-tag">RatuLebah</span>
+                            <span class="category-tag">cuka noni untuk pencernaan</span>
+                            <span class="category-tag">CukaFermentasi</span>
+                            <span class="category-tag">cuka noni untuk metabolisme tubuh</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 65.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">320ml</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(10)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(10)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 11: ROYAL TENS -->
+                <div class="produk-card grid-item" data-category="botanikal">
+                    <div class="badge-promo">ANTI HIPERTENSI</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="royaltens.jpg" alt="Royal Tens Minuman Botanikal">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Royal Tens Minuman Botanikal</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Royal Tensi adalah minuman herbal yang diformulasikan dari bahan-bahan alami pilihan. Minuman herbal Royal Tensi membantu memberikan rasa nyaman di tubuh, mendukung sirkulasi darah, serta menjaga kebugaran saat menjalani aktivitas sehari-hari. Dengan
+                            rasa yang mudah diterima, Royal Tensi dapat dikonsumsi secara rutin sesuai aturan minum.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Terbuat dari ekstrak botanikal alami</span>
+                            <span class="category-tag">RoyalTensRatuLebah</span>
+                            <span class="category-tag">royal tens herbal untuk kebugaran tubuh</span>
+                            <span class="category-tag">minuman botanikal untuk stamina tubuh</span>
+                            <span class="category-tag">MinumanHerbal</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 85.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">350ml</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(11)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(11)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 12: DB MIX -->
+                <div class="produk-card grid-item" data-category="sari-kurma">
+                    <div class="badge-promo">TROMBOSIT BOOSTER</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="dbmix.jpg" alt="MIX Madu Sari Kurma Angkak Propolis Jambu Biji">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">DBMIX Madu Sari Kurma Angkak</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Minuman herbal ini membantu meningkatkan stamina, menjaga daya tahan tubuh, dan mendukung kesehatan pencernaan. Propolis dan jambu biji menambah kandungan antioksidan, sementara madu dan sari kurma memberikan energi alami yang tahan lama. Cocok untuk
+                            dikonsumsi setiap hari sebagai bagian dari gaya hidup sehat. Cocok untuk penyembuhan penderita demam berdarah untuk meningkatkan TROMBOSIT dan tipes.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Membantu menjaga stamina & daya tahan tubuh</span>
+                            <span class="category-tag">MaduSariKurma</span>
+                            <span class="category-tag">madu sari kurma untuk anak dan dewasa</span>
+                            <span class="category-tag">madu sari kurma untuk daya tahan tubuh</span>
+                            <span class="category-tag">madu kurma halal dan aman</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 35.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">310gr dan 470gr</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(12)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(12)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUK 13: JAHE MERAH TOPLES -->
+                <div class="produk-card grid-item" data-category="jahe-merah">
+                    <div class="badge-promo">PAKET HANGAT</div>
+                    <div class="badge-bpom">BPOM</div>
+                    <div class="badge-halal">HALAL</div>
+
+                    <div class="produk-image">
+                        <img src="jahetoples.jpg" alt="jahe Merah Toples">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Jahe Merah Toples Ratu Lebah 350gr</h3>
+                            <span class="stok-tersedia">Tersedia</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Ratu Lebah Jahe Merah Toples 350 gr adalah minuman herbal instan berbahan jahe merah pilihan berkualitas yang diolah secara higienis untuk menghasilkan rasa hangat alami dan aroma khas jahe merah. Hadir dalam kemasan toples 350 gram, praktis, ekonomis,
+                            dan cocok untuk konsumsi keluarga.
+                        </p>
+
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">JaheMerah350gr</span>
+                            <span class="category-tag">Membantu menghangatkan tubuh</span>
+                            <span class="category-tag">jahe merah ratu lebah kemasan toples</span>
+                            <span class="category-tag">jahe merah instan sehat</span>
+                            <span class="category-tag">jahe merah instan untuk daya tahan tubuh</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="price-new">Rp 35.000</div>
+                            </div>
+                            <div class="text-sm text-gray-500">330 gr</div>
+                        </div>
+
+                        <div class="produk-actions">
+                            <button class="btn-detail" onclick="showProductModal(13)">
+                                <i class="fas fa-info-circle mr-2"></i> Detail
+                            </button>
+                            <button class="btn-beli" onclick="buyProduct(13)">
+                                <i class="fas fa-shopping-cart mr-2"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-20 bg-gradient-to-br from-[var(--matcha)] to-[var(--matcha-dark)]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl mb-6 shadow-lg">
+                        <i class="fas fa-headset text-[var(--matcha)] text-2xl"></i>
+                    </div>
+
+                    <h2 class="text-3xl font-bold text-white mb-6">
+                        Butuh Bantuan Memilih Produk?
+                    </h2>
+
+                    <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                        Tim konsultan herbal kami siap membantu Anda memilih produk yang tepat sesuai kebutuhan kesehatan Anda. Konsultasi GRATIS!
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="https://wa.me/6283199349933" target="_blank" class="inline-flex items-center justify-center bg-white text-[var(--matcha-dark)] font-bold text-lg py-4 px-8 rounded-full hover:bg-gray-50 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <i class="fab fa-whatsapp mr-3 text-xl"></i> Konsultasi via WhatsApp
+                        </a>
+
+                        <a href="tel:+6283199349933" class="inline-flex items-center justify-center bg-transparent text-white font-bold text-lg py-4 px-8 rounded-full border-2 border-white hover:bg-white/10 transition-all transform hover:scale-105">
+                            <i class="fas fa-phone mr-3 text-xl"></i> Telepon Kami Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DETAIL PRODUK -->
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+
+            <div class="modal-body" id="modalBody">
+                <!-- Konten modal akan diisi oleh JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="w-full bg-gradient-to-br from-[var(--matcha-dark)] to-[var(--matcha)] text-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <!-- COMPANY INFO -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <img src="logonmu.jpg" alt="Logo NMU" class="w-12 h-12 object-contain">
+                        </div>
+                        <h3 class="font-bold text-xl">PT. NAINA MANDIRI UTAMA</h3>
+                    </div>
+                    <p class="text-white/80 leading-relaxed text-sm mb-6">
+                        Perusahaan herbal terpercaya yang menghadirkan solusi kesehatan alami berkualitas tinggi untuk keluarga Indonesia dengan standar internasional.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://youtube.com/@nmuoff1c1al?si=tRp2M7w9bu8WAnR6" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.instagram.com/nainamandiriutama?igsh=MWx1bmw4MnAzZ2djbw==" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@nmu_distributor?_r=1&_t=ZS-91jvZiQkLJZ" class="social-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/6285710008579" class="social-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CONTACT INFO -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-6">Kontak Kami</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-white/90 mt-1"></i>
+                            <p class="text-white/80 text-sm">
+                                Jl. Benda Ceger Kp. Pabuaran Blok A, RT. 03 RW. 02 Kel. Cimuning<br> Kec. Mustikajaya, Kota Bekasi, Jawa Barat 17155
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-white/90"></i>
+                            <p class="text-white/80 text-sm">62+ 831-9934-9933</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-white/90"></i>
+                            <p class="text-white/80 text-sm">nainamandiriutamaindonesia@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QUICK LINKS -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-6">Tautan Cepat</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-white/80 hover:text-white transition-colors text-sm">Beranda</a></li>
+                        <li><a href="index.html#about" class="text-white/80 hover:text-white transition-colors text-sm">Tentang Kami</a></li>
+                        <li><a href="index.html#services" class="text-white/80 hover:text-white transition-colors text-sm">Layanan</a></li>
+                        <li><a href="produk.html" class="text-white/80 hover:text-white transition-colors text-sm">Produk Herbal</a></li>
+                        <li><a href="index.html#partnership" class="text-white/80 hover:text-white transition-colors text-sm">Kerjasama</a></li>
+                        <li><a href="sales.html" class="text-white/80 hover:text-white transition-colors text-sm">Sales</a></li>
+                    </ul>
+                </div>
+
+                <!-- NEWSLETTER -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-6">Newsletter</h3>
+                    <p class="text-white/80 text-sm mb-4">
+                        Dapatkan informasi terbaru tentang produk dan promo spesial dari NAINA MANDIRI UTAMA.
+                    </p>
+                    <div class="flex">
+                        <input type="email" placeholder="Email Anda" class="bg-white/20 text-white px-4 py-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-white w-full text-sm placeholder-white/60">
+                        <button class="bg-white/30 text-white px-4 rounded-r-lg hover:bg-white/40 transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COPYRIGHT -->
+            <div class="border-t border-white/20 mt-12 pt-8 text-center">
+                <p class="text-white/60 text-sm">
+                    © 2024 PT. NAINA MANDIRI UTAMA. All rights reserved.
+                    <span class="text-white font-semibold">Dibuat dengan ❤️ untuk Indonesia</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WA Floating Button -->
+    <a href="https://wa.me/6283199349933" class="wa-btn" target="_blank">
+        <i class="fab fa-whatsapp text-white text-2xl"></i>
+    </a>
+
+    <script>
+        // Data produk detail LENGKAP - 13 PRODUK (setelah dihapus beezykids dan herba vitalis)
+        const produkData = [{
+            id: 1,
+            name: "Cuka Apel Royal Sultan 320ml",
+            image: "cukaapel.jpg",
+            price: 35000,
+            oldPrice: 36800,
+            description: "Cuka apel murni fermentasi alami yang kaya akan enzim, probiotik, dan asam asetat. Membantu meningkatkan metabolisme, mendukung program diet sehat, serta menjaga keseimbangan pH dalam tubuh.",
+            kategori: ["Detoks", "Pencernaan", "Diet"],
+            detail: "Diproses dari apel organik pilihan melalui fermentasi alami selama 6-8 bulan. Tanpa pengawet, pewarna, atau bahan kimia tambahan. Sudah terdaftar BPOM dan bersertifikat Halal.",
+            manfaat: [
+                "Membantu menurunkan berat badan secara alami",
+                "Menjaga kesehatan sistem pencernaan",
+                "Mengontrol kadar gula darah",
+                "Menurunkan kadar kolesterol jahat",
+                "Meningkatkan daya tahan tubuh",
+                "Membersihkan tubuh dari racun (detoks)",
+                "Menjaga kesehatan kulit dari dalam"
+            ],
+            komposisi: "Cuka Apel Murni 100%, Tanpa bahan pengawet",
+            penggunaan: "1-2 sendok makan dicampur dengan 200ml air hangat, diminum 2 kali sehari sebelum makan",
+            volume: "320ml",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.8,
+            reviews: 342
+        }, {
+            id: 2,
+            name: "Ratu Lebah Madu Hitam Pahit Plus Herbal 470g",
+            image: "maduhitam.jpg",
+            price: 47500,
+            oldPrice: 55800,
+            description: "Ratu Lebah Madu Hitam Plus Herbal adalah kombinasi madu dengan ekstrak herbal pahitan pilihan alami dengan khasiat membantu memelihara daya tahan tubuh.",
+            kategori: ["Madu", "Herbal", "Imunitas"],
+            detail: "Secara empiris, madu bermanfaat untuk kesehatan manusia. Tambahan beberapa ekstrak tanaman herbal pilihan yang memiliki enzim dan nutrisi alaminya. Diformulasikan oleh tenaga ahli, fokus kepada khasiat untuk kesehatan dalam proporsi yang tepat.",
+            manfaat: [
+                "Meningkatkan sistem imun tubuh secara signifikan",
+                "Membantu mengontrol gula darah bagi penderita diabetes",
+                "Antioksidan tinggi untuk melawan radikal bebas",
+                "Meredakan gejala maag dan gangguan pencernaan",
+                "Meningkatkan stamina dan energi tubuh",
+                "Menjaga kesehatan jantung dan pembuluh darah",
+                "Membantu proses detoksifikasi alami"
+            ],
+            komposisi: "Madu, ekstrak sambiloto, ekstrak daun insulin, ekstrak brotowali, ekstrak mahoni dan ekstrak propolis",
+            penggunaan: "1-2 sendok makan per hari, bisa langsung diminum atau dicampur air hangat",
+            volume: "470g",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.9,
+            reviews: 287
+        }, {
+            id: 3,
+            name: "Ratu Lebah Junior D&AGOL 150g",
+            image: "d&agol.jpg",
+            price: 30000,
+            oldPrice: 37500,
+            description: "Formulasi khusus untuk mendampingi nutrisi tumbuh kembang junior. Mengandung ekstrak tumbuhan yang telah teruji khasiatnya untuk tumbuh kembang anak.",
+            kategori: ["Madu Anak", "Herbal"],
+            detail: "Dikembangkan berdasarkan penelitian herbal tradisional untuk tumbuh kembang anak. Mengandung bahan aktif yang membantu memperbaiki nafsu makan anak dan kekebalan tubuh.",
+            manfaat: [
+                "Memperbaiki nafsu makan anak",
+                "Meningkatkan daya tahan tubuh",
+                "Memperlancar aliran darah",
+                "Mengurangi peradangan",
+                "Mendukung kesehatan mata anak",
+                "Meredakan batuk pilek"
+            ],
+            komposisi: "Ekstrak temulawak, cod liver oil, sari kurma, ekstrak kunyit, ekstrak meniran, ekstrak bilbery, ekstrak kelor, rasa jeruk",
+            penggunaan: "2 kali sehari 1 sendok makan",
+            volume: "150g",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.7,
+            reviews: 198
+        }, {
+            id: 4,
+            name: "Jahe Merah Ratu Lebah 10 Sachet",
+            image: "jaherl.jpg",
+            price: 12500,
+            oldPrice: 13800,
+            description: "Jahe merah premium dalam kemasan praktis sachet. Memberikan sensasi hangat alami, cocok untuk dikonsumsi di cuaca dingin atau saat tubuh kurang fit.",
+            kategori: ["Hangat", "Flu", "Herbal"],
+            detail: "Jahe Merah Ratu Lebah adalah minuman serbuk jahe merah pilihan yang dibuat dari jahe merah berkualitas tinggi, diproses secara higienis untuk menghasilkan rasa hangat alami dan aroma yang khas. Dikemas dalam sachet praktis 20 gram, minuman ini sangat cocok untuk dikonsumsi kapan saja dan di mana saja. Minuman jahe merah ini membantu menghangatkan tubuh, meningkatkan stamina, serta mendukung daya tahan tubuh. Perpaduan rasa pedas hangat jahe merah dengan manis yang pas menjadikan Jahe Merah Ratu Lebah favorit untuk menemani aktivitas harian, terutama saat cuaca dingin atau tubuh terasa kurang fit..",
+            manfaat: [
+                "Meredakan gejala flu, batuk, dan pilek",
+                "Menghangatkan tubuh secara alami",
+                "Mengurangi mual dan muntah",
+                "Melancarkan peredaran darah",
+                "Meredakan nyeri sendi dan otot",
+                "Meningkatkan sistem kekebalan tubuh",
+                "Baik untuk kesehatan lambung"
+            ],
+            komposisi: "Jahe Merah Bubuk, Gula Aren, Kayu Manis",
+            penggunaan: "1 sachet dilarutkan dalam 150ml air panas, aduk hingga rata",
+            volume: "10 sachet @ 20g",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.6,
+            reviews: 312
+        }, {
+            id: 5,
+            name: "Ratu Lebah Etawa Putih vanila 10 Sachet",
+            image: "etawa.jpg",
+            price: 35000,
+            oldPrice: 46500,
+            description: "Ratu Lebah Etawa Putih Rasa Vanila adalah minuman serbuk berbahan dasar susu etawa putih berkualitas yang dipadukan dengan aroma vanila lembut, menghasilkan cita rasa creamy, lezat, dan disukai semua kalangan. Minuman ini cocok dikonsumsi setiap hari sebagai pelengkap nutrisi keluarga.",
+            kategori: ["Susu", "Hangat", "Nutrisi"],
+            detail: "Diproses secara higienis dengan formulasi seimbang, minuman serbuk etawa putih ini membantu menjaga stamina, mendukung daya tahan tubuh, serta memberikan asupan gizi yang baik. Rasa vanila yang ringan membuatnya nyaman diminum pagi hari, sore, maupun sebelum istirahat malam.",
+            manfaat: [
+                "Sumber kalsium untuk tulang dan gigi",
+                "Menggunakan susu etawa putih pilihan",
+                "Rasa vanila lembut dan creamy",
+                "Praktis dan mudah disajikan",
+                "Cocok untuk anak-anak hingga dewasa",
+                "Dapat dinikmati hangat maupun biasa",
+                "Mendukung kebutuhan nutrisi harian"
+            ],
+            komposisi: "Susu Kambing Etawa Bubuk, Gula, Vanili",
+            penggunaan: "1 sachet dicampur dengan 150ml air panas, aduk hingga larut",
+            volume: "10 sachet @ 25g",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.8,
+            reviews: 256
+        }, {
+            id: 6,
+            name: "Ratu Lebah Etawa Putih Jahe 10 Sachet",
+            image: "etawa.jpg",
+            price: 35000,
+            oldPrice: 46500,
+            description: "Ratu Lebah Etawa Putih Rasa Jahe adalah minuman serbuk berbahan dasar susu etawa putih berkualitas yang dipadukan dengan jahe pilihan, menghasilkan rasa creamy dengan sensasi hangat alami. Minuman ini cocok dikonsumsi setiap hari untuk membantu menjaga stamina dan kenyamanan tubuh.",
+            kategori: ["Susu", "Jahe", "Nutrisi"],
+            detail: "Diproses secara higienis dengan formula seimbang, minuman serbuk etawa putih ini dikenal sebagai minuman bergizi yang membantu menjaga daya tahan tubuh, mendukung pencernaan, serta memberikan efek hangat yang menenangkan. Cocok diminum pagi hari, malam hari, atau saat cuaca dingin.",
+            manfaat: [
+                "Sumber kalsium dan fosfor untuk tulang",
+                "Menjaga stamina dan daya tahan tubuh",
+                "Terbuat dari susu etawa putih pilihan",
+                "Dipadukan dengan jahe alami berkualitas",
+                "Rasa creamy dengan sensasi hangat",
+                "Mendukung kebutuhan nutrisi harian",
+                "Teman bersantai di pagi atau malam hari"
+            ],
+            komposisi: "Susu Kambing Etawa Bubuk, Gula, Jahe merah, Madu",
+            penggunaan: "1 sachet dicampur dengan 150ml air panas atau dingin sesuai selera",
+            volume: "10 sachet @ 25g",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.7,
+            reviews: 234
+        }, {
+            id: 7,
+            name: "VCO Tunas Bening 120ml",
+            image: "vco.jpg",
+            price: 35000,
+            oldPrice: 41190,
+            description: "Virgin Coconut Oil (VCO) murni yang diproses dengan metode cold-pressed untuk menjaga kandungan nutrisi. Minyak kelapa dengan kandungan MCT (Medium Chain Triglyceride) tinggi.",
+            kategori: ["Minyak", "Kesehatan", "Kecantikan"],
+            detail: "Dibuat dari kelapa segar pilihan melalui proses cold-pressed tanpa pemanasan tinggi, sehingga kandungan asam laurat dan nutrisi lainnya tetap terjaga.",
+            manfaat: [
+                "Meningkatkan metabolisme dan energi tubuh",
+                "Membantu program diet dan penurunan berat badan",
+                "Baik untuk kesehatan jantung",
+                "Melembabkan kulit dan rambut secara alami",
+                "Meningkatkan fungsi otak dan daya ingat",
+                "Antivirus, antibakteri, dan antijamur alami",
+                "Membantu penyerapan nutrisi dari makanan"
+            ],
+            komposisi: "Virgin Coconut Oil 100% Murni",
+            penggunaan: "1-2 sendok makan per hari, bisa untuk konsumsi langsung atau campuran makanan",
+            volume: "120ml",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.9,
+            reviews: 421
+        }, {
+            id: 8,
+            name: "Medina Olive Oil Extra Virgin 325ml",
+            image: "medina.jpg",
+            price: 85000,
+            oldPrice: 89550,
+            description: "Minyak zaitun extra virgin kualitas premium dari Mediterania. Kaya akan asam oleat dan antioksidan untuk kesehatan jantung dan kulit.",
+            kategori: ["Minyak", "Jantung", "Kecantikan"],
+            detail: "Dibuat dari buah zaitun pilihan dengan metode cold extraction pertama. Memiliki tingkat keasaman rendah (<0.8%) yang menandakan kualitas premium.",
+            manfaat: [
+                "Menurunkan risiko penyakit jantung",
+                "Mengontrol kadar kolesterol darah",
+                "Antioksidan tinggi untuk melawan penuaan dini",
+                "Melembabkan dan menutrisi kulit",
+                "Membantu mengurangi peradangan dalam tubuh",
+                "Baik untuk kesehatan otak dan kognitif",
+                "Membantu menjaga berat badan ideal"
+            ],
+            komposisi: "Extra Virgin Olive Oil 100%",
+            penggunaan: "Untuk masakan, salad dressing, atau konsumsi langsung 1 sendok makan per hari",
+            volume: "325ml",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.8,
+            reviews: 389
+        }, {
+            id: 9,
+            name: "Cuka Nanas Royal Sultan 500ml",
+            image: "cukananas.jpg",
+            price: 40000,
+            oldPrice: 47000,
+            description: "Cuka fermentasi dari buah nanas segar yang kaya akan enzim bromelain. Membantu melancarkan pencernaan dan mengurangi peradangan dalam tubuh.",
+            kategori: ["Fermentasi", "Pencernaan", "Detoks"],
+            detail: "Dibuat dari nanas segar pilihan melalui proses fermentasi alami selama 3-4 bulan. Mengandung enzim bromelain alami yang baik untuk pencernaan protein.",
+            manfaat: [
+                "Melancarkan sistem pencernaan",
+                "Mengurangi peradangan dan nyeri sendi",
+                "Membantu detoksifikasi tubuh",
+                "Menjaga keseimbangan pH tubuh",
+                "Meningkatkan penyerapan nutrisi",
+                "Membantu mengatasi sembelit",
+                "Meningkatkan energi tubuh"
+            ],
+            komposisi: "Cuka Nanas Fermentasi Alami 100%",
+            penggunaan: "1-2 sendok makan dicampur dengan 200ml air, diminum sebelum makan",
+            volume: "500ml",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.5,
+            reviews: 187
+        }, {
+            id: 10,
+            name: "Cuka Noni Royal Sultan 320ml",
+            image: "royalnoni.jpg",
+            price: 65000,
+            oldPrice: 68420,
+            description: "Cuka fermentasi dari buah mengkudu (noni) yang dikenal dengan khasiatnya untuk meningkatkan imunitas dan antioksidan tinggi.",
+            kategori: ["Herbal", "Imunitas", "Antioksidan"],
+            detail: "Buah mengkudu pilihan difermentasi secara tradisional untuk menghasilkan cuka dengan kandungan scopoletin dan damnacanthal yang optimal.",
+            manfaat: [
+                "Meningkatkan sistem kekebalan tubuh secara signifikan",
+                "Antioksidan tinggi untuk melawan radikal bebas",
+                "Membantu menurunkan tekanan darah tinggi",
+                "Mengurangi peradangan kronis",
+                "Membantu mengontrol kadar gula darah",
+                "Meningkatkan kualitas tidur",
+                "Membantu penyembuhan luka lebih cepat"
+            ],
+            komposisi: "Cuka Noni (Mengkudu) Fermentasi 100%",
+            penggunaan: "1 sendok makan dicampur dengan 200ml air hangat, diminum 2 kali sehari",
+            volume: "320ml",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.7,
+            reviews: 213
+        }, {
+            id: 11,
+            name: "Royal Tens Minuman Botanikal 350ml",
+            image: "royaltens.jpg",
+            price: 85000,
+            oldPrice: 94400,
+            description: "Minuman herbal khusus formulasi untuk membantu menjaga tekanan darah tetap stabil. Kombinasi tanaman herbal yang telah teruji secara empiris.",
+            kategori: ["Herbal", "Jantung", "Tekanan Darah"],
+            detail: "Formulasi khusus dari Madu, cuka apel, bawang putih tunggal, lemon, jahe merah yang dikembangkan berdasarkan manfaat herbal untuk kesehatan jantung dan pembuluh darah.",
+            manfaat: [
+                "Membantu menstabilkan tekanan darah",
+                "Melancarkan peredaran darah",
+                "Mengurangi risiko stroke dan serangan jantung",
+                "Menurunkan kadar kolesterol jahat (LDL)",
+                "Meningkatkan elastisitas pembuluh darah",
+                "Mengurangi gejala sakit kepala akibat tekanan darah tinggi",
+                "Menjaga kesehatan jantung secara menyeluruh"
+            ],
+            komposisi: "Madu, cuka apel, bawang putih tunggal, lemon, jahe merah",
+            penggunaan: "1-2 sendok makan 2 kali sehari",
+            volume: "350ml",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.9,
+            reviews: 298
+        }, {
+            id: 12,
+            name: "DBMIX Madu Sari Kurma 310g",
+            image: "dbmix.jpg",
+            price: 35000,
+            oldPrice: 49000,
+            description: "Madu Angkak Sari Kurma & Propolis Jambu Biji adalah minuman herbal premium yang terbuat dari madu murni, angkak, sari kurma, propolis, dan jambu biji, diproses secara higienis untuk menjaga kualitas dan khasiat alami setiap bahan. Kombinasi bahan-bahan alami ini memberikan rasa manis nikmat dengan manfaat kesehatan yang optimal.",
+            kategori: ["Madu", "Stamina", "Nutrisi"],
+            detail: "Pilih Madu Angkak Sari Kurma & Propolis Jambu Biji sebagai minuman herbal praktis yang menggabungkan manfaat madu, kurma, angkak, propolis, dan jambu biji. Nikmati kesehatan dan energi alami setiap hari. Tersedia kemasan botol 470 gr",
+            manfaat: [
+                "Meningkatkan stamina dan energi tubuh",
+                "Sumber zat besi alami untuk mencegah anemia",
+                "Baik untuk meningkatkan kekebalan tubuh",
+                "Meningkatkan trombosit untuk pasien demam berdarah",
+                "Melancarkan sistem pencernaan",
+                "Nutrisi tubuh alami",
+                "Sumber antioksidan untuk melawan penuaan dini"
+            ],
+            komposisi: "Madu, sari kurma, ekstrak angkak, jambu biji, propolis, daun pepaya",
+            penggunaan: "1-2 sendok makan, 2 kali sehari",
+            volume: "310g dan 470gr",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 4.8,
+            reviews: 267
+        }, {
+            id: 13,
+            name: "Jahe Merah Toples Ratu lebah 350g",
+            image: "jahetoples.jpg",
+            price: 35000,
+            oldPrice: 36800,
+            description: "Jahe Merah Ratu Lebah Toples 330 gr merupakan minuman serbuk jahe merah yang dibuat dari jahe merah pilihan berkualitas tinggi, diproses secara higienis untuk menghasilkan rasa pedas hangat alami dan aroma khas jahe merah. Dikemas dalam toples praktis 330 gram, produk ini ideal untuk konsumsi rutin di rumah maupun tempat kerja.",
+            kategori: ["Paket", "Lengkap", "Keluarga"],
+            detail: "Minuman jahe merah ini membantu menghangatkan tubuh, menjaga stamina, serta mendukung daya tahan tubuh. Dengan kemasan toples ekonomis, Jahe Merah Ratu Lebah cocok dijadikan stok minuman herbal keluarga yang mudah disajikan kapan saja.",
+            manfaat: [
+                "Terbuat dari jahe merah asli berkualitas",
+                "Rasa hangat alami dan nikmat",
+                "Kemasan toples 330 gr, lebih hemat dan praktis",
+                "Mudah diseduh dan cepat larut",
+                "Menjaga kehangatan dan stamina tubuh",
+                "Meredakan masuk angin dan rasa tidak enak di badan",
+                "Membantu melancarkan peredaran darah"
+            ],
+            komposisi: "Jahe merah, gula, secang, madu, habbatussauda",
+            penggunaan: "1 sendok makan di seduh dengan air hangat, atau sesuai selera",
+            volume: "330 gr",
+            sertifikasi: ["BPOM", "HALAL"],
+            rating: 5.0,
+            reviews: 523
+        }];
+
+        // Fungsi untuk mendapatkan data produk default jika ID tidak ditemukan
+        function getDefaultProductData(productId) {
+            return {
+                id: productId,
+                name: `Produk Herbal ${productId}`,
+                image: "https://cdn.pixabay.com/photo/2016/11/29/13/00/herbs-1869659_1280.jpg",
+                price: 50000,
+                oldPrice: null,
+                description: "Produk herbal berkualitas tinggi dengan bahan-bahan alami pilihan untuk kesehatan optimal. Dikembangkan dengan standar kualitas tertinggi.",
+                kategori: ["Herbal", "Kesehatan"],
+                detail: "Produk herbal dengan formulasi khusus berdasarkan penelitian tradisional dan modern. Diproses dengan teknologi terkini untuk menjaga khasiat alami bahan.",
+                manfaat: [
+                    "Meningkatkan kesehatan tubuh secara menyeluruh",
+                    "Meningkatkan sistem kekebalan tubuh",
+                    "Sumber antioksidan alami",
+                    "Mendukung fungsi organ tubuh optimal",
+                    "Meningkatkan energi dan vitalitas"
+                ],
+                komposisi: "Bahan herbal alami 100% tanpa bahan kimia sintetis",
+                penggunaan: "Sesuai petunjuk pada kemasan produk",
+                volume: "Standar kemasan",
+                sertifikasi: ["BPOM", "HALAL"],
+                rating: 4.5,
+                reviews: 100
+            };
+        }
+
+        // Loading Bar Animation
+        window.addEventListener('load', function() {
+            const loadingBar = document.getElementById('loadingBar');
+            loadingBar.style.width = '100%';
+            setTimeout(() => {
+                loadingBar.style.opacity = '0';
+                loadingBar.style.display = 'none';
+            }, 500);
+
+            // Animate grid items
+            const gridItems = document.querySelectorAll('.grid-item');
+            gridItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 100 * (index + 1));
+            });
+
+            // Animate fade-in elements
+            const fadeElements = document.querySelectorAll('.fade-in-element');
+            fadeElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 200 * (index + 1));
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Filter Produk Functionality with Enhanced Animation
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const produkCards = document.querySelectorAll('.produk-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                // Animation timeline
+                if (filterValue === 'all') {
+                    // ANIMASI: Tampilkan semua produk dengan efek cascade
+                    let delay = 0;
+                    produkCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.display = 'block';
+                            card.classList.add('animate-fade-in-up');
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0) scale(1)';
+                                card.style.filter = 'blur(0px)';
+                            }, 50);
+                        }, delay);
+                        delay += 50; // Stagger effect
+                    });
+                } else {
+                    // ANIMASI: Sembunyikan semua dulu dengan efek smooth
+                    produkCards.forEach(card => {
+                        card.classList.add('animate-fade-out');
+                        card.style.transform = 'translateY(20px) scale(0.95)';
+                        card.style.opacity = '0';
+                        card.style.filter = 'blur(5px)';
+                    });
+
+                    // Tunggu animasi fade out selesai, lalu tampilkan yang sesuai filter
+                    setTimeout(() => {
+                        let visibleCount = 0;
+                        produkCards.forEach(card => {
+                            const categories = card.getAttribute('data-category').split(' ');
+
+                            if (categories.includes(filterValue)) {
+                                setTimeout(() => {
+                                    card.style.display = 'block';
+                                    card.classList.remove('animate-fade-out');
+                                    card.classList.add('animate-fade-in-up');
+
+                                    // Enhanced animation for matched products
+                                    setTimeout(() => {
+                                        card.style.opacity = '1';
+                                        card.style.transform = 'translateY(0) scale(1)';
+                                        card.style.filter = 'blur(0px)';
+
+                                        // Tambah efek bounce ringan
+                                        card.style.animation = 'cardBounce 0.6s ease-out';
+                                    }, 50);
+                                }, visibleCount * 150); // Stagger effect lebih jelas
+                                visibleCount++;
+                            } else {
+                                card.style.display = 'none';
+                                card.classList.remove('animate-fade-in-up', 'animate-fade-out');
+                            }
+                        });
+
+                        // Jika tidak ada produk yang cocok
+                        if (visibleCount === 0) {
+                            const produkListSection = document.getElementById('produk-list');
+                            const noProductsMessage = document.getElementById('no-products-message');
+
+                            if (!noProductsMessage) {
+                                const message = document.createElement('div');
+                                message.id = 'no-products-message';
+                                message.className = 'col-span-full text-center py-12';
+                                message.innerHTML = `
+                            <div class="inline-flex items-center justify-center w-20 h-20 bg-gray-100 rounded-full mb-4">
+                                <i class="fas fa-search text-gray-400 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-700 mb-2">Produk tidak ditemukan</h3>
+                            <p class="text-gray-500">Tidak ada produk dalam kategori ini.</p>
+                        `;
+                                produkListSection.querySelector('.grid').appendChild(message);
+                            }
+                        } else {
+                            const noProductsMessage = document.getElementById('no-products-message');
+                            if (noProductsMessage) {
+                                noProductsMessage.remove();
+                            }
+                        }
+                    }, 300); // Wait for fade out to complete
+                }
+            });
+        });
+
+        // Search Produk Functionality dengan reset filter
+        const searchInput = document.getElementById('searchProduk');
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Reset filter button ke "all" saat searching
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-filter') === 'all') {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Tampilkan semua produk dulu
+            produkCards.forEach(card => {
+                card.style.display = 'block';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.filter = 'blur(0)';
+            });
+
+            if (searchTerm !== '') {
+                // Filter berdasarkan search term dengan animasi
+                produkCards.forEach((card, index) => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    const categories = card.getAttribute('data-category').toLowerCase();
+
+                    if (title.includes(searchTerm) || description.includes(searchTerm) || categories.includes(searchTerm)) {
+                        // Produk match - tampilkan dengan animasi
+                        setTimeout(() => {
+                            card.style.display = 'block';
+                            card.classList.add('animate-fade-in-up');
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0) scale(1)';
+                        }, index * 50);
+                    } else {
+                        // Produk tidak match - sembunyikan dengan animasi
+                        setTimeout(() => {
+                            card.classList.add('animate-fade-out');
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px) scale(0.95)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }, index * 30);
+                    }
+                });
+            }
+        });
+
+        // Modal Functions
+        const modal = document.getElementById('productModal');
+        const modalBody = document.getElementById('modalBody');
+
+        function showProductModal(productId) {
+            const product = produkData.find(p => p.id === productId) || getDefaultProductData(productId);
+
+            const modalContent = `
+        <div class="modal-image">
+            <img src="${product.image}" alt="${product.name}">
+        </div>
+        
+        <div class="modal-info">
+            <h1 class="modal-title">${product.name}</h1>
+            
+            <div class="modal-price">
+                <span class="modal-price-new">Rp ${product.price.toLocaleString('id-ID')}</span>
+                ${product.oldPrice ? `<span class="modal-price-old">Rp ${product.oldPrice.toLocaleString('id-ID')}</span>` : ''}
+            </div>
+            
+            <div class="modal-badges">
+                ${product.sertifikasi.includes('BPOM') ? '<span class="badge-bpom">BPOM</span>' : ''}
+                ${product.sertifikasi.includes('HALAL') ? '<span class="badge-halal">HALAL</span>' : ''}
+                ${product.id === 1 || product.id === 5 || product.id === 7 || product.id === 11 || product.id === 13 ? '<span class="badge-promo">PROMO</span>' : ''}
+            </div>
+            
+            <p class="modal-description">${product.description}</p>
+            
+            <div class="modal-details">
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="detail-content">
+                        <h4>Manfaat Utama</h4>
+                        <p>${product.manfaat.join(', ')}</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="detail-content">
+                        <h4>Komposisi</h4>
+                        <p>${product.komposisi}</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-prescription-bottle"></i>
+                    </div>
+                    <div class="detail-content">
+                        <h4>Cara Penggunaan</h4>
+                        <p>${product.penggunaan}</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="detail-content">
+                        <h4>Volume / Isi</h4>
+                        <p>${product.volume}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-contact">
+                <h4>Ingin memesan produk ini?</h4>
+                <p>Hubungi kami sekarang untuk pemesanan atau konsultasi produk.</p>
+                
+                <div class="contact-buttons">
+                    <a href="https://wa.me/6283199349933?text=Halo,%20saya%20tertarik%20dengan%20produk:%20${encodeURIComponent(product.name)}%20(ID:%20${product.id})%0ABisa%20dibantu%20untuk%20pemesanan?" 
+                       target="_blank" class="btn-wa">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    
+                    <a href="tel:+6283199349933" class="btn-telp">
+                        <i class="fas fa-phone"></i> Telepon
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+    
+            modalBody.innerHTML = modalContent;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        function buyProduct(productId) {
+            const product = produkData.find(p => p.id === productId) || getDefaultProductData(productId);
+            const message = `Halo, saya tertarik untuk memesan produk berikut:\n\n📦 Produk: ${product.name}\n💰 Harga: Rp ${product.price.toLocaleString('id-ID')}\n📏 Volume: ${product.volume}\n\nBisa dibantu untuk proses pemesanan dan informasi lengkapnya?`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/6283199349933?text=${encodedMessage}`, '_blank');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Add scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in-element').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Debugging function untuk cek kategori
+        function debugCategories() {
+            console.log('=== DEBUG KATEGORI PRODUK ===');
+            produkCards.forEach((card, index) => {
+                const categories = card.getAttribute('data-category');
+                const title = card.querySelector('h3').textContent;
+                console.log(`Produk ${index + 1}: ${title}`);
+                console.log(`Kategori: ${categories}`);
+                console.log('---');
+            });
+        }
+
+        // Panggil di console browser untuk debug
+        // debugCategories();
+
+        // Pastikan semua produk card memiliki data-category
+        document.addEventListener('DOMContentLoaded', function() {
+            produkCards.forEach(card => {
+                if (!card.hasAttribute('data-category')) {
+                    card.setAttribute('data-category', 'uncategorized');
+                    console.warn('Produk tanpa kategori ditemukan:', card.querySelector('h3').textContent);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
