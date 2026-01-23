@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naina Mandiri Utama - Produk Herbal & Obat Tradisional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Barlow dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary: #ff9800;
+            --light: #f5f5f5;
+            --dark: #333;
+            --gray: #757575;
+            --light-gray: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+        
+        .back-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 5px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            line-height: 1.2;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+        
+        .sales-info {
+            text-align: right;
+            padding: 10px 15px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            min-width: 250px;
+        }
+        
+        .sales-name {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .sales-contact {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        
+        .sales-contact i {
+            color: var(--primary);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.9), rgba(27, 94, 32, 0.9)), url('https://images.unsplash.com/photo-1542736667-069246bdbc6d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: #f57c00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 10px auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 992px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        /* PERUBAHAN PENTING: Product image styling */
+        
+        .product-image {
+            height: 200px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-image .fallback-icon {
+            font-size: 3rem;
+            color: var(--primary);
+        }
+        
+        .product-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+        
+        .product-description {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-button {
+            display: block;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: auto;
+        }
+        
+        .product-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .benefits {
+            background-color: white;
+            padding: 60px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .benefits-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .benefits-list {
+            list-style-type: none;
+        }
+        
+        .benefits-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .benefit-icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .contact-section {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .contact-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-weight: 400;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 400;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .logo {
+                justify-content: center;
+            }
+            .sales-info {
+                text-align: center;
+                min-width: auto;
+                width: 100%;
+            }
+            .sales-contact {
+                justify-content: center;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 50px 20px;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .logo-text h1 {
+                font-size: 1.5rem;
+            }
+            .sales-name {
+                font-size: 1rem;
+            }
+            .sales-contact {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header dengan informasi sales -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../assets/logonmu.jpg" alt="logo" class="logo-icon">
+                <div class="logo-text">
+                    <h1>Naina Mandiri Utama</h1>
+                    <p>Produk Herbal & Obat Tradisional</p>
+                </div>
+            </div>
+            <div class="sales-info">
+                <div class="sales-name">Sales: <span id="salesName">SUDIRMAN SLAMET</span></div>
+                <div class="sales-contact">
+                    <i class="fas fa-phone"></i>
+                    <span id="salesContact">+62 853-1340-0532</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tombol Kembali ke Sales Page -->
+    <div class="container">
+        <a href="../sales.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Halaman Sales
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Kesehatan Alami dengan Herbal Terbaik</h2>
+            <p>Produk herbal dan obat tradisional berkualitas tinggi untuk menjaga kesehatan dan mengobati berbagai penyakit secara alami tanpa efek samping berbahaya.</p>
+            <a href="#products" class="cta-button">Lihat Produk Kami</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <div class="container">
+        <h2 class="section-title" id="products">9 Produk Unggulan Kami</h2>
+        <div class="products-grid" id="productList">
+            <!-- Produk akan dimuat melalui JavaScript -->
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container benefits-container">
+            <h2 class="section-title">Manfaat Produk Herbal Kami</h2>
+            <ul class="benefits-list">
+                <li>
+                    <i class="fas fa-check-circle benefit-icon"></i>
+                    <span>Terbuat dari bahan-bahan alami pilihan dengan standar kualitas tertinggi</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle benefit-icon"></i>
+                    <span>Tanpa bahan kimia berbahaya dan efek samping yang merugikan</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle benefit-icon"></i>
+                    <span>Diproses dengan teknologi modern yang menjaga khasiat alami bahan</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle benefit-icon"></i>
+                    <span>Sudah teruji klinis dan memiliki sertifikasi BPOM</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle benefit-icon"></i>
+                    <span>Dapat membantu mengobati berbagai penyakit secara holistik</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <div class="container">
+        <h2 class="section-title">Testimoni Pelanggan</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Setelah rutin mengonsumsi herbal dari Naina Mandiri Utama, tekanan darah tinggi saya menjadi normal dan badan terasa lebih fit."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AS</div>
+                    <div>
+                        <h4>Ahmad Santoso</h4>
+                        <p>Jakarta</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Diabetes saya semakin terkontrol setelah menggunakan produk herbal ini. Gula darah turun dan stabil tanpa efek samping."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SR</div>
+                    <div>
+                        <h4>Sari Ratnasari</h4>
+                        <p>Bandung</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Obat tradisional untuk asam urat ini sangat ampuh. Nyeri sendi saya berkurang drastis hanya dalam 2 minggu pemakaian."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">BW</div>
+                    <div>
+                        <h4>Budi Wibowo</h4>
+                        <p>Surabaya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>Pesan Sekarang Juga!</h2>
+            <p>Dapatkan produk herbal terbaik untuk kesehatan Anda dan keluarga. Hubungi sales kami untuk konsultasi dan pemesanan.</p>
+            <a href="6285313400532" class="cta-button" target="_blank" id="whatsappLink">
+                <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
+            </a>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-user"></i>
+                    <span>Sales: <strong id="salesNameFooter"></strong></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>Telepon: <strong id="salesPhone">+62 853-1340-0532</strong></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email: <strong id="salesEmail">[Email Sales]</strong></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <p>Naina Mandiri Utama - Penyedia Produk Herbal dan Obat Tradisional Terpercaya</p>
+            <p>Alamat: Jl. Kesehatan No. 123, Jakarta Selatan</p>
+            <p>Website: <a href="https://nainamandiriutama.com" style="color: var(--primary-light);">nainamandiriutama.com</a></p>
+            <div class="copyright">
+                &copy; 2023 Naina Mandiri Utama. Semua hak dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Database Sales untuk 8 halaman yang berbeda
+        const salesDatabase = {
+            default: {
+                name: "Slamet Riyadi",
+                phone: "+62 812-3456-7890",
+                email: "slamet@nainamandiriutama.com",
+                whatsapp: "6281234567890"
+            },
+            sales1: {
+                name: "Sudirman Slamet",
+                phone: "+62 853-1340-0532",
+                email: "slamet@nainamandiriutama.com",
+                whatsapp: "6285313400532"
+            },
+            sales2: {
+                name: "Najat Somantri",
+                phone: "+62 812-8456-8833",
+                email: "najat@nainamandiriutama.com",
+                whatsapp: "6281284568833"
+            },
+            sales3: {
+                name: "Maryadi Cahya",
+                phone: "+62 857-1188-4601",
+                email: "cahya@nainamandiriutama.com",
+                whatsapp: "6285711884601"
+            },
+            sales4: {
+                name: "Agus Efendi",
+                phone: "+62 852-1580-8505",
+                email: "efendi@nainamandiriutama.com",
+                whatsapp: "6285215808505"
+            },
+            sales5: {
+                name: "Bustomi Aji",
+                phone: "+62 858-1088-9808",
+                email: "tomi@nainamandiriutama.com",
+                whatsapp: "6285810889808"
+            },
+            sales6: {
+                name: "MOH. Rofik",
+                phone: "+62 852-1864-5844",
+                email: "rofik@nainamandiriutama.com",
+                whatsapp: "6285218645844"
+            },
+            sales7: {
+                name: "Misbahul Khoir",
+                phone: "+62 813-1109-2553",
+                email: "misbah@nainamandiriutama.com",
+                whatsapp: "6281311092553"
+            },
+            sales8: {
+                name: "Khoerus Sobah",
+                phone: "+62 812-9639-7029",
+                email: "sobah@nainamandiriutama.com",
+                whatsapp: "6281296397029"
+            }
+        };
+
+        // PERBAIKAN: Data produk dengan GAMBAR, bukan icon
+        const products = [{
+            id: 1,
+            name: "Royal Tens",
+            category: "Jantung & Darah Tinggi",
+            description: "Formula botanikal khusus untuk menjaga kesehatan jantung dan menstabilkan tekanan darah.",
+            price: "Rp 85.000",
+            image: "../assets/royaltens.jpg", // Path gambar yang benar
+
+        }, {
+            id: 2,
+            name: "Ratu Lebah Madu Hitam Pahit Plus Herbal",
+            category: "Herbal Diabetes",
+            description: "Ramuan tradisional untuk membantu mengontrol kadar gula darah secara alami.",
+            price: "Rp 47.500",
+            image: "../assets/maduhitam.jpg" // Path gambar yang benar
+        }, {
+            id: 3,
+            name: "Herbal Nafsu Makan & Imunitas",
+            category: "Madu Pertumbuhan Anak",
+            description: "Membantu meningkatkan nafsu makan dan kekebalan tubuh si junior.",
+            price: "Rp 30.000",
+            image: "../assets/d&agol.jpg" // Path gambar yang benar
+        }, {
+            id: 4,
+            name: "Minuman Fermentasi Pencernaan",
+            category: "Cuka Apel Untuk Pencernaan",
+            description: "Membersihkan dan meningkatkan fungsi pencernaan secara optimal.",
+            price: "Rp 35.000",
+            image: "../assets/cukaapel.jpg" // Path gambar yang benar
+        }, {
+            id: 5,
+            name: "Jahe Serbuk Siap Seduh",
+            category: "Teman Hangat Setiap Saat",
+            description: "Minuman dengan ramuan rempah yang cocok dihadirkan disemua kondisi untuk menambah kehangatan suasana",
+            price: "Rp 12.500",
+            image: "../assets/jaherl.jpg" // Path gambar yang benar
+        }, {
+            id: 6,
+            name: "Minuman Susu Kambing rasa Vanilla",
+            category: "Tinggi Kalsium, Protein dan Rendah Lemak",
+            description: "Cocok untuk tua dan muda, tidak perngus dan aman dikonsumsi setiap hari.",
+            price: "Rp 35.000",
+            image: "../assets/etawa.jpg" // Sementara pakai vco.jpg
+        }, {
+            id: 7,
+            name: "Minuman Susu Kambing rasa Jahe",
+            category: "Tinggi Kalsium, Protein dan Rendah Lemak",
+            description: "Tidak bau perngus dan enak. Menghangatkan suasana dan tubuh",
+            price: "Rp 35.000",
+            image: "../assets/etawa.jpg" // Sementara pakai medina.jpg
+        }, {
+            id: 8,
+            name: "Minyak Kelapa Murni Serbaguna",
+            category: "Virgin Coconut Oil Asli Indonesia",
+            description: "Dapat diminum langsung untuk kesehatan, pijat dan urut, melembabkan kulit, rambut dan bulu hewan.",
+            price: "Rp 35.000",
+            image: "../assets/vco.jpg" // Path gambar yang benar
+        }, {
+            id: 9,
+            name: "Minyak Zaitun yang Diberkahi",
+            category: "Extra Virgin 100% Zaitun",
+            description: "Produk import untuk kebutuhan serbaguna, membuat salad, nol kolesterol dan bagus untuk kesehatan.",
+            price: "Rp 85.000",
+            image: "../assets/medina.jpg" // Sementara pakai royaltens.jpg
+        }];
+
+        // Ganti nilai ini sesuai sales yang diinginkan untuk setiap file
+        const CURRENT_SALES_ID = "sales5"; // sales1, sales2, sales3, ..., sales8
+
+        // Fungsi untuk set sales berdasarkan ID
+        function setSpecificSales() {
+            const salesData = salesDatabase[CURRENT_SALES_ID] || salesDatabase.default;
+
+            // Update semua elemen dengan data sales
+            document.getElementById('salesName').textContent = salesData.name;
+            document.getElementById('salesNameFooter').textContent = salesData.name;
+            document.getElementById('salesPhone').textContent = salesData.phone;
+            document.getElementById('salesEmail').textContent = salesData.email;
+            document.getElementById('salesContact').textContent = salesData.phone;
+
+            // Update link WhatsApp
+            const whatsappLink = document.getElementById('whatsappLink');
+            const message = `Halo ${salesData.name}, saya ingin konsultasi tentang produk herbal`;
+            const encodedMessage = encodeURIComponent(message);
+            whatsappLink.href = `https://wa.me/${salesData.whatsapp}?text=${encodedMessage}`;
+            whatsappLink.innerHTML = `<i class="fab fa-whatsapp"></i> Hubungi via WhatsApp`;
+        }
+
+        // PERBAIKAN: Fungsi untuk memuat gambar dengan fallback
+        function loadProductImage(imagePath, productName) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(imagePath);
+                img.onerror = () => {
+                    // Fallback ke placeholder jika gambar tidak ditemukan
+                    const placeholder = `https://via.placeholder.com/400x300/4CAF50/FFFFFF?text=${encodeURIComponent(productName)}`;
+                    console.warn(`Gambar tidak ditemukan: ${imagePath}, menggunakan placeholder`);
+                    resolve(placeholder);
+                };
+                img.src = imagePath;
+            });
+        }
+
+        // PERBAIKAN: Fungsi untuk menampilkan produk dengan GAMBAR
+        async function displayProducts() {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+
+            for (const product of products) {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+
+                // Coba load gambar
+                const imageSrc = await loadProductImage(product.image, product.name);
+
+                // Buat HTML untuk gambar produk
+                const imageHtml = `
+                    <div class="product-image">
+                        <img src="${imageSrc}" 
+                             alt="${product.name}"
+                             loading="lazy"
+                             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/FF9800/FFFFFF?text=${encodeURIComponent(product.name)}'">
+                    </div>
+                `;
+
+                // Buat konten produk
+                productCard.innerHTML = `
+                    ${imageHtml}
+                    <div class="product-content">
+                        <span class="product-category">${product.category}</span>
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-price">${product.price}</div>
+                        <button class="product-button" onclick="orderProduct(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                `;
+
+                productList.appendChild(productCard);
+            }
+        }
+
+        // Fungsi untuk memesan produk
+        function orderProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            const salesData = salesDatabase[CURRENT_SALES_ID] || salesDatabase.default;
+            const message = `Hallo, ${salesData.name}, saya ingin info lengkap dan memesan produk ${product.name} (${product.category}) seharga ${product.price}. Bisa dibantu info lengkap dan proses pemesanannya?`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${salesData.whatsapp}?text=${encodedMessage}`, '_blank');
+        }
+
+        // Fungsi untuk memuat logo
+        function loadLogo() {
+            const logoContainer = document.querySelector('.logo-icon');
+            const logoPaths = [
+                '../assets/nmu.jpg',
+                '../assets/SLAMET.png',
+                'assets/nmu.jpg',
+                'nmu.jpg'
+            ];
+
+            const img = document.createElement('img');
+            img.alt = 'Logo Naina Mandiri Utama';
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'contain';
+            img.style.padding = '5px';
+
+            let currentIndex = 0;
+
+            function tryNextLogo() {
+                if (currentIndex < logoPaths.length) {
+                    img.src = logoPaths[currentIndex];
+                    currentIndex++;
+                }
+            }
+
+            img.onload = function() {
+                const icon = logoContainer.querySelector('.fallback-icon');
+                if (icon) {
+                    icon.style.display = 'none';
+                }
+                logoContainer.prepend(img);
+            };
+
+            img.onerror = tryNextLogo;
+
+            tryNextLogo();
+        }
+
+        // Inisialisasi halaman saat dimuat
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log("Memuat halaman produk...");
+
+            // Set data sales
+            setSpecificSales();
+
+            // Tampilkan produk
+            await displayProducts();
+
+            // Coba memuat logo
+            loadLogo();
+
+            console.log("Halaman siap!");
+            console.log("Path gambar produk:");
+            products.forEach(p => console.log(`${p.name}: ${p.image}`));
+        });
+    </script>
+</body>
+
+</html>
