@@ -4,95 +4,122 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Distribusi Herbal Indonesia - PT Naima Mandiri Utama</title>
-    <meta name="description" content="PT. Naima Mandiri Utama distributor produk herbal alami berkualitas untuk kesehatan keluarga Indonesia">
+    <title>Tim Sales - PT Naina Mandiri Utama</title>
+    <meta name="description" content="Tim sales profesional PT Naina Mandiri Utama siap membantu Anda dengan solusi herbal terbaik">
 
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/style.css">
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
          :root {
             --matcha: #8BA989;
             --matcha-dark: #7BAE7F;
             --matcha-light: #A8C6A9;
-            --text-grey: #2a2a2a;
-            --text-light: #6b7280;
+            --matcha-extra-light: #F0F7F0;
+            --text-primary: #1F2937;
+            --text-secondary: #6B7280;
+            --white: #FFFFFF;
         }
         
         body {
             font-family: 'Barlow', sans-serif;
             scroll-behavior: smooth;
+            background-color: #F9FAFB;
         }
-        /* Navigation */
         
         .nav-scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-        }
-        /* Hero Section */
-        
-        .hero-overlay {
-            background: linear-gradient(135deg, rgb(245, 246, 245) 0%, rgba(253, 255, 253, 0.996) 100%);
-        }
-        /* Cards */
-        
-        .service-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #f3f4f6;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(139, 169, 137, 0.1) 0%, rgba(123, 174, 127, 0.05) 100%);
+        }
+        
+        .sales-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #F3F4F6;
+            height: 100%;
+        }
+        
+        .sales-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(139, 169, 137, 0.15);
             border-color: var(--matcha-light);
         }
-        /* Feature Boxes */
         
-        .feature-box {
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+        .sales-image-container {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
         }
         
-        .feature-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        .sales-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
         }
-        /* Partnership Section */
         
-        .partnership-overlay {
-            background: linear-gradient(135deg, rgba(123, 174, 127, 0.8) 0%, rgba(139, 169, 137, 0.9) 100%);
+        .sales-card:hover .sales-image {
+            transform: scale(1.05);
         }
-        /* WA Floating */
+        
+        .sales-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+        
+        .sales-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--matcha);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(139, 169, 137, 0.3);
+        }
         
         .wa-btn {
             position: fixed;
-            right: 25px;
+            right: 30px;
             bottom: 30px;
             width: 62px;
             height: 62px;
             border-radius: 50%;
-            background: #22c55e;
+            background: linear-gradient(135deg, #22C55E, #16A34A);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 50;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .wa-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.4);
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 35px rgba(34, 197, 94, 0.4);
         }
-        /* Loading Animation */
         
         .loading-bar {
             position: fixed;
@@ -104,1127 +131,203 @@
             z-index: 1000;
             transition: width 0.3s ease;
         }
-        /* Smooth fade-in animation */
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
         
         .btn-primary {
-            background: var(--matcha);
-            color: white;
-            padding: 12px 32px;
+            background: linear-gradient(135deg, var(--matcha), var(--matcha-dark));
+            color: var(--white);
+            padding: 14px 32px;
             border-radius: 12px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--matcha);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            font-family: 'Barlow', sans-serif;
         }
         
         .btn-primary:hover {
-            background: var(--matcha-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(139, 169, 137, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(139, 169, 137, 0.3);
         }
         
         .btn-secondary {
             background: transparent;
             color: var(--matcha);
-            padding: 12px 32px;
+            padding: 14px 32px;
             border-radius: 12px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 2px solid var(--matcha);
         }
         
         .btn-secondary:hover {
             background: var(--matcha);
-            color: white;
-            transform: translateY(-2px);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(139, 169, 137, 0.2);
         }
         
-        .sales-card {
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
-            border: 1px solid #f3f4f6;
+        .feature-box {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border: 1px solid #F3F4F6;
+            text-align: center;
         }
         
-        .sales-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(139, 169, 137, 0.1);
             border-color: var(--matcha-light);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--matcha-extra-light), #F9FAFB);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--matcha);
+            font-size: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .contact-info i {
+            color: var(--matcha);
+            width: 20px;
+            text-align: center;
         }
         
         .web-link {
             color: var(--matcha);
             text-decoration: none;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
+            font-weight: 500;
         }
         
         .web-link:hover {
             color: var(--matcha-dark);
             text-decoration: underline;
         }
-        /* ARTIKEL SECTION CSS */
-        
-        .full-header {
-            height: 60vh;
-            min-height: 400px;
-            background: linear-gradient(135deg, rgba(46, 139, 87, 0.9) 0%, rgba(60, 179, 113, 0.8) 100%);
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .section-container {
-            position: relative;
-            padding: 2rem 3rem;
-        }
-        
-        .horizontal-scroll {
-            display: flex;
-            overflow-x: auto;
-            gap: 1rem;
-            padding: 1rem 0;
-            scrollbar-width: thin;
-            scrollbar-color: var(--matcha) #f0f0f0;
-        }
-        
-        .horizontal-scroll::-webkit-scrollbar {
-            height: 6px;
-        }
-        
-        .horizontal-scroll::-webkit-scrollbar-track {
-            background: #f0f0f0;
-            border-radius: 10px;
-        }
-        
-        .horizontal-scroll::-webkit-scrollbar-thumb {
-            background: var(--matcha);
-            border-radius: 10px;
-        }
-        
-        .article-card {
-            flex: 0 0 auto;
-            width: 300px;
-            min-height: 350px;
-            transition: all 0.3s ease;
-            border-top: 4px solid var(--matcha);
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .article-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(46, 139, 87, 0.15);
-        }
-        
-        .hashtag {
-            display: inline-block;
-            background: rgba(46, 139, 87, 0.1);
-            color: var(--matcha);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            margin: 3px;
-            transition: all 0.2s;
-        }
-        
-        .hashtag:hover {
-            background: var(--matcha);
-            color: white;
-            transform: scale(1.05);
-        }
-        
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: white;
-            border: 2px solid var(--matcha);
-            color: var(--matcha);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-btn:hover {
-            background: var(--matcha);
-            color: white;
-        }
-        
-        .btn-left {
-            left: -20px;
-        }
-        
-        .btn-right {
-            right: -20px;
-        }
-        /* Artikel Slider Container */
-        
-        .articles-slider-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1.5rem;
-            background: linear-gradient(135deg, white 0%, #fafafa 100%);
-            border: 2px solid var(--matcha-light);
-            box-shadow: 0 20px 40px rgba(139, 169, 137, 0.1);
-        }
-        
-        .articles-slider {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            gap: 2rem;
-            padding: 2rem;
-        }
-        
-        .slider-item {
-            flex: 0 0 calc(100% - 2rem);
-            min-width: calc(100% - 2rem);
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            border: 1px solid var(--matcha-light);
-            box-shadow: 0 10px 30px rgba(139, 169, 137, 0.1);
-        }
-        
-        @media (min-width: 768px) {
-            .slider-item {
-                flex: 0 0 calc(50% - 2rem);
-                min-width: calc(50% - 2rem);
-            }
-        }
-        
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3rem;
-            height: 3rem;
-            background: var(--matcha);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(139, 169, 137, 0.3);
-            border: 2px solid white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .slider-nav:hover {
-            background: var(--matcha-dark);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 20px rgba(139, 169, 137, 0.5);
-        }
-        
-        .slider-nav.prev {
-            left: 1rem;
-        }
-        
-        .slider-nav.next {
-            right: 1rem;
-        }
-        
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .slider-dot {
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 50%;
-            background: var(--matcha-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .slider-dot.active {
-            background: var(--matcha);
-            transform: scale(1.2);
-        }
-        /* Artikel Styling */
-        
-        .article-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-grey);
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-        
-        .article-excerpt {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .article-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-light);
-            font-size: 0.875rem;
-        }
-        
-        .article-category {
-            background: var(--matcha-light)/20;
-            color: var(--matcha-dark);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border: 1px solid var(--matcha-light);
-        }
-        
-        .article-read-more {
-            color: var(--matcha);
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .article-read-more:hover {
-            color: var(--matcha-dark);
-            transform: translateX(5px);
-        }
-        
-        .article-read-more i {
-            margin-left: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .article-read-more:hover i {
-            transform: translateX(3px);
-        }
-        /* VARIABLES UNTUK ARTIKEL */
-        
-         :root {
-            --matcha: #8BA989;
-            --matcha-dark: #7BAE7F;
-            --matcha-light: #A8C6A9;
-            --text-grey: #2a2a2a;
-            --text-light: #6b7280;
-        }
-        /* ANIMASI HASHTAG BERGERAK */
-        
-        @keyframes scrollHashtags {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-        
-        @keyframes floatUpDown {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        /* ARTIKEL HASHTAG SLIDER */
-        
-        .hashtag-slider {
-            overflow: hidden;
-            position: relative;
-            background: linear-gradient(90deg, var(--matcha-light)/20, var(--matcha)/15);
-            border-top: 2px solid var(--matcha-light)/30;
-            border-bottom: 2px solid var(--matcha-light)/30;
-            padding: 1.5rem 0;
-            margin: 2rem 0;
-        }
-        
-        .hashtag-track {
-            display: flex;
-            animation: scrollHashtags 20s linear infinite;
-            white-space: nowrap;
-            gap: 2rem;
-            width: max-content;
-        }
-        
-        .hashtag-slider:hover .hashtag-track {
-            animation-play-state: paused;
-        }
-        
-        .hashtag-item {
-            background: linear-gradient(135deg, var(--matcha), var(--matcha-dark));
-            padding: 0.75rem 1.5rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            color: white;
-            border: 1px solid var(--matcha-light);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(139, 169, 137, 0.3);
-            animation: floatUpDown 3s ease-in-out infinite;
-        }
-        
-        .hashtag-item:hover {
-            background: linear-gradient(135deg, var(--matcha-dark), var(--matcha));
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(139, 169, 137, 0.5);
-            animation-play-state: paused;
-        }
-        
-        .hashtag-item:nth-child(2n) {
-            animation-delay: 0.5s;
-        }
-        
-        .hashtag-item:nth-child(3n) {
-            animation-delay: 1s;
-        }
-        /* ARTIKEL SLIDER DENGAN ANIMASI */
-        
-        .articles-slider-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1.5rem;
-            background: linear-gradient(135deg, white 0%, #fafafa 100%);
-            border: 2px solid var(--matcha-light);
-            box-shadow: 0 20px 40px rgba(139, 169, 137, 0.1);
-            margin: 3rem 0;
-        }
-        
-        .articles-slider {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            gap: 2rem;
-            padding: 2rem;
-        }
-        
-        .slider-item {
-            flex: 0 0 calc(100% - 2rem);
-            min-width: calc(100% - 2rem);
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            border: 1px solid var(--matcha-light);
-            box-shadow: 0 10px 30px rgba(139, 169, 137, 0.1);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-        }
-        
-        .slider-item.active {
-            opacity: 1;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes slideInFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .slider-item {
-                flex: 0 0 calc(50% - 2rem);
-                min-width: calc(50% - 2rem);
-            }
-        }
-        
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3rem;
-            height: 3rem;
-            background: var(--matcha);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(139, 169, 137, 0.3);
-            border: 2px solid white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .slider-nav:hover {
-            background: var(--matcha-dark);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 20px rgba(139, 169, 137, 0.5);
-            animation: pulse 0.5s ease;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: translateY(-50%) scale(1);
-            }
-            50% {
-                transform: translateY(-50%) scale(1.2);
-            }
-            100% {
-                transform: translateY(-50%) scale(1.1);
-            }
-        }
-        
-        .slider-nav.prev {
-            left: 1rem;
-        }
-        
-        .slider-nav.next {
-            right: 1rem;
-        }
-        
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .slider-dot {
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 50%;
-            background: var(--matcha-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: pulseDot 2s infinite;
-        }
-        
-        @keyframes pulseDot {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
-        
-        .slider-dot.active {
-            background: var(--matcha);
-            transform: scale(1.2);
-            animation: none;
-        }
-        /* ARTICLE CONTENT ANIMATIONS */
-        
-        .article-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-grey);
-            margin-bottom: 1rem;
-            line-height: 1.3;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .article-title::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--matcha);
-            transition: width 0.3s ease;
-        }
-        
-        .article-card:hover .article-title::after {
-            width: 100%;
-        }
-        
-        .article-excerpt {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.5s ease 0.2s;
-        }
-        
-        .article-card:hover .article-excerpt {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .article-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-light);
-            font-size: 0.875rem;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.5s ease 0.3s;
-        }
-        
-        .article-card:hover .article-meta {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .article-category {
-            background: var(--matcha-light)/20;
-            color: var(--matcha-dark);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border: 1px solid var(--matcha-light);
-            transition: all 0.3s ease;
-        }
-        
-        .article-category:hover {
-            background: var(--matcha);
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .article-read-more {
-            color: var(--matcha);
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .article-read-more::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: var(--matcha);
-            transition: left 0.3s ease;
-        }
-        
-        .article-read-more:hover {
-            color: var(--matcha-dark);
-            transform: translateX(5px);
-        }
-        
-        .article-read-more:hover::after {
-            left: 0;
-        }
-        
-        .article-read-more i {
-            margin-left: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .article-read-more:hover i {
-            transform: translateX(5px);
-        }
-        /* FLOATING ARTICLE CARDS */
-        
-        .article-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            position: relative;
-            animation: floatCard 6s ease-in-out infinite;
-        }
-        
-        @keyframes floatCard {
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            25% {
-                transform: translateY(-5px) rotate(0.5deg);
-            }
-            50% {
-                transform: translateY(-10px) rotate(0deg);
-            }
-            75% {
-                transform: translateY(-5px) rotate(-0.5deg);
-            }
-        }
-        
-        .article-card:hover {
-            animation: none;
-            transform: translateY(-10px) rotate(1deg);
-            box-shadow: 0 15px 30px rgba(46, 139, 87, 0.15);
-        }
-        /* PRODUK UNGGULAN ANIMATION */
-        
-        .produk-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
-            border: 1px solid #e8e1d1;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .produk-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(139, 169, 137, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .produk-card:hover::before {
-            left: 100%;
-        }
-        
-        .produk-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(139, 169, 137, 0.15);
-        }
-        
-        .horizontal-scroll {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 15px 0;
-        }
-        
-        .horizontal-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .article-card {
-            min-width: 300px;
-            /* ukuran card fix */
-        }
-        
-        .horizontal-scroll {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 15px 0;
-        }
-        
-        .horizontal-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .article-card {
-            min-width: 320px;
-            /* diperbesar supaya overflow pasti terjadi */
-        }
-        
-        .horizontal-scroll {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 20px 0;
-        }
-        
-        .horizontal-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .article-card {
-            min-width: 320px;
-        }
-        
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: white;
-            border: 2px solid #2E8B57;
-            color: #2E8B57;
-            padding: 12px 16px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 9999;
-            /* PENTING: biar tombol kiri ga ketutup */
-        }
-        
-        .btn-left {
-            left: -20px;
-            /* boleh ubah ke 0 atau 10 kalau kepinget */
-        }
-        
-        .btn-right {
-            right: -20px;
-        }
-        /* RESPONSIVE */
-        
-        @media (max-width: 768px) {
-            .hashtag-track {
-                animation-duration: 15s;
-                gap: 1.5rem;
-            }
-            .hashtag-item {
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
-            }
-            .slider-item {
-                padding: 1.5rem;
-            }
-            .article-card {
-                width: 280px;
-                min-height: 320px;
-            }
-            .article-title {
-                font-size: 1.25rem;
-            }
-            .slider-nav {
-                width: 2.5rem;
-                height: 2.5rem;
-            }
-        }
-        /* Responsive */
-        
-        @media (max-width: 768px) {
-            .full-header {
-                height: 50vh;
-                min-height: 300px;
-            }
-            .section-container {
-                padding: 1.5rem;
-            }
-            .nav-btn {
-                display: none;
-            }
-            .article-card {
-                width: 280px;
-                min-height: 320px;
-            }
-            .article-title {
-                font-size: 1.25rem;
-            }
-        }
-        /* Footer Social Icons */
         
         .social-icon {
-            background: var(--matcha);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s ease;
         }
         
         .social-icon:hover {
-            background: var(--matcha-dark);
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
         }
-        /* Modal Artikel Styling */
+        /* Animations */
         
-        #articleModal {
-            backdrop-filter: blur(4px);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        #articleModal>div {
-            animation: slideUp 0.3s ease;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        /* Smooth scroll untuk konten modal */
         
-        #articleModalContent {
-            scrollbar-width: thin;
-            scrollbar-color: var(--matcha) #f0f0f0;
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
         }
         
-        #articleModalContent::-webkit-scrollbar {
-            width: 6px;
+        .grid-item:nth-child(1) {
+            animation-delay: 0.1s;
         }
         
-        #articleModalContent::-webkit-scrollbar-track {
-            background: #f0f0f0;
-            border-radius: 10px;
+        .grid-item:nth-child(2) {
+            animation-delay: 0.2s;
         }
         
-        #articleModalContent::-webkit-scrollbar-thumb {
-            background: var(--matcha);
-            border-radius: 10px;
-        }
-        /* Style untuk konten artikel dalam modal */
-        
-        .modal-article-title {
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: var(--text-grey);
-            margin-bottom: 1rem;
-            line-height: 1.3;
+        .grid-item:nth-child(3) {
+            animation-delay: 0.3s;
         }
         
-        .modal-article-content {
-            color: var(--text-light);
-            line-height: 1.8;
-            font-size: 1.125rem;
+        .grid-item:nth-child(4) {
+            animation-delay: 0.4s;
         }
         
-        .modal-article-content ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-            margin: 1rem 0;
+        .grid-item:nth-child(5) {
+            animation-delay: 0.5s;
         }
         
-        .modal-article-content li {
-            margin-bottom: 0.5rem;
+        .grid-item:nth-child(6) {
+            animation-delay: 0.6s;
         }
         
-        .modal-article-content strong {
-            color: var(--matcha-dark);
-            font-weight: 600;
+        .grid-item:nth-child(7) {
+            animation-delay: 0.7s;
         }
         
-        .modal-article-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-grey);
-            margin: 1.5rem 0 1rem 0;
-            border-left: 4px solid var(--matcha);
-            padding-left: 1rem;
+        .grid-item:nth-child(8) {
+            animation-delay: 0.8s;
         }
+        /* Section Spacing */
         
-        .article-clickable {
-            cursor: pointer;
-            transition: all 0.3s ease;
+        section {
+            padding: 80px 0;
         }
+        /* Hero Section */
         
-        .article-clickable:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(46, 139, 87, 0.15);
-        }
-        /* PRODUK UNGGULAN STYLES */
-        
-        .horizontal-scroll-container {
-            position: relative;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            /* Firefox */
-        }
-        
-        .horizontal-scroll-container::-webkit-scrollbar {
-            display: none;
-            /* Chrome, Safari, Opera */
-        }
-        
-        .horizontal-scroll {
-            display: flex;
-            padding: 10px 0;
-            scroll-behavior: smooth;
-        }
-        
-        .produk-unggulan-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .produk-unggulan-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .produk-unggulan-card .icon-container {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .produk-unggulan-card:hover .icon-container {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .hashtag {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin: 2px;
-            transition: all 0.3s ease;
-        }
-        
-        .produk-unggulan-card:hover .hashtag {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .scroll-btn {
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--matcha-light);
-        }
-        
-        .scroll-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(139, 169, 137, 0.3);
-        }
-        
-        .scroll-indicator {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .scroll-indicator.active {
-            width: 24px;
-            background: var(--matcha-dark);
-        }
-        
-        .scroll-indicator:hover {
-            background: var(--matcha);
-        }
-        /* Animasi untuk produk unggulan */
-        
-        @keyframes floatCard {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        .produk-unggulan-card:nth-child(1) {
-            animation: floatCard 4s ease-in-out infinite 0.1s;
-        }
-        
-        .produk-unggulan-card:nth-child(2) {
-            animation: floatCard 4s ease-in-out infinite 0.2s;
-        }
-        
-        .produk-unggulan-card:nth-child(3) {
-            animation: floatCard 4s ease-in-out infinite 0.3s;
-        }
-        
-        .produk-unggulan-card:nth-child(4) {
-            animation: floatCard 4s ease-in-out infinite 0.4s;
-        }
-        
-        .produk-unggulan-card:nth-child(5) {
-            animation: floatCard 4s ease-in-out infinite 0.5s;
-        }
-        
-        .produk-unggulan-card:nth-child(6) {
-            animation: floatCard 4s ease-in-out infinite 0.6s;
-        }
-        
-        .produk-unggulan-card:nth-child(7) {
-            animation: floatCard 4s ease-in-out infinite 0.7s;
-        }
-        
-        .produk-unggulan-card:nth-child(8) {
-            animation: floatCard 4s ease-in-out infinite 0.8s;
+        .hero-title {
+            background: linear-gradient(135deg, var(--matcha-dark), var(--matcha));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         /* Responsive */
         
         @media (max-width: 768px) {
-            .produk-unggulan-card {
-                width: 280px;
+            .sales-card {
+                margin-bottom: 30px;
             }
-            .scroll-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 0.9rem;
+            .sales-image-container {
+                height: 240px;
             }
-            .horizontal-scroll {
-                padding-left: 10px;
-                padding-right: 10px;
+            .feature-box {
+                padding: 1.5rem;
+                margin-bottom: 20px;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .hero-title {
+                font-size: 2.5rem;
             }
         }
         
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .produk-unggulan-card {
-                width: 300px;
+        @media (max-width: 640px) {
+            .sales-image-container {
+                height: 220px;
             }
         }
     </style>
 </head>
 
-<body>
+<body class="bg-gray-50">
     <!-- Loading Bar -->
     <div class="loading-bar" id="loadingBar"></div>
 
@@ -1234,7 +337,7 @@
             <div class="flex items-center space-x-3">
                 <a href="index.html" class="flex items-center space-x-3">
                     <div class="w-10 h-10 bg-[var(--matcha)] rounded-lg flex items-center justify-center">
-                        <img src="logonmu.jpg" alt="logonmu.jp" class="w-12 h-12 object-contain">
+                        <img src="logonmu.jpg" alt="Logo NMU" class="w-12 h-12 object-contain">
                     </div>
                     <h1 class="font-extrabold text-2xl" style="color:var(--matcha);">PT. NAINA MANDIRI UTAMA</h1>
                 </a>
@@ -1250,13 +353,13 @@
                 <a href="index.html#services" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
                     Layanan Kami
                 </a>
-                <a href="index.html#articles" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                <a href="index.html#article" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
                     Artikel
                 </a>
                 <a href="index.html#partnership" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
                     Kerja sama
                 </a>
-                <a href="sales.html" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
+                <a href="sales.html" class="nav-link text-[var(--matcha)] font-semibold transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300">
                     Team Sales
                 </a>
                 <a href="data.html" class="nav-link text-gray-700 hover:text-[var(--matcha)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--matcha)] after:transition-all after:duration-300 hover:after:w-full">
@@ -1305,848 +408,513 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section id="home" class="relative w-full min-h-screen pt-16 bg-cover bg-center bg-no-repeat" style="background-image: url('m.png');">
-        <div class="absolute inset-0 bg-gradient-to-br from-[var(--matcha-light)]/10 to-[var(--matcha)]/10"></div>
-        <div class="absolute inset-0 bg-black/15"></div>
+    <section class="relative w-full min-h-screen pt-20 flex items-center">
+        <div class="absolute inset-0 hero-gradient z-0"></div>
+        <div class="absolute inset-0 bg-black/5 z-0"></div>
 
-        <div class="relative h-full flex items-center px-6 md:px-16 max-w-7xl mx-auto py-20 md:py-32">
-            <div class="max-w-2xl fade-in">
-                <div class="mb-2">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-black leading-tight mb-6 hero-title" style="font-family: 'Poppins', sans-serif; font-weight: 600;">
-                        Partner distributor herbal yang tumbuh bersama Anda, siap mengalirkan
-                        <span class="text-[var(--matcha)]" style="font-weight: 700;"> CUAN 2026 </span>
-                    </h1>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-4xl fade-in">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[var(--matcha)] to-[var(--matcha-dark)] rounded-2xl mb-8 shadow-xl">
+                    <i class="fas fa-users text-white text-3xl"></i>
                 </div>
 
-                <div class="mb-10">
-                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed" style="font-family: 'Poppins', sans-serif; font-weight: 400;">
-                        Kami sebagai mitra strategis yang siap menghadirkan produk herbal yang cuan dan berkualitas untuk kesehatan keluarga Indonesia.
-                    </p>
-                </div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 hero-title leading-tight">
+                    Tim <span class="text-gray-800">Sales</span><br>
+                    <span class="text-gray-800">Profesional</span> Kami
+                </h1>
 
-                <div class="flex flex-col sm:flex-row gap-4 mt-8">
-                    <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});" class="btn-primary" style="font-family: 'Poppins', sans-serif; font-weight: 500;">
-                        <i class="fas fa-leaf mr-2"></i> Siap Perluas Distribusi
+                <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl">
+                    Kami adalah tim sales berpengalaman yang siap membantu Anda menemukan solusi herbal terbaik untuk kesehatan dan mengembangkan potensi bisnis herbal Anda.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="document.getElementById('team').scrollIntoView({behavior: 'smooth'})" class="btn-primary inline-flex items-center">
+                        <i class="fas fa-users mr-3"></i> Lihat Tim Sales
                     </button>
-
-                    <button onclick="document.getElementById('partnership').scrollIntoView({behavior:'smooth'});" class="btn-secondary" style="font-family: 'Poppins', sans-serif; font-weight: 500;">
-                        <i class="fas fa-handshake mr-2"></i> Jadi Mitra Sekarang
+                    <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="btn-secondary inline-flex items-center">
+                        <i class="fas fa-phone mr-3"></i> Hubungi Kami
                     </button>
                 </div>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
             <div class="animate-bounce">
-                <i class="fas fa-chevron-down text-[var(--matcha)] text-2xl"></i>
+                <i class="fas fa-chevron-down text-[var(--matcha)] text-3xl"></i>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT US SECTION -->
-    <section id="about" class="py-20 bg-gradient-to-br from-[var(--matcha-light)]/5 to-[var(--matcha)]/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Bagian Foto -->
-                <div class="animate-slideInLeft">
-                    <div class="relative">
-                        <div class="relative rounded-2xl overflow-hidden shadow-2xl group photo-hover-effect border-animation">
-                            <div class="absolute inset-0 bg-gradient-to-br from-[var(--matcha-light)]/15 to-[var(--matcha)]/8 z-0"></div>
-                            <div class="relative z-10 h-96 overflow-hidden">
-                                <img src="gudangnmu.png" alt="PT. NAINA MANDIRI UTAMA - Distributor Herbal" class="w-full h-full object-cover transform transition-all duration-1000 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-all duration-700"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bagian Konten -->
-                <div class="space-y-6">
-                    <div>
-                        <span class="text-[var(--matcha)] font-semibold text-sm uppercase tracking-wider bg-white/80 py-2 px-4 rounded-full">
-                            Tentang Kami
-                        </span>
-                    </div>
-
-                    <div>
-                        <h2 class="text-4xl font-bold text-gray-800 leading-tight">
-                            PT. NAINA MANDIRI UTAMA
-                            <div class="w-24 h-1 bg-gradient-to-r from-[var(--matcha-light)] to-[var(--matcha)] mt-3 rounded-full"></div>
-                        </h2>
-                    </div>
-
-                    <div>
-                        <p class="text-gray-600 text-lg leading-relaxed">
-                            Kami bergerak di bidang distribusi produk herbal dan obat tradisional. Kami hadir dengan sistem distribusi yang cepat, aman, dan terintegrasi.
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-gray-600 text-lg leading-relaxed">
-                            Kami membuka peluang usaha dan program kemitraan bagi individu maupun perusahaan yang ingin membangun bisnis di sektor pendistribusian herbal dan obat tradisional. Dengan dukungan keamanan produk bersertifikat BPOM & Halal, strategi pemasaran efektif,
-                            kami berkomitmen membantu mitra mendapatkan cuan yang stabil dan memperluas pasar ke berbagai wilayah diseluruh Indonesia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LAYANAN -->
-    <section id="services" class="py-20 bg-gradient-to-b from-[#CFE8D5] via-[#9BC4A5] to-[#6FA37D]">
+    <!-- FEATURES SECTION -->
+    <section class="bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
-                <span class="text-[var(--matcha-dark)] font-semibold text-sm uppercase tracking-wider bg-white/80 py-2 px-4 rounded-full">Layanan Kami</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-4">PRODUK & LAYANAN UNGGULAN</h2>
-                <p class="text-gray-800 text-lg max-w-2xl mx-auto">
-                    Kami menyediakan berbagai produk herbal berkualitas dengan cuan besar dan layanan terpadu untuk memenuhi kebutuhan kesehatan Anda.
+                <span class="text-[var(--matcha)] font-semibold text-sm uppercase tracking-wider">Keunggulan Kami</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mt-4 mb-6">Mengapa Memilih Tim Sales Kami</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    Tim sales profesional kami memiliki keahlian khusus dalam industri herbal dan siap memberikan pelayanan terbaik untuk kebutuhan Anda.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- CARD 1 -->
-                <div class="service-card bg-white/95 rounded-2xl p-8 fade-in">
-                    <div class="w-16 h-16 bg-[var(--matcha)]/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-leaf text-[var(--matcha)] text-2xl"></i>
+                <div class="feature-box fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">PRODUK HERBAL BERKUALITAS</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">
-                        Berbagai produk herbal berkualitas yang diformulasikan tim ahli dan berpengalaman untuk menjaga kesehatan dan kebugaran tubuh.
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Profesional & Berpengalaman</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Tim kami memiliki pengalaman bertahun-tahun di industri herbal dengan pengetahuan mendalam tentang produk dan pasar.
                     </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-gray-600">
-                            <i class="fas fa-check text-[var(--matcha)] mr-3"></i> Ekstrak herbal murni
-                        </li>
-                        <li class="flex items-center text-gray-600">
-                            <i class="fas fa-check text-[var(--matcha)] mr-3"></i> Bermanfaat untuk kesehatan
-                        </li>
-                        <li class="flex items-center text-gray-600">
-                            <i class="fas fa-check text-[var(--matcha)] mr-3"></i> Cek BPOM & Halal
-                        </li>
-                        <a href="produk.html" class="inline-flex items-center text-[var(--matcha)] font-semibold hover:text-[var(--matcha-dark)] transition-colors">
-                        Selengkapnya
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                    </ul>
                 </div>
 
-                <!-- CARD 2 -->
-                <div class="service-card bg-white/95 rounded-2xl p-8 fade-in">
-                    <div class="w-16 h-16 bg-[var(--matcha)]/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-truck text-[var(--matcha)] text-2xl"></i>
+                <div class="feature-box fade-in" style="animation-delay: 0.2s">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">DISTRIBUSI NASIONAL</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">
-                        Jaringan distribusi yang luas menjangkau seluruh Indonesia dengan sistem logistik yang terintegrasi dan terpercaya.
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Pendekatan Personal</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Kami memahami setiap klien memiliki kebutuhan unik dan memberikan solusi yang tepat sesuai kondisi spesifik Anda.
                     </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-gray-600">
-                            <i class="fas fa-check text-[var(--matcha)] mr-3"></i> Pengiriman cepat
-                        </li>
-                        <li class="flex items-center text-gray-600">
-                            <i class="fas fa-check text-[var(--matcha)] mr-3"></i> Pengiriman terjadwal
-                        </li>
-                        <li class="flex items-center text-gray-600">
-                            <i class="fas fa-check text-[var(--matcha)] mr-3"></i> Rekanan logistik
-                        </li>
-                        <a href="data.html" class="inline-flex items-center text-[var(--matcha)] font-semibold hover:text-[var(--matcha-dark)] transition-colors"> Selengkapnya
-                        <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </ul>
                 </div>
 
-                <!-- CARD 3 -->
-                <div class="service-card bg-white/95 rounded-2xl p-8 fade-in">
-                    <div class="w-16 h-16 bg-[var(--matcha)]/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-headset text-[var(--matcha)] text-2xl"></i>
+                <div class="feature-box fade-in" style="animation-delay: 0.4s">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">KONSULTASI PRODUK</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">
-                        Layanan konsultasi gratis dengan ahli herbal kami untuk membantu memilih produk yang tepat sesuai kebutuhan kesehatan Anda.
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Dukungan Penuh</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Kami memberikan dukungan komprehensif dari konsultasi awal hingga after-sales service untuk kepuasan maksimal.
                     </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-gray-600">
-                            <i class="fas fa-check text-[var(--matcha)] mr-3"></i> Konsultasi gratis
-                        </li>
-                        <li class="flex items-center text-gray-600">
-                            <i class="fas fa-check text-[var(--matcha)] mr-3"></i> Sales berpengalaman
-                        </li>
-                        <li class="flex items-center text-gray-600">
-                            <i class="fas fa-check text-[var(--matcha)] mr-3"></i> Layanan 24/7
-                        </li>
-                        <a href="sales.html" class="inline-flex items-center text-[var(--matcha)] font-semibold hover:text-[var(--matcha-dark)] transition-colors">
-                        Selengkapnya
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-
-
-    <!--artikel-->
-    <!-- HEADER FULL LAYAR -->
-
-
-    <!-- ARTIKEL HORIZONTAL SCROLL -->
-    <section id="articles" class="section-container bg-white py-12">
-        <div class="max-w-6xl mx-auto relative">
-            <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">
-                <i class="fas fa-newspaper text-[#2E8B57] mr-3"></i> ARTIKEL PILIHAN HARI INI
-            </h2>
-
-            <!-- Tombol Kiri -->
-            <button class="nav-btn btn-left" onclick="scrollLeft()">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-
-            <div class="horizontal-scroll" id="articleScroll">
-
-                <!-- ARTIKEL 1 -->
-                <div class="article-card article-clickable bg-white rounded-xl shadow-md p-6" onclick="showArticleDetail('artikel-1')">
-                    <div class="text-[#2E8B57] text-3xl mb-4">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-3">Ini Manfaat Madu Hitam Pahit Ratu Lebah yang Banyak Dicari</h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        Madu Hitam Pahit Ratu Lebah dikenal sebagai madu herbal premium yang memiliki rasa pahit khas dan manfaat kesehatan yang kuat. Berasal dari nektar tanaman hutan tertentu dan diproduksi secara alami oleh lebah.
-                    </p>
-                    <div class="mt-auto">
-                        <div class="flex flex-wrap mb-4">
-                            <span class="hashtag">#MaduUntukKesehatan</span>
-                            <span class="hashtag">#ProdukHerbal</span>
-                            <span class="hashtag">#ManfaatMaduHitamPahit</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center text-gray-500 text-sm">
-                                <i class="fas fa-clock mr-2"></i> 3 min read
-                            </div>
-                            <span class="text-[#2E8B57] font-semibold text-sm hover:text-[#2E8B57]/80 transition-colors flex items-center">
-                                Baca Selengkapnya <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ARTIKEL 2 -->
-                <div class="article-card article-clickable bg-white rounded-xl shadow-md p-6" onclick="showArticleDetail('artikel-2')">
-                    <div class="text-[#2E8B57] text-3xl mb-4">
-                        <i class="fas fa-apple-alt"></i>
-                    </div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-3">Mengapa Cuka Apel Royal Sultan Baik untuk Konsumsi Harian?</h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        Produk ini dirancang untuk mendukung gaya hidup sehat masyarakat modern dengan mengedepankan kemurnian bahan, kandungan nutrisi aktif, serta manfaat kesehatan yang menyeluruh.
-                    </p>
-                    <div class="mt-auto">
-                        <div class="flex flex-wrap mb-4">
-                            <span class="hashtag">#CukaApelRoyalSultan</span>
-                            <span class="hashtag">#CukaApelDetoks</span>
-                            <span class="hashtag">#CukaApelAlami</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center text-gray-500 text-sm">
-                                <i class="fas fa-clock mr-2"></i> 4 min read
-                            </div>
-                            <span class="text-[#2E8B57] font-semibold text-sm hover:text-[#2E8B57]/80 transition-colors flex items-center">
-                                Baca Selengkapnya <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ARTIKEL 3 -->
-                <div class="article-card article-clickable bg-white rounded-xl shadow-md p-6" onclick="showArticleDetail('artikel-3')">
-                    <div class="text-[#2E8B57] text-3xl mb-4">
-                        <i class="fas fa-honey-pot"></i>
-                    </div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-3">Kenal Lebih Dekat DB Mix Sari Kurma Ratu Lebah dan Manfaatnya</h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        DB Mix Sari Kurma Ratu Lebah adalah produk minuman kesehatan alami yang diformulasikan dari sari kurma pilihan dan bahan pendukung berkualitas.
-                    </p>
-                    <div class="mt-auto">
-                        <div class="flex flex-wrap mb-4">
-                            <span class="hashtag">#MaduHutan</span>
-                            <span class="hashtag">#Nutrisi</span>
-                            <span class="hashtag">#Alami</span>
-                            <span class="hashtag">#tanpabahanpengawet</span>
-                            <span class="hashtag">#minumansehat</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-censr text-gray-500 text-sm">
-                                <i class="fas fa-clock mr-2"></i> 5 min read
-                            </div>
-                            <span class="text-[#2E8B57] font-semibold text-sm hover:text-[#2E8B57]/80 transition-colors flex items-center">
-                                Baca Selengkapnya <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ARTIKEL 4 -->
-                <div class="article-card article-clickable bg-white rounded-xl shadow-md p-6" onclick="showArticleDetail('artikel-4')">
-                    <div class="text-[#2E8B57] text-3xl mb-4">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-3">Manfaat Jahe Merah Ratu Lebah sebagai Herbal Alami untuk Kesehatan</h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        Jahe Merah Ratu Lebah merupakan produk herbal alami yang dikenal luas memiliki manfaat kesehatan yang kuat dibanding jahe biasa, Dengan rasa lebih pedas dan aroma khas, jahe merah telah lama digunakan sebagai bahan herbal tradisional untuk menjaga daya
-                        tahan tubuh, menghangatkan badan.
-                    </p>
-                    <div class="mt-auto">
-                        <div class="flex flex-wrap mb-4">
-                            <span class="hashtag">#JaheMerah</span>
-                            <span class="hashtag">#tanpabahanpengawet</span>
-                            <span class="hashtag">#SirkulasiDarah</span>
-                            <span class="hashtag">#penghangattubuh</span>
-                            <span class="hashtag">#jahemerahuntukkesehatan</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center text-gray-500 text-sm">
-                                <i class="fas fa-clock mr-2"></i> 3 min read
-                            </div>
-                            <span class="text-[#2E8B57] font-semibold text-sm hover:text-[#2E8B57]/80 transition-colors flex items-center">
-                                Baca Selengkapnya <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ARTIKEL 5 -->
-                <div class="article-card article-clickable bg-white rounded-xl shadow-md p-6" onclick="showArticleDetail('artikel-5')">
-                    <div class="text-[#2E8B57] text-3xl mb-4">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-3">Tips Pilih Produk Herbal</h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        Produk herbal untuk kesehatan semakin diminati karena dianggap lebih alami dan cocok untuk penggunaan jangka panjang. Namun, tidak semua produk herbal memiliki kualitas yang sama. Oleh karena itu, penting bagi konsumen untuk mengetahui tips memilih produk
-                        herbal yang aman, berkualitas, dan bermanfaat.
-                    </p>
-                    <div class="mt-auto">
-                        <div class="flex flex-wrap mb-4">
-                            <span class="hashtag">#TipsHerbal</span>
-                            <span class="hashtag">#BPOM</span>
-                            <span class="hashtag">#Aman</span>
-                            <span class="hashtag">#tipsmemilihprodukherbal</span>
-                            <span class="hashtag">#hidupsehat</span>
-
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center text-gray-500 text-sm">
-                                <i class="fas fa-clock mr-2"></i> 2 min read
-                            </div>
-                            <span class="text-[#2E8B57] font-semibold text-sm hover:text-[#2E8B57]/80 transition-colors flex items-center">
-                                Baca Selengkapnya <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ARTIKEL 6 -->
-                <div class="article-card article-clickable bg-white rounded-xl shadow-md p-6" onclick="showArticleDetail('artikel-6')">
-                    <div class="text-[#2E8B57] text-3xl mb-4">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-3">Madu, Propolis & Royal Jelly</h3>
-                    <p class="text-gray-600 text-sm mb-4">
-                        Ketiganya adalah hasil lebah dengan manfaat berbeda untuk imunitas, energi, dan kesehatan.
-                    </p>
-                    <div class="mt-auto">
-                        <div class="flex flex-wrap mb-4">
-                            <span class="hashtag">#RoyalJelly</span>
-                            <span class="hashtag">#Madu</span>
-                            <span class="hashtag">#ProdukLebah</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center text-gray-500 text-sm">
-                                <i class="fas fa-clock mr-2"></i> 4 min read
-                            </div>
-                            <span class="text-[#2E8B57] font-semibold text-sm hover:text-[#2E8B57]/80 transition-colors flex items-center">
-                                Baca Selengkapnya <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Tombol Kanan -->
-            <button class="nav-btn btn-right" onclick="scrollRight()">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        </div>
-    </section>
-
-
-    <script>
-        const scrollContainer = document.getElementById("articleScroll");
-
-        function scrollLeft() {
-            let current = scrollContainer.scrollLeft;
-            scrollContainer.scrollTo({
-                left: current - 400,
-                behavior: "smooth"
-            });
-        }
-
-        function scrollRight() {
-            let current = scrollContainer.scrollLeft;
-            scrollContainer.scrollTo({
-                left: current + 400,
-                behavior: "smooth"
-            });
-        }
-    </script>
-
-
-    <!-- HASHTAG TRENDING - Horizontal -->
-    <section class="section-container bg-gradient-to-r from-[#2E8B57] to-[#3CB371] py-10">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-white mb-8 text-center">
-                <i class="fas fa-hashtag mr-3"></i>TRENDING HASHTAG HERBAL
-            </h2>
-
-            <div class="horizontal-scroll" id="hashtagScroll">
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#MaduBerkualitas</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#HerbalNusantara</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#SehatAlami</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#DistributorHerbal</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#CuanHerbal</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#BisnisHerbal</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#NMUCuan2026</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#MitraNMU</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#FaktaMadu</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#HerbalIndonesia</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#JaheMerah</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#Propolis</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#MaduHutan</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#KesehatanAlami</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#HerbalTradisional</span>
-                <span class="hashtag" style="background: rgba(255,255,255,0.2); color: white; font-size: 16px; padding: 8px 16px;">#NMUHerbal</span>
-            </div>
-        </div>
-    </section>
-    <!-- PRODUK UNGGULAN - Horizontal Scroll Natural -->
-    <section class="section-container bg-white py-12">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-800">
-                    <i class="fas fa-star text-[var(--matcha)] mr-3"></i> PRODUK UNGGULAN NMU
-                </h2>
-            </div>
-
-            <div class="relative">
-                <div class="products-scroll-container">
-                    <div class="products-scroll-wrapper">
-                        <!-- PRODUK 1: MADU HITAM PAHIT RATU LEBAH -->
-                        <div class="produk-unggulan-card">
-                            <div class="bg-gradient-to-b from-[var(--matcha)] to-[var(--matcha-dark)] text-white rounded-xl p-6 text-center h-full">
-                                <div class="icon-container mb-4">
-                                    <div class="relative">
-                                        <img src="bee.png" alt="icon jahe" class="w-10 h-10 mx-auto">
-                                    </div>
-                                </div>
-                                <h3 class="font-bold text-xl mb-2">Madu Hitam Pahit Ratu Lebah</h3>
-                                <p class="text-sm opacity-90 mb-4">Pelopor Madu Hitam Pahit Indonesia, Sejak 2012</p>
-                                <div class="mt-4">
-                                    <span class="hashtag">BPOM</span>
-                                    <span class="hashtag">Halal</span>
-                                    <span class="hashtag">Premium</span>
-                                </div>
-                                <div class="mt-6">
-                                    <a href="produk.html" class="inline-block bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                    Lihat Produk <i class="fas fa-arrow-right ml-1"></i>
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- PRODUK 2: SARI KURMA -->
-                        <div class="produk-unggulan-card">
-                            <div class="bg-gradient-to-b from-[var(--matcha)] to-[var(--matcha-dark)] text-white rounded-xl p-6 text-center h-full">
-                                <div class="icon-container mb-4">
-                                    <div class="relative">
-                                        <img src="kurma.png" alt="icon jahe" class="w-10 h-10 mx-auto">
-                                    </div>
-                                </div>
-                                <h3 class="font-bold text-xl mb-2">DBMIX Sari Kurma Ratu Lebah</h3>
-                                <p class="text-sm opacity-90 mb-4">Sari Kurma Angkak Untuk Demam Berdarah</p>
-                                <div class="mt-4">
-                                    <span class="hashtag">Kurma</span>
-                                    <span class="hashtag">Energi</span>
-                                    <span class="hashtag">Alami</span>
-                                </div>
-                                <div class="mt-6">
-                                    <a href="produk.html" class="inline-block bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                    Lihat Produk <i class="fas fa-arrow-right ml-1"></i>
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- PRODUK 3: CUKA APEL SULTAN -->
-                        <div class="produk-unggulan-card">
-                            <div class="bg-gradient-to-b from-[var(--matcha)] to-[var(--matcha-dark)] text-white rounded-xl p-6 text-center h-full">
-                                <div class="icon-container mb-4">
-                                    <div class="relative">
-                                        <img src="apple.png" alt="icon jahe" class="w-10 h-10 mx-auto">
-                                    </div>
-                                </div>
-                                <h3 class="font-bold text-xl mb-2">Cuka Apel Royal Sultan</h3>
-                                <p class="text-sm opacity-90 mb-4">100% Cuka Apel Malang </p>
-                                <div class="mt-4">
-                                    <span class="hashtag">Detoks</span>
-                                    <span class="hashtag">Sehat</span>
-                                    <span class="hashtag">Nutrisi</span>
-                                </div>
-                                <div class="mt-6">
-                                    <a href="produk.html" class="inline-block bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                    Lihat Produk <i class="fas fa-arrow-right ml-1"></i>
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- PRODUK 4: CUKA NANAS -->
-                        <div class="produk-unggulan-card">
-                            <div class="bg-gradient-to-b from-[var(--matcha)] to-[var(--matcha-dark)] text-white rounded-xl p-6 text-center h-full">
-                                <div class="icon-container mb-4">
-                                    <div class="relative">
-                                        <img src="nanas.png" alt="icon jahe" class="w-10 h-10 mx-auto">
-                                    </div>
-                                </div>
-                                <h3 class="font-bold text-xl mb-2">Cuka Nanas Alami</h3>
-                                <p class="text-sm opacity-90 mb-4">Cuka Nanas Asin 100% </p>
-                                <div class="mt-4">
-                                    <span class="hashtag">Nanas</span>
-                                    <span class="hashtag">Pencernaan</span>
-                                    <span class="hashtag">Detoks</span>
-                                </div>
-                                <div class="mt-6">
-                                    <a href="produk.html" class="inline-block bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                    Lihat Produk <i class="fas fa-arrow-right ml-1"></i>
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- PRODUK 5: MADU ANAK RATU LEBAH -->
-                        <div class="produk-unggulan-card">
-                            <div class="bg-gradient-to-b from-[var(--matcha)] to-[var(--matcha-dark)] text-white rounded-xl p-6 text-center h-full">
-                                <div class="icon-container mb-4">
-                                    <div class="relative">
-                                        <img src="baby.png" alt="icon jahe" class="w-10 h-10 mx-auto">
-                                    </div>
-                                </div>
-                                <h3 class="font-bold text-xl mb-2">Madu Anak Ratu Lebah</h3>
-                                <p class="text-sm opacity-90 mb-4">Madu Anak Penambah Nafsu Makan, meningkatkan daya tahan tubuh dan nafsu makan</p>
-                                <div class="mt-4">
-                                    <span class="hashtag">Anak</span>
-                                    <span class="hashtag">Imunitas</span>
-                                    <span class="hashtag">Sehat</span>
-                                </div>
-                                <div class="mt-6">
-                                    <a href="produk.html" class="inline-block bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                    Lihat Produk <i class="fas fa-arrow-right ml-1"></i>
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- PRODUK 6: JAHE MERAH RATU LEBAH -->
-                        <div class="produk-unggulan-card">
-                            <div class="bg-gradient-to-b from-[var(--matcha)] to-[var(--matcha-dark)] text-white rounded-xl p-6 text-center h-full">
-                                <div class="icon-container mb-4">
-                                    <div class="relative">
-                                        <img src="jahe.png" alt="icon jahe" class="w-10 h-10 mx-auto">
-                                    </div>
-                                </div>
-                                <h3 class="font-bold text-xl mb-2">Jahe Merah Ratu Lebah</h3>
-                                <p class="text-sm opacity-90 mb-4">Terbuat Dari Jahe Pilihan, Menjadi Teman Hangat Di Setiap Saat</p>
-                                <div class="mt-4">
-                                    <span class="hashtag">Jahe</span>
-                                    <span class="hashtag">Hangat</span>
-                                    <span class="hashtag">Imunitas</span>
-                                </div>
-                                <div class="mt-6">
-                                    <a href="produk.html" class="inline-block bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                    Lihat Produk <i class="fas fa-arrow-right ml-1"></i>
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <style>
-        /* CSS untuk scroll horizontal natural */
-        
-        .products-scroll-container {
-            width: 100%;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: var(--matcha) #f1f1f1;
-        }
-        
-        .products-scroll-container::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .products-scroll-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        
-        .products-scroll-container::-webkit-scrollbar-thumb {
-            background: var(--matcha);
-            border-radius: 10px;
-        }
-        
-        .products-scroll-container::-webkit-scrollbar-thumb:hover {
-            background: var(--matcha-dark);
-        }
-        
-        .products-scroll-wrapper {
-            display: flex;
-            gap: 1.5rem;
-            padding: 10px 5px;
-        }
-        
-        .produk-unggulan-card {
-            flex: 0 0 auto;
-            width: 18rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .produk-unggulan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        /* Style untuk hashtag */
-        
-        .hashtag {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            margin: 0 0.125rem;
-        }
-        /* Style untuk icon container */
-        
-        .icon-container .relative {
-            position: relative;
-            display: inline-block;
-        }
-        /* Warna untuk icon */
-        
-        .text-yellow-300 {
-            color: #fde047;
-        }
-        
-        .text-green-300 {
-            color: #86efac;
-        }
-        
-        .text-orange-300 {
-            color: #fdba74;
-        }
-        
-        .text-red-400 {
-            color: #f87171;
-        }
-        /* Responsive adjustments */
-        
-        @media (max-width: 768px) {
-            .produk-unggulan-card {
-                width: 16rem;
-            }
-            .products-scroll-wrapper {
-                gap: 1rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .produk-unggulan-card {
-                width: 14rem;
-            }
-        }
-    </style>
-
-    <script>
-        // JavaScript untuk scroll smooth dan efek hover
-        document.addEventListener('DOMContentLoaded', function() {
-            const scrollContainer = document.querySelector('.products-scroll-container');
-            const productCards = document.querySelectorAll('.produk-unggulan-card');
-
-            // Efek hover yang lebih smooth
-            productCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-                });
-            });
-
-            // Scroll dengan mouse wheel horizontal
-            scrollContainer.addEventListener('wheel', function(e) {
-                if (e.deltaY !== 0) {
-                    e.preventDefault();
-                    this.scrollLeft += e.deltaY;
-                }
-            });
-
-            // Auto-scroll halus (opsional)
-            let isScrolling = false;
-            let scrollDirection = 1;
-
-            function startAutoScroll() {
-                isScrolling = true;
-
-                function autoScroll() {
-                    if (isScrolling && scrollContainer) {
-                        scrollContainer.scrollLeft += 0.5 * scrollDirection;
-
-                        // Jika mencapai akhir, balik arah
-                        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth - 10) {
-                            scrollDirection = -1;
-                        } else if (scrollContainer.scrollLeft <= 10) {
-                            scrollDirection = 1;
-                        }
-
-                        requestAnimationFrame(autoScroll);
-                    }
-                }
-
-                autoScroll();
-            }
-
-            // Hentikan auto-scroll saat hover
-            scrollContainer.addEventListener('mouseenter', () => {
-                isScrolling = false;
-            });
-
-            // Mulai auto-scroll saat page load (opsional)
-            // setTimeout(startAutoScroll, 2000);
-        });
-    </script>
-
-    <!-- HASHTAG SLIDER 1 - DIEPATKAN -->
-    <section class="py-6 bg-gradient-to-r from-[var(--matcha)]/20 to-[var(--matcha-dark)]/20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="hashtag-slider">
-                <div class="hashtag-track">
-                    <span class="hashtag-item">#DaftarMitraNMU</span>
-                    <span class="hashtag-item">#Cuan2026</span>
-                    <span class="hashtag-item">#BisnisMenguntungkan</span>
-                    <span class="hashtag-item">#PeluangUsaha</span>
-                    <span class="hashtag-item">#DistributorHerbal</span>
-                    <span class="hashtag-item">#HerbalBerkualitas</span>
-                    <span class="hashtag-item">#BPOMHalal</span>
-                    <span class="hashtag-item">#MatchaHerbal</span>
-                    <span class="hashtag-item">#KesehatanAlami</span>
-                    <span class="hashtag-item">#BisnisHerbal</span>
-                    <!-- Duplicate for seamless scroll -->
-                    <span class="hashtag-item">#DaftarMitraNMU</span>
-                    <span class="hashtag-item">#Cuan2026</span>
-                    <span class="hashtag-item">#BisnisMenguntungkan</span>
-                    <span class="hashtag-item">#PeluangUsaha</span>
-                    <span class="hashtag-item">#DistributorHerbal</span>
-                    <span class="hashtag-item">#HerbalBerkualitas</span>
-                    <span class="hashtag-item">#BPOMHalal</span>
-                    <span class="hashtag-item">#MatchaHerbal</span>
-                    <span class="hashtag-item">#KesehatanAlami</span>
-                    <span class="hashtag-item">#BisnisHerbal</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- PARTNERSHIP SECTION -->
-    <section id="partnership" class="py-20 bg-gradient-to-br from-[var(--matcha)] to-[var(--matcha-dark)]">
+    <!-- SALES TEAM SECTION -->
+    <section id="team" class="bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
-                <span class="text-white/90 font-semibold text-sm uppercase tracking-wider">Berkolaborasi Bersama</span>
-                <h2 class="text-4xl font-bold text-white mt-2 mb-4">PELUANG KERJA SAMA & KEMITRAAN</h2>
-                <p class="text-white/80 text-lg max-w-2xl mx-auto">
-                    Mari bersama-sama kami mengembangkan bisnis herbal dengan cuan stabil dan memberikan kontribusi positif bagi kesehatan masyarakat Indonesia.
+                <span class="text-[var(--matcha)] font-semibold text-sm uppercase tracking-wider">Tim Kami</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mt-4 mb-6">Tim Sales Profesional</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    Hubungi tim sales kami yang siap membantu Anda dalam pengembangan bisnis dan solusi herbal terbaik.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- KERJASAMA BISNIS CARD -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 fade-in partnership-card" data-aos="fade-up">
-                    <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-handshake text-white text-2xl"></i>
+            <!-- ROW 1: 3 CARDS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- SALES 1 -->
+                <div class="sales-card fade-in grid-item">
+                    <div class="sales-image-container">
+                        <img src="SLAMET.png" class="sales-image" alt="SUDIRMAN SLAMET - Sales Manager">
+                        <div class="sales-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">SUDIRMAN SLAMET</h3>
+                            <p class="text-[var(--matcha-light)] text-sm">SALES MANAGER</p>
+                        </div>
+                        <div class="sales-badge">MANAGER</div>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-4">KERJA SAMA BISNIS</h3>
-                    <p class="text-white/80 leading-relaxed mb-6">
-                        Program kerjasama untuk perusahaan, distributor, dan retailer yang ingin mengembangkan produk herbal berkualitas bersama Naima.
-                    </p>
-                    <a href="https://bit.ly/FORMCUAN2026" target="_blank" rel="noopener noreferrer" class="block w-full bg-white text-[var(--matcha)] font-semibold py-3 px-6 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 group">
-                        <span class="flex items-center justify-center">
-                            Ajukan Kerjasama
-                            <i class="fas fa-external-link-alt ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
-                        </span>
-                    </a>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Berpengalaman lebih dari 18 tahun dalam bidang sales herbal. Spesialisasi pemasaran produk herbal.
+                        </p>
+
+                        <div class="mb-6">
+                            <div class="contact-info">
+                                <i class="fas fa-phone"></i>
+                                <span>+62 853-1340-0532</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope"></i>
+                                <span>slamet@nainamandiriutama.com</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-globe"></i>
+                                <a href="../slamet.html" target="_blank" class="web-link">
+                                    Kunjungi Website Produk
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://wa.me/6285313400532" target="_blank" class="flex-1 bg-gradient-to-r from-[var(--matcha)] to-[var(--matcha-dark)] text-white text-center py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                            </a>
+                            <a href="../slamet.html" target="_blank" class="flex-1 bg-gray-100 text-gray-700 text-center py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all">
+                                <i class="fas fa-globe mr-2"></i> Website
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- PROGRAM KEMITRAAN CARD -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 fade-in partnership-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-users text-white text-2xl"></i>
+                <!-- SALES 2 -->
+                <div class="sales-card fade-in grid-item">
+                    <div class="sales-image-container">
+                        <img src="NAJAT.png" class="sales-image" alt="NAJAT SOMANTRI - Senior Sales Executive">
+                        <div class="sales-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">NAJAT SOMANTRI</h3>
+                            <p class="text-[var(--matcha-light)] text-sm">SENIOR SALESMAN</p>
+                        </div>
+                        <div class="sales-badge">SENIOR</div>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-4">PROGRAM KEMITRAAN</h3>
-                    <p class="text-white/80 leading-relaxed mb-6">
-                        Bergabung sebagai mitra resmi kami dan dapatkan peluang usaha yang menguntungkan sekarang juga.
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Spesialis dalam pengembangan pasar B2B dengan jaringan luas di seluruh Indonesia selama 13 tahun. Fokus pada strategi ekspansi bahan baku.
+                        </p>
+
+                        <div class="mb-6">
+                            <div class="contact-info">
+                                <i class="fas fa-phone"></i>
+                                <span>+62 812-8456-8833</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope"></i>
+                                <span>najat@nainamandiriutama.com</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-globe"></i>
+                                <a href="../najaat.html" target="_blank" class="web-link">
+                                    Kunjungi Website Produk
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://wa.me/6281284568833" target="_blank" class="flex-1 bg-gradient-to-r from-[var(--matcha)] to-[var(--matcha-dark)] text-white text-center py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                            </a>
+                            <a href="../najaat.html" target="_blank" class="flex-1 bg-gray-100 text-gray-700 text-center py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all">
+                                <i class="fas fa-globe mr-2"></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALES 3 -->
+                <div class="sales-card fade-in grid-item">
+                    <div class="sales-image-container">
+                        <img src="CAHYA.png" class="sales-image" alt="MARYADIH CAHYA">
+                        <div class="sales-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">MARYADIH CAHYA</h3>
+                            <p class="text-[var(--matcha-light)] text-sm">SALESMAN</p>
+                        </div>
+                        <div class="sales-badge">SALES ASLI</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Fokus pada client relationship management dan after-sales service. Berpengalaman 6 tahun dalam menjaga kepuasan pelanggan jangka panjang. Mengcover area distribusi di Kota Bogor dan Kabupaten Bogor.
+                        </p>
+
+                        <div class="mb-6">
+                            <div class="contact-info">
+                                <i class="fas fa-phone"></i>
+                                <span>+62 857-1188-4601</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope"></i>
+                                <span>cahya@nainamandiriutama.com</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-globe"></i>
+                                <a href="../cahya.html" target="_blank" class="web-link">
+                                    Kunjungi Website Produk
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://wa.me/6285711884601" target="_blank" class="flex-1 bg-gradient-to-r from-[var(--matcha)] to-[var(--matcha-dark)] text-white text-center py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                            </a>
+                            <a href="../cahya.html" target="_blank" class="flex-1 bg-gray-100 text-gray-700 text-center py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all">
+                                <i class="fas fa-globe mr-2"></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: 3 CARDS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- SALES 4 -->
+                <div class="sales-card fade-in grid-item">
+                    <div class="sales-image-container">
+                        <img src="AGUS.png" class="sales-image" alt="AGUS EFENDI">
+                        <div class="sales-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">AGUS EFENDI</h3>
+                            <p class="text-[var(--matcha-light)] text-sm">SALESMAN</p>
+                        </div>
+                        <div class="sales-badge">SALES ASLI</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Ahli dalam identifikasi peluang pasar baru dan pengembangan strategi ekspansi bisnis. Berpengalaman 7 tahun di bidang B2B dan B2C. Mengcover area distribusi Bekasi Raya.
+                        </p>
+
+                        <div class="mb-6">
+                            <div class="contact-info">
+                                <i class="fas fa-phone"></i>
+                                <span>+62 852-1580-8505</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope"></i>
+                                <span>efendi@nainamandiriutama.com</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-globe"></i>
+                                <a href="../efendi.html" target="_blank" class="web-link">
+                                    Kunjungi Website Produk
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://wa.me/6285215808505" target="_blank" class="flex-1 bg-gradient-to-r from-[var(--matcha)] to-[var(--matcha-dark)] text-white text-center py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                            </a>
+                            <a href="../efendi.html" target="_blank" class="flex-1 bg-gray-100 text-gray-700 text-center py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all">
+                                <i class="fas fa-globe mr-2"></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALES 5 -->
+                <div class="sales-card fade-in grid-item">
+                    <div class="sales-image-container">
+                        <img src="TOMI.png" class="sales-image" alt="TOMI">
+                        <div class="sales-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">TOMI</h3>
+                            <p class="text-[var(--matcha-light)] text-sm">SALESMAN</p>
+                        </div>
+                        <div class="sales-badge">SALES ASLI</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Sales dengan spesialisasi solusi berbasis teknologi dan digital transformation. Mengcover area distribusi untuk Jakarta Barat, Tangerang Selatan dan Tangerang Raya.
+                        </p>
+
+                        <div class="mb-6">
+                            <div class="contact-info">
+                                <i class="fas fa-phone"></i>
+                                <span>+62 858 8811 1633</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope"></i>
+                                <span>tomi@nainamandiriutama.com</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-globe"></i>
+                                <a href="../tomi.html" target="_blank" class="web-link">
+                                    Kunjungi Website Produk
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://wa.me/6285888111633" target="_blank" class="flex-1 bg-gradient-to-r from-[var(--matcha)] to-[var(--matcha-dark)] text-white text-center py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                            </a>
+                            <a href="../tomi.html" target="_blank" class="flex-1 bg-gray-100 text-gray-700 text-center py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all">
+                                <i class="fas fa-globe mr-2"></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALES 6 -->
+                <div class="sales-card fade-in grid-item">
+                    <div class="sales-image-container">
+                        <img src="ROFIK.png" class="sales-image" alt="MOH. ROFIK">
+                        <div class="sales-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">MOH. ROFIK</h3>
+                            <p class="text-[var(--matcha-light)] text-sm">SALESMAN</p>
+                        </div>
+                        <div class="sales-badge">SALES ASLI</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Semangat pantang kendur di dunia persalesan , mengcover area distribusi Kab. Bekasi untuk penyebaran produk.
+                        </p>
+
+                        <div class="mb-6">
+                            <div class="contact-info">
+                                <i class="fas fa-phone"></i>
+                                <span>+62 852-1864-5844</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope"></i>
+                                <span>rofik@nainamandiriutama.com</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-globe"></i>
+                                <a href="../rofik.html" target="_blank" class="web-link">
+                                    Kunjungi Website Produk
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://wa.me/6285218645844" target="_blank" class="flex-1 bg-gradient-to-r from-[var(--matcha)] to-[var(--matcha-dark)] text-white text-center py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                            </a>
+                            <a href="../rofik.html" target="_blank" class="flex-1 bg-gray-100 text-gray-700 text-center py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all">
+                                <i class="fas fa-globe mr-2"></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 3: 2 CARDS (CENTERED) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- SALES 7 -->
+                <div class="sales-card fade-in grid-item">
+                    <div class="sales-image-container">
+                        <img src="MISBAH.png" class="sales-image" alt="MISBAHUL KHOIR">
+                        <div class="sales-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">MISBAHUL KHOIR</h3>
+                            <p class="text-[var(--matcha-light)] text-sm">SALESMAN</p>
+                        </div>
+                        <div class="sales-badge">SALES ASLI</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Sales berdedikasi tinggi yang melayani area Jakarta Selatan dan Kota Depok dengan semangat dan ketekunan luar biasa. Setiap hari, ia menyusuri wilayahnya untuk memastikan setiap pelanggan mendapatkan produk herbal berkualitas dan solusi kesehatan yang
+                            tepat.
+                        </p>
+
+                        <div class="mb-6">
+                            <div class="contact-info">
+                                <i class="fas fa-phone"></i>
+                                <span>+62 813-1109-2553</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope"></i>
+                                <span>misbah@nainamandiriutama.com</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-globe"></i>
+                                <a href="../misbah.html" target="_blank" class="web-link">
+                                    Kunjungi Website Produk
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://wa.me/6281311092553" target="_blank" class="flex-1 bg-gradient-to-r from-[var(--matcha)] to-[var(--matcha-dark)] text-white text-center py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                            </a>
+                            <a href="../misbah.html" target="_blank" class="flex-1 bg-gray-100 text-gray-700 text-center py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all">
+                                <i class="fas fa-globe mr-2"></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALES 8 -->
+                <div class="sales-card fade-in grid-item">
+                    <div class="sales-image-container">
+                        <img src="SOBAH.png" class="sales-image" alt="KHOERUS SOBAH">
+                        <div class="sales-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">KHOERUS SOBAH</h3>
+                            <p class="text-[var(--matcha-light)] text-sm">SALESMAN</p>
+                        </div>
+                        <div class="sales-badge">SALES ASLI</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Sales lapangan berpengalaman dan dedikasi tinggi melayani area Jakarta Timur, Jakarta Pusat, dan Jakarta Utara. Setiap hari menghadapi tantangan jalanan ibukota dan jadwal padat, namun tetap fokus pada target dan kepuasan pelanggan.
+                        </p>
+
+                        <div class="mb-6">
+                            <div class="contact-info">
+                                <i class="fas fa-phone"></i>
+                                <span>+62 812-9639-7029</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope"></i>
+                                <span>sobah@nainamandiriutama.com</span>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-globe"></i>
+                                <a href="../shobah.html" target="_blank" class="web-link">
+                                    Kunjungi Website Produk
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://wa.me/6281296397029" target="_blank" class="flex-1 bg-gradient-to-r from-[var(--matcha)] to-[var(--matcha-dark)] text-white text-center py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                            </a>
+                            <a href="../shobah.html" target="_blank" class="flex-1 bg-gray-100 text-gray-700 text-center py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all">
+                                <i class="fas fa-globe mr-2"></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="contact" class="bg-gradient-to-br from-[var(--matcha)] to-[var(--matcha-dark)]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl mb-6 shadow-lg">
+                        <i class="fas fa-headset text-[var(--matcha)] text-2xl"></i>
+                    </div>
+
+                    <h2 class="text-3xl font-bold text-white mb-6">
+                        Siap Bekerja Sama Dengan Tim Kami?
+                    </h2>
+
+                    <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                        Hubungi tim sales kami sekarang untuk konsultasi gratis dan temukan solusi herbal terbaik untuk kesehatan maupun pengembangan bisnis Anda.
                     </p>
-                    <a href="https://bit.ly/FORMCUAN2026" target="_blank" rel="noopener noreferrer" class="block w-full bg-white text-[var(--matcha)] font-semibold py-3 px-6 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 group">
-                        <span class="flex items-center justify-center">
-                            Daftar Jadi Mitra
-                            <i class="fas fa-external-link-alt ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
-                        </span>
-                    </a>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="https://wa.me/6283199349933" target="_blank" class="inline-flex items-center justify-center bg-white text-[var(--matcha-dark)] font-bold text-lg py-4 px-8 rounded-full hover:bg-gray-50 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <i class="fab fa-whatsapp mr-3 text-xl"></i> Konsultasi via WhatsApp
+                        </a>
+
+                        <a href="tel:+6283199349933" class="inline-flex items-center justify-center bg-transparent text-white font-bold text-lg py-4 px-8 rounded-full border-2 border-white hover:bg-white/10 transition-all transform hover:scale-105">
+                            <i class="fas fa-phone mr-3 text-xl"></i> Telepon Kami Sekarang
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="w-full bg-[#1a1a1a] text-white py-16">
+    <footer class="w-full bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
                 <!-- COMPANY INFO -->
                 <div>
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                            <img src="logonmu.jpg" alt="Logo nmu" class="w-12 h-12 object-contain">
+                        <div class="w-10 h-10 bg-[var(--matcha)] rounded-lg flex items-center justify-center">
+                            <img src="logonmu.jpg" alt="Logo NMU" class="w-12 h-12 object-contain">
                         </div>
                         <h3 class="font-bold text-xl">PT. NAINA MANDIRI UTAMA</h3>
                     </div>
-                    <p class="text-white/80 leading-relaxed text-sm mb-6">
+                    <p class="text-gray-400 leading-relaxed text-sm mb-6">
                         Perusahaan herbal terpercaya yang menghadirkan solusi kesehatan alami berkualitas tinggi untuk keluarga Indonesia dengan standar internasional.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="https://youtube.com/@nmuoff1c1al?si=tRp2M7w9bu8WAnR6" class="social-icon w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-all">
+                        <a href="https://youtube.com/@nmuoff1c1al?si=tRp2M7w9bu8WAnR6" class="social-icon">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="https://www.instagram.com/nainamandiriutama?igsh=MWx1bmw4MnAzZ2djbw==" class="social-icon w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-all">
+                        <a href="https://www.instagram.com/nainamandiriutama?igsh=MWx1bmw4MnAzZ2djbw==" class="social-icon">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://www.tiktok.com/@nmu_distributor?_r=1&_t=ZS-91jvZiQkLJZ" class="social-icon w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-all">
+                        <a href="https://www.tiktok.com/@nmu_distributor?_r=1&_t=ZS-91jvZiQkLJZ" class="social-icon">
                             <i class="fab fa-tiktok"></i>
                         </a>
-                        <a href="https://wa.me/6285710008579" class="social-icon w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-all">
+                        <a href="https://wa.me/6285710008579" class="social-icon">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
@@ -2157,18 +925,18 @@
                     <h3 class="font-semibold text-lg mb-6">Kontak Kami</h3>
                     <div class="space-y-4">
                         <div class="flex items-start space-x-3">
-                            <i class="fas fa-map-marker-alt text-white/90 mt-1"></i>
-                            <p class="text-white/80 text-sm">
-                                Jl. Benda Ceger Kp. Pabuaran Blok A, RT. 03 RW. 02 Kel. Cimuning<br> Kec. Mustikajaya, Kota Bekasi, Jawa Barat 17155<br> Indonesia
+                            <i class="fas fa-map-marker-alt text-[var(--matcha)] mt-1"></i>
+                            <p class="text-gray-400 text-sm">
+                                Jl. Benda Ceger Kp. Pabuaran Blok A, RT. 03 RW. 02 Kel. Cimuning<br> Kec. Mustikajaya, Kota Bekasi, Jawa Barat 17155
                             </p>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-phone text-white/90"></i>
-                            <p class="text-white/80 text-sm">62+ 831-9934-9933</p>
+                            <i class="fas fa-phone text-[var(--matcha)]"></i>
+                            <p class="text-gray-400 text-sm">+62 831-9934-9933</p>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-envelope text-white/90"></i>
-                            <p class="text-white/80 text-sm">nainamandiriutamaindonesia@gmail.com</p>
+                            <i class="fas fa-envelope text-[var(--matcha)]"></i>
+                            <p class="text-gray-400 text-sm">nainamandiriutamaindonesia@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -2177,97 +945,55 @@
                 <div>
                     <h3 class="font-semibold text-lg mb-6">Tautan Cepat</h3>
                     <ul class="space-y-3">
-                        <li><a href="#home" class="text-white/80 hover:text-white transition-colors text-sm">Beranda</a></li>
-                        <li><a href="#about" class="text-white/80 hover:text-white transition-colors text-sm">Tentang Kami</a></li>
-                        <li><a href="#services" class="text-white/80 hover:text-white transition-colors text-sm">Layanan</a></li>
-                        <li><a href="#articles" class="text-white/80 hover:text-white transition-colors text-sm">Artikel</a></li>
-                        <li><a href="#partnership" class="text-white/80 hover:text-white transition-colors text-sm">Kerjasama</a></li>
-                        <li><a href="sales.html" class="text-white/80 hover:text-white transition-colors text-sm">Sales</a></li>
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors text-sm">Beranda</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-colors text-sm">Tentang Kami</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors text-sm">Layanan</a></li>
+                        <li><a href="sales.html" class="text-gray-400 hover:text-white transition-colors text-sm">Tim Sales</a></li>
+                        <li><a href="data.html" class="text-gray-400 hover:text-white transition-colors text-sm">Data Agen</a></li>
+                        <li><a href="produk.html" class="text-gray-400 hover:text-white transition-colors text-sm">Produk Herbal</a></li>
                     </ul>
                 </div>
 
                 <!-- NEWSLETTER -->
                 <div>
                     <h3 class="font-semibold text-lg mb-6">Newsletter</h3>
-                    <p class="text-white/80 text-sm mb-4">
+                    <p class="text-gray-400 text-sm mb-4">
                         Dapatkan informasi terbaru tentang produk dan promo spesial dari NAINA MANDIRI UTAMA.
                     </p>
                     <div class="flex">
-                        <input type="email" placeholder="Email Anda" class="bg-white/20 text-white px-4 py-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-white w-full text-sm placeholder-white/60">
-                        <button class="bg-white/30 text-white px-4 rounded-r-lg hover:bg-white/40 transition-colors">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
+                        <input type="email" placeholder="Email Anda" class="bg-gray-700 text-white px-4 py-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-[var(--matcha)] w-full text-sm placeholder-gray-500">
+                        <button class="bg-[var(--matcha)] text-white px-4 rounded-r-lg hover:bg-[var(--matcha-dark)] transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- COPYRIGHT -->
-            <div class="border-t border-white/20 mt-12 pt-8 text-center">
-                <p class="text-white/60 text-sm">
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-500 text-sm">
                     © 2024 PT. NAINA MANDIRI UTAMA. All rights reserved.
-                    <span class="text-white font-semibold">Dibuat dengan ❤️ untuk Indonesia</span>
+                    <span class="text-[var(--matcha)] font-semibold">Dibuat dengan ❤️ untuk Indonesia</span>
                 </p>
             </div>
         </div>
     </footer>
-
-
-    <!-- Modal untuk Artikel Detail -->
-    <div id="articleModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 p-4">
-        <div class="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl">
-            <!-- Close Button -->
-            <button onclick="closeArticleModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
-                <i class="fas fa-times text-gray-600"></i>
-            </button>
-
-            <!-- Modal Content akan diisi oleh JavaScript -->
-            <div id="articleModalContent" class="p-8">
-                <!-- Konten artikel akan dimuat di sini -->
-            </div>
-        </div>
-    </div>
 
     <!-- WA Floating Button -->
     <a href="https://wa.me/6283199349933" class="wa-btn" target="_blank">
         <i class="fab fa-whatsapp text-white text-2xl"></i>
     </a>
 
-    <!-- AOS Animation Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100,
-            easing: 'ease-out-cubic'
-        });
-
         // Loading Bar Animation
         window.addEventListener('load', function() {
             const loadingBar = document.getElementById('loadingBar');
             loadingBar.style.width = '100%';
             setTimeout(() => {
                 loadingBar.style.opacity = '0';
+                loadingBar.style.display = 'none';
             }, 500);
         });
-
-        // Scroll Animation
-        const fadeElements = document.querySelectorAll('.fade-in');
-
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', fadeInOnScroll);
-        fadeInOnScroll(); // Initial check
 
         // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobileMenuButton');
@@ -2289,7 +1015,7 @@
         const navbar = document.getElementById('navbar');
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 navbar.classList.add('nav-scrolled');
             } else {
                 navbar.classList.remove('nav-scrolled');
@@ -2312,684 +1038,25 @@
             });
         });
 
-        // ========== ARTIKEL MODAL FUNCTION ==========
-
-        // Data artikel lengkap
-        const articlesData = {
-            'artikel-1': {
-                title: 'Ini Manfaat Madu Hitam Pahit Ratu Lebah yang Banyak Dicari',
-                icon: 'fas fa-shield-alt',
-                date: '25 Desember 2024',
-                author: 'Tim Herbal NMU',
-                content: `
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 bg-[#2E8B57]/10 rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-shield-alt text-[#2E8B57] text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h2 class="modal-article-title">Ini Manfaat Madu Hitam Pahit yang Banyak Dicari</h2>
-                                    <p class="text-gray-500 text-sm">Ditulis oleh: Tim Herbal NMU | 25 Des 2024</p>
-                                </div>
-                            </div>
-                            <span class="bg-[#2E8B57]/10 text-[#2E8B57] px-3 py-1 rounded-full text-sm font-semibold">Kesehatan</span>
-                        </div>
-                        
-                        <div class="modal-article-content">
-                            <p>
-                                <strong>Madu Hitam Pahit Ratu Lebah</strong> dikenal sebagai madu herbal premium yang memiliki rasa pahit khas dan manfaat kesehatan yang kuat. Berasal dari nektar tanaman hutan tertentu dan diproduksi secara alami oleh lebah, madu hitam pahit Ratu Lebah menjadi pilihan masyarakat yang mengutamakan kesehatan alami, stamina, dan daya tahan tubuh.
-                            </p>
-                            
-                            <h3>Manfaat Madu Hitam Pahit Ratu Lebah untuk Kesehatan:</h3>
-                            <ul>
-                                <li><strong>Membantu Menjaga Daya Tahan Tubuh</strong> - Antioksidan dan senyawa fenolik membantu meningkatkan sistem imun</li>
-                                <li><strong>Mendukung Stamina dan Vitalitas</strong> - Kandungan alkaloid dan mineral membantu menjaga energi tubuh</li>
-                                <li><strong>Membantu Kesehatan Pencernaan</strong> - Enzim alami membantu proses pencernaan lebih optimal</li>
-                                <li><strong>Membantu Menjaga Kesehatan Jantung</strong> - Antioksidan membantu melindungi pembuluh darah</li>
-                                <li><strong>Membantu Detoksifikasi Alami Tubuh</strong> - Senyawa aktif membantu proses pembuangan racun alami</li>
-                            </ul>
-                            
-                            <h3>Cara Konsumsi yang Tepat:</h3>
-                            <p>
-                                Untuk mendapatkan manfaat optimal, konsumsi propolis 1-2 kali sehari dengan dosis sesuai anjuran. Propolis NMU sudah dalam bentuk tetes yang mudah dikonsumsi.
-                            </p>
-                            
-                            <div class="bg-[#2E8B57]/5 p-4 rounded-xl mt-6">
-                                <h4 class="font-bold text-[#2E8B57] mb-2">Tips dari Ahli Herbal NMU:</h4>
-                                <p class="text-gray-600 text-sm">
-                                    "Kombinasikan propolis dengan madu murni untuk mendapatkan manfaat ganda dalam meningkatkan daya tahan tubuh. Konsumsi rutin setiap pagi sebelum beraktivitas."
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="pt-6 border-t border-gray-200">
-                            <div class="flex flex-wrap gap-2">
-                                <a class="tag-pill" href="https://www.google.com/search?q=madu" target="_blank">#Madu</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=imunitas" target="_blank">#Imunitas</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=antioksidan" target="_blank">#Antioksidan</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=herbal+nmu" target="_blank">#HerbalNMU</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=kesehatan+alami" target="_blank">#KesehatanAlami</a>
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
-            'artikel-2': {
-                title: 'Mengapa Cuka Apel Royal Sultan Baik untuk Konsumsi Harian?',
-                icon: 'fas fa-apple-alt',
-                date: '24 Desember 2024',
-                author: 'Tim Herbal NMU',
-                content: `
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 bg-[#2E8B57]/10 rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-apple-alt text-[#2E8B57] text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h2 class="modal-article-title">Mengapa Cuka Apel Baik untuk Konsumsi Harian?</h2>
-                                    <p class="text-gray-500 text-sm">Ditulis oleh: Tim Herbal NMU | 24 Des 2024</p>
-                                </div>
-                            </div>
-                            <span class="bg-[#2E8B57]/10 text-[#2E8B57] px-3 py-1 rounded-full text-sm font-semibold">Nutrisi</span>
-                        </div>
-                        
-                        <div class="modal-article-content">
-                            <p>
-                                <strong>Cuka Apel Royal Sultan</strong> adalah minuman kesehatan alami yang dibuat dari apel pilihan berkualitas tinggi melalui proses fermentasi alami bertahap. Produk ini dirancang untuk mendukung gaya hidup sehat masyarakat modern dengan mengedepankan kemurnian bahan, kandungan nutrisi aktif, serta manfaat kesehatan yang menyeluruh.
-                            </p>
-                            
-                            <h3> Manfaat Cuka Apel Royal Sultan untuk Kesehatan</h3>
-                            <ul>
-                                <li><strong>Membantu melancarkan pencernaan dan mengurangi rasa begah</strong></li>
-                                <li><strong>Menjaga keseimbangan kadar gula darah</strong></li>
-                                <li><strong>Membantu menjaga kesehatan jantung dan tekanan darah</strong></li>
-                                <li><strong>Membantu meningkatkan daya tahan tubuh</strong></li>
-                               <li><strong>Mendukung proses detoksifikasi alami tubuh</strong></li>
-                            </ul>
-                            
-                            <h3>Cara Konsumsi:</h3>
-                            <p>
-                                Campurkan 1-2 sendok makan cuka apel dengan segelas air hangat. Konsumsi di pagi hari sebelum makan atau setelah makan berat.
-                            </p>
-                            
-                            <div class="bg-[#2E8B57]/5 p-4 rounded-xl mt-6">
-                                <h4 class="font-bold text-[#2E8B57] mb-2">Fakta Menarik:</h4>
-                                <p class="text-gray-600 text-sm">
-                                    Cuka apel sudah digunakan sejak zaman Mesir kuno sebagai minuman kesehatan dan kecantikan. Cleopatra menggunakan cuka apel untuk menjaga kecantikan kulitnya.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="pt-6 border-t border-gray-200">
-                            <div class="flex flex-wrap gap-2">
-                                <a class="tag-pill" href="https://www.google.com/search?q=cuka+apel" target="_blank">#CukaApel</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=Manfaat+Cuka+Apel" target="_blank">#ManfaatCukaApel</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=Minuman+Kesehatan" target="_blank">#MinumanKesehatan</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=herbal+nmu" target="_blank">#HerbalNMU</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=kesehatan+alami" target="_blank">#KesehatanAlami</a>
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
-            'artikel-3': {
-                title: 'DB Mix Sari Kurma Ratu Lebah untuk Kesehatan: Dari Bahan Baku hingga Manfaat Alaminya',
-                icon: 'fas fa-honey-pot',
-                date: '23 Desember 2024',
-                author: 'Tim Herbal NMU',
-                content: `
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 bg-[#2E8B57]/10 rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-honey-pot text-[#2E8B57] text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h2 class="modal-article-title">DB Mix Sari Kurma Ratu Lebah untuk Kesehatan : Dari Bahan Baku hingga Manfaat Alaminya </h2>
-                                    <p class="text-gray-500 text-sm">Ditulis oleh: Tim Herbal NMU | 23 Des 2024</p>
-                                </div>
-                            </div>
-                            <span class="bg-[#2E8B57]/10 text-[#2E8B57] px-3 py-1 rounded-full text-sm font-semibold">Alam</span>
-                        </div>
-                        
-                        <div class="modal-article-content">
-                            <p>
-                                <strong>DB Mix Sari Kurma Ratu Lebah </strong> adalah produk minuman kesehatan alami yang diformulasikan dari sari kurma pilihan dan bahan pendukung berkualitas. Produk ini dirancang untuk membantu memenuhi kebutuhan energi harian, menjaga stamina, serta mendukung kesehatan tubuh secara menyeluruh. Dengan cita rasa alami dan kandungan nutrisi yang kaya, DB Mix Sari Kurma Ratu Lebah menjadi pilihan tepat bagi masyarakat yang menjalani gaya hidup aktif dan sehat. 
-                            </p>
-                            
-                            <h3>Manfaat DB Mix Sari Kurma Ratu Lebah untuk Kesehatan</h3>
-                            <ul>
-                                <li><strong>Sumber Energi Alami</strong> - Gula alami dari kurma membantu mengembalikan energi tubuh secara cepat dan aman</li>
-                                <li><strong>Membantu Menjaga Stamina</strong> - Kandungan mineral dan vitamin membantu tubuh tetap bugar sepanjang hari</li>
-                                <li><strong>Mendukung Kesehatan Pencernaan</strong> - Serat alami membantu melancarkan sistem pencernaan</li>
-                                <li><strong>Cocok untuk Semua Usia</strong> - Dapat dikonsumsi oleh anak-anak hingga dewasa sebagai pendukung nutrisi harian</li>
-                                <li><strong>Membantu Menjaga Kesehatan Jantung</strong> - Kalium dan magnesium berperan dalam menjaga fungsi jantung dan tekanan darah.</li>
-                            </ul>
-                            
-                            <h3>Keamanan, Kualitas, dan Kepercayaan Konsumen</h3>
-                            <p>
-                               DB Mix Sari Kurma Ratu Lebah diproduksi dengan standar kebersihan tinggi dan menjaga kualitas bahan alami. Produk ini aman untuk konsumsi harian dan dipercaya oleh konsumen yang mengutamakan kesehatan alami
-                            </p>
-                            
-                            <div class="bg-[#2E8B57]/5 p-4 rounded-xl mt-6">
-                                <h4 class="font-bold text-[#2E8B57] mb-2">Kandungan Zat Aktif dalam DB Mix Sari Kurma Ratu Lebah</h4>
-                                <p class="text-gray-600 text-sm">
-                                    •	Glukosa & Fruktosa Alami – sumber energi cepat dan tahan lama
-•	Serat Alami – membantu kesehatan pencernaan
-•	Kalium – mendukung fungsi jantung dan otot
-•	Magnesium – membantu mengurangi kelelahan
-•	Zat Besi – mendukung pembentukan sel darah merah
-•	Vitamin B Kompleks – membantu metabolisme energi
-•	Antioksidan Alami – membantu melindungi sel tubuh dari radikal bebas
-Kombinasi kandungan ini menjadikan DB Mix Sari Kurma sebagai minuman kesehatan bernutrisi tinggi.
-
-                                </p>
-                            </div>
-                        </div>
-                        
-                       <div class="pt-6 border-t border-gray-200">
-                            <div class="flex flex-wrap gap-2">
-                                <a class="tag-pill" href="https://www.google.com/search?q=db+mix+sari+kurma" target="_blank">#dbmixsarikurma</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=minuman+sehat" target="_blank">#minumansehat</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=Minuman+Kesehatan" target="_blank">#MinumanKesehatan</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=herbal+nmu" target="_blank">#HerbalNMU</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=kesehatan+alami" target="_blank">#KesehatanAlami</a>
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
-            'artikel-4': {
-                title: 'Manfaat Jahe Merah Ratu Lebah sebagai Herbal Alami untuk Kesehatan',
-                icon: 'fas fa-fire',
-                date: '22 Desember 2024',
-                author: 'Tim Herbal NMU',
-                content: `
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 bg-[#2E8B57]/10 rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-fire text-[#2E8B57] text-2xl"></i>
-                                </div>
-                                 <div>
-                                    <h2 class="modal-article-title">Manfaat Jahe Merah Ratu Lebah sebagai Herbal Alami untuk Kesehatan</h2>
-                                    <p class="text-gray-500 text-sm">Ditulis oleh: Tim Herbal NMU | 23 Des 2024</p>
-                                </div>
-                            </div>
-                            <span class="bg-[#2E8B57]/10 text-[#2E8B57] px-3 py-1 rounded-full text-sm font-semibold">Rempah</span>
-                        </div>
-                        
-                        <div class="modal-article-content">
-                            <p>
-                                <strong>Jahe Merah Ratu Lebah</strong> merupakan produk herbal alami yang dikenal luas memiliki manfaat kesehatan yang kuat dibanding jahe biasa. Dengan rasa lebih pedas dan aroma khas, jahe merah telah lama digunakan sebagai bahan herbal tradisional untuk menjaga daya tahan tubuh, menghangatkan badan, serta mendukung kesehatan secara menyeluruh.
-                            </p>
-                            
-                            <h3>Kandungan Zat Aktif dalam Jahe Merah Ratu Lebah : </h3>
-                            <ul>
-                                <li><strong>Gingerol</strong> - senyawa utama antiinflamasi dan antioksidan</li>
-                                <li><strong>Shogaol</strong> - membantu menghangatkan tubuh dan meningkatkan metabolisme</li>
-                                <li><strong>Zingerone</strong> - membantu meredakan gangguan pencernaan</li>
-                                <li><strong>Minyak Atsiri</strong> - mendukung kesehatan pernapasan</li>
-                                <li><strong>Flavonoid & Polifenol</strong> - membantu melawan radikal bebas</li>
-                                <li><strong>Vitamin & Mineral alami</strong> - vitamin C, magnesium, kalium</li>
-                            </ul>
-                            
-                            <h3>Cara Mengonsumsi:</h3>
-                            <ul>
-                               <li> <strong>1. Seduh jahe merah Ratu Lebah dengan air hangat</strong></li>
-                                <li><strong>2. Dapat ditambahkan madu alami untuk rasa lebih nyaman</strong></li>
-                                <li><strong>3. Dikonsumsi 1–2 kali sehari sesuai kebutuhan</strong></li>
-                                <li>noted : Konsumsi rutin akan membantu memperoleh manfaat optimal.</li>
-                                </ul>
-                            
-                            <div class="bg-[#2E8B57]/5 p-4 rounded-xl mt-6">
-                                <h4 class="font-bold text-[#2E8B57] mb-2">Perhatian:</h4>
-                                <p class="text-gray-600 text-sm">
-                                    "Bagi penderita maag atau gangguan lambung, konsumsi jahe merah sebaiknya setelah makan dan dalam jumlah terbatas. Ibu hamil sebaiknya konsultasi dengan dokter sebelum mengonsumsi jahe merah dalam jumlah besar."
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="pt-6 border-t border-gray-200">
-                            <div class="flex flex-wrap gap-2">
-                                <a class="tag-pill" href="https://www.google.com/search?q=jahe+merah" target="_blank">#jahemerah</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=jahemerah+untuk+kesehatant" target="_blank">#jahemerahuntukkesehatan</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=Minuman+Kesehatan" target="_blank">#MinumanKesehatan</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=jahemerah+penghangat+tubuh" target="_blank">#jahemerahpenghangattubuh</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=dayatahan+tubuh" target="_blank">#dayatahantubuh</a>
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
-            'artikel-5': {
-                title: 'Tips Pilih Produk Herbal',
-                icon: 'fas fa-check-circle',
-                date: '21 Desember 2024',
-                author: 'Tim Herbal NMU',
-                content: `
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 bg-[#2E8B57]/10 rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-check-circle text-[#2E8B57] text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h2 class="modal-article-title">Tips Pilih Produk Herbal yang Aman</h2>
-                                    <p class="text-gray-500 text-sm">Ditulis oleh: Tim Herbal NMU | 21 Des 2024</p>
-                                </div>
-                            </div>
-                            <span class="bg-[#2E8B57]/10 text-[#2E8B57] px-3 py-1 rounded-full text-sm font-semibold">Tips</span>
-                        </div>
-                        
-                        <div class="modal-article-content">
-                            <p>
-                                Produk herbal untuk kesehatan semakin diminati karena dianggap lebih alami dan cocok untuk penggunaan jangka panjang. Namun, tidak semua produk herbal memiliki kualitas yang sama. Oleh karena itu, penting bagi konsumen untuk mengetahui tips memilih produk herbal yang aman, berkualitas, dan bermanfaat
-                            </p>
-                            
-                            <h3>tips memilih produk herbal yang aman, berkualitas, dan bermanfaat adalah : </h3>
-                            <ul>
-                                <li><strong>Perhatikan Bahan Baku Produk Herbal</strong> - Langkah pertama dalam memilih produk herbal adalah memastikan bahan baku yang digunakan berkualitas tinggi</li>
-                                <li><strong>Kenali Proses Produksi dan Pengolahan</strong> - Produk herbal yang aman diproses dengan standar higienis dan terkontrol</li>
-                                <li><strong>Cek Kandungan Zat Aktif dalam Produk Herbal</strong> - Produk herbal berkualitas biasanya mencantumkan atau dikenal memiliki zat aktif alami yang bermanfaat bagi tubuh</li>
-                                <li><strong>Sesuaikan dengan Manfaat Kesehatan yang Dibutuhkan</strong> - Setiap produk herbal memiliki fungsi berbeda. Pilih produk herbal berdasarkan kebutuhan</li>
-                                <li><strong>Perhatikan Keamanan dan Legalitas Produk</strong> - Pastikan produk herbal yang dipilih : Diproduksi secara higienis, Memiliki izin edar resmi (BPOM/MD/PIRT sesuai kategori), Mencantumkan informasi komposisi dan aturan pakai</li>
-                                <li><strong>Cara Konsumsi yang Tepat dan Aman</strong> - Produk herbal yang baik selalu disertai aturan konsumsi yang jelas</li>
-                            </ul>
-                            
-                            <h3>Manfaat Menggunakan Produk Herbal Berkualitas : </h3>
-                            <ul>
-                                <li><strong>Mendukung kesehatan tubuh secara alami</strong></li>
-                                <li><strong>Cocok untuk penggunaan jangka panjang</strong></li>
-                                <li><strong>Membantu menjaga keseimbangan tubuh</strong></li>
-                                <li><strong>Menjadi pelengkap pola hidup sehat</strong></li>
-                            </ul>
-                            
-                            <h3>Pilih Distributor Terpercaya:</h3>
-                            <p>
-                                Pilih distributor herbal yang memiliki reputasi baik seperti PT. NAINA MANDIRI UTAMA yang sudah berpengalaman dan terpercaya.
-                            </p>
-                            
-                            <div class="bg-[#2E8B57]/5 p-4 rounded-xl mt-6">
-                                <h4 class="font-bold text-[#2E8B57] mb-2">Tips dari NMU:</h4>
-                                <p class="text-gray-600 text-sm">
-                                    "Selalu beli produk herbal dari distributor resmi. Produk herbal NMU sudah memiliki sertifikat BPOM dan Halal, serta diproduksi dengan standar kualitas tinggi."
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="pt-6 border-t border-gray-200">
-                            <div class="flex flex-wrap gap-2">
-                                <a class="tag-pill" href="https://www.google.com/search?q=tips+memilih+produk+herbal" target="_blank">#tipsmemilihprodukherbal</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=hidup+sehat" target="_blank">#hidupsehat</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=tanpa+bahan+berbahaya" target="_blank">#tanpabahanberbahaya</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=produk+herbal+terpercaya" target="_blank">#produkherbalterpercaya</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=ratu+lebah+official" target="_blank">#ratulebahofficial</a>
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
-            'artikel-6': {
-                title: 'Madu, Propolis & Royal Jelly',
-                icon: 'fas fa-crown',
-                date: '20 Desember 2024',
-                author: 'Tim Herbal NMU',
-                content: `
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 bg-[#2E8B57]/10 rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-crown text-[#2E8B57] text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h2 class="modal-article-title">Madu, Propolis & Royal Jelly: Trinity Produk Lebah</h2>
-                                    <p class="text-gray-500 text-sm">Ditulis oleh: Tim Herbal NMU | 20 Des 2024</p>
-                                </div>
-                            </div>
-                            <span class="bg-[#2E8B57]/10 text-[#2E8B57] px-3 py-1 rounded-full text-sm font-semibold">Lebah</span>
-                        </div>
-                        
-                        <div class="modal-article-content">
-                            <p>
-                                <strong>Madu, propolis, dan royal jelly</strong> adalah tiga produk unggulan dari lebah yang masing-masing memiliki manfaat spesifik:
-                            </p>
-                            
-                            <h3>Perbandingan Manfaat:</h3>
-                            <ul>
-                                <li><strong>Madu</strong> - Sumber energi alami, antioksidan, baik untuk pencernaan dan tenggorokan</li>
-                                <li><strong>Propolis</strong> - Imunitas, antibakteri, antivirus, anti-inflamasi</li>
-                                <li><strong>Royal Jelly</strong> - Vitalitas, anti-aging, meningkatkan stamina, regenerasi sel</li>
-                            </ul>
-                            
-                            <h3>Cara Mengombinasikan:</h3>
-                            <p>
-                                Ketiga produk ini bisa dikonsumsi bersama untuk mendapatkan manfaat maksimal:
-                            </p>
-                            <ul>
-                                <li><strong>Pagi</strong> - Royal jelly untuk energi sepanjang hari</li>
-                                <li><strong>Siang</strong> - Madu sebagai pengganti gula dalam minuman</li>
-                                <li><strong>Sore/Malam</strong> - Propolis untuk meningkatkan imunitas</li>
-                            </ul>
-                            
-                            <div class="bg-[#2E8B57]/5 p-4 rounded-xl mt-6">
-                                <h4 class="font-bold text-[#2E8B57] mb-2">Fakta Menarik:</h4>
-                                <p class="text-gray-600 text-sm">
-                                    "Royal jelly adalah makanan khusus untuk ratu lebah yang membuatnya hidup 40 kali lebih lama dari lebah pekerja. Inilah yang membuat royal jelly dijuluki 'makanan awet muda'."
-                                </p>
-                            </div>
-                        </div>
-                        
-                       <div class="pt-6 border-t border-gray-200">
-                            <div class="flex flex-wrap gap-2">
-                                <a class="tag-pill" href="https://www.google.com/search?q=jahe+merah" target="_blank">#jahemerah</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=jahemerah+untuk+kesehatant" target="_blank">#jahemerahuntukkesehatan</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=Minuman+Kesehatan" target="_blank">#MinumanKesehatan</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=jahemerah+penghangat+tubuh" target="_blank">#jahemerahpenghangattubuh</a>
-                                <a class="tag-pill" href="https://www.google.com/search?q=dayatahan+tubuh" target="_blank">#dayatahan tubuh</a>
-                            </div>
-                        </div>
-                    </div>
-                `
-            }
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        // Fungsi untuk menampilkan modal artikel
-        function showArticleDetail(articleId) {
-            const modal = document.getElementById('articleModal');
-            const content = document.getElementById('articleModalContent');
-
-            if (articlesData[articleId]) {
-                content.innerHTML = articlesData[articleId].content;
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                document.body.style.overflow = 'hidden'; // Mencegah scroll background
-
-                // Scroll ke atas modal
-                content.scrollTop = 0;
-            }
-        }
-
-        // Fungsi untuk menutup modal
-        function closeArticleModal() {
-            const modal = document.getElementById('articleModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto'; // Kembalikan scroll
-        }
-
-        // Tutup modal dengan tombol ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeArticleModal();
-            }
-        });
-
-        // Tutup modal dengan klik di luar konten
-        document.addEventListener('click', function(e) {
-            const modal = document.getElementById('articleModal');
-            if (e.target === modal) {
-                closeArticleModal();
-            }
-        });
-
-        // Initialize all animations on DOM load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Typewriter Animation for Artikel Header
-            function initializeTypewriter() {
-                const typewriterElements = document.querySelectorAll('.typewriter');
-                typewriterElements.forEach(el => {
-                    const text = el.textContent;
-                    el.textContent = '';
-                    el.style.width = '0';
-                    setTimeout(() => {
-                        el.textContent = text;
-                        el.style.animation = 'typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite';
-                    }, 500);
-                });
-            }
-
-            // Stagger Animation for Artikel List
-            function initializeStaggerAnimation() {
-                const staggerElements = document.querySelectorAll('.stagger-animation > *');
-                staggerElements.forEach((el, index) => {
-                    el.style.animationDelay = `${index * 0.1}s`;
-                });
-            }
-
-            initializeTypewriter();
-            initializeStaggerAnimation();
-
-            // Add hover effect for article list items
-            const listItems = document.querySelectorAll('.article-list-item');
-            listItems.forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateX(10px)';
-                });
-                item.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateX(0)';
-                });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
-
-        // ================================================
-        // JAVASCRIPT UNTUK PRODUK UNGGULAN - FIXED VERSION
-        // ================================================
-
-        // Pastikan Font Awesome icons sudah load
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM Loaded - Initializing Product Unggulan');
-
-            // Tunggu sedikit untuk memastikan semua elemen ada
-            setTimeout(initializeProductUnggulan, 500);
-        });
-
-        function initializeProductUnggulan() {
-            const scrollContainer = document.querySelector('.horizontal-scroll-container');
-            const scrollContent = document.querySelector('.horizontal-scroll');
-            const leftBtn = document.querySelector('.scroll-btn.left-btn');
-            const rightBtn = document.querySelector('.scroll-btn.right-btn');
-            const indicators = document.querySelectorAll('.scroll-indicator');
-
-            console.log('Elements found:', {
-                scrollContainer: !!scrollContainer,
-                scrollContent: !!scrollContent,
-                leftBtn: !!leftBtn,
-                rightBtn: !!rightBtn,
-                indicators: indicators.length
-            });
-
-            if (scrollContainer && scrollContent) {
-                const cardWidth = 280; // Lebar card + margin
-                const scrollAmount = cardWidth * 2; // Scroll 2 card sekaligus
-
-                // Fungsi untuk update indikator
-                function updateIndicators() {
-                    const scrollLeft = scrollContainer.scrollLeft;
-                    const maxScroll = scrollContent.scrollWidth - scrollContainer.clientWidth;
-                    const activeIndex = Math.round((scrollLeft / maxScroll) * (indicators.length - 1));
-
-                    indicators.forEach((indicator, index) => {
-                        if (index === activeIndex) {
-                            indicator.classList.add('active');
-                            indicator.style.width = '24px';
-                            indicator.style.background = 'var(--matcha-dark)';
-                        } else {
-                            indicator.classList.remove('active');
-                            indicator.style.width = '12px';
-                            indicator.style.background = 'var(--matcha-light)';
-                        }
-                    });
-                }
-
-                // Button kiri - FIXED
-                if (leftBtn) {
-                    leftBtn.addEventListener('click', function(e) {
-                        console.log('Left button clicked');
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        scrollContainer.scrollBy({
-                            left: -scrollAmount,
-                            behavior: 'smooth'
-                        });
-                    });
-
-                    // Tambah feedback visual
-                    leftBtn.addEventListener('mousedown', function() {
-                        this.style.transform = 'scale(0.95)';
-                    });
-
-                    leftBtn.addEventListener('mouseup', function() {
-                        this.style.transform = 'scale(1)';
-                    });
-                }
-
-                // Button kanan - FIXED
-                if (rightBtn) {
-                    rightBtn.addEventListener('click', function(e) {
-                        console.log('Right button clicked');
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        scrollContainer.scrollBy({
-                            left: scrollAmount,
-                            behavior: 'smooth'
-                        });
-                    });
-
-                    // Tambah feedback visual
-                    rightBtn.addEventListener('mousedown', function() {
-                        this.style.transform = 'scale(0.95)';
-                    });
-
-                    rightBtn.addEventListener('mouseup', function() {
-                        this.style.transform = 'scale(1)';
-                    });
-                }
-
-                // Indikator click - FIXED
-                indicators.forEach((indicator, index) => {
-                    indicator.addEventListener('click', function() {
-                        const cardCount = document.querySelectorAll('.produk-unggulan-card').length;
-                        const scrollTo = (scrollContent.scrollWidth / cardCount) * index;
-
-                        scrollContainer.scrollTo({
-                            left: scrollTo,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
-
-                // Update indikator saat scroll
-                scrollContainer.addEventListener('scroll', updateIndicators);
-
-                // Auto scroll otomatis (opsional)
-                let autoScrollInterval;
-
-                function startAutoScroll() {
-                    autoScrollInterval = setInterval(() => {
-                        if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContent.scrollWidth) {
-                            scrollContainer.scrollTo({
-                                left: 0,
-                                behavior: 'smooth'
-                            });
-                        } else {
-                            scrollContainer.scrollBy({
-                                left: scrollAmount,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }, 5000); // Scroll setiap 5 detik
-                }
-
-                // Hentikan auto scroll saat hover
-                scrollContainer.addEventListener('mouseenter', () => {
-                    clearInterval(autoScrollInterval);
-                });
-
-                scrollContainer.addEventListener('mouseleave', () => {
-                    startAutoScroll();
-                });
-
-                // Mulai auto scroll
-                startAutoScroll();
-
-                // Update indikator awal
-                updateIndicators();
-
-                // Debug info
-                console.log('Product Unggulan initialized successfully');
-            } else {
-                const productSection = document.getElementById("product-unggulan");
-
-                if (!productSection) {
-                    document.getElementById("produk-unggulan");
-                    return;
-                }
-
-            }
-
-            // Smooth scroll ke produk saat klik "Lihat Produk" - FIXED
-            document.querySelectorAll('.produk-unggulan-card a[href="#produk-list"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('Lihat Produk clicked');
-
-                    // Scroll ke produk list
-                    const produkList = document.querySelector('#produk-list');
-                    if (produkList) {
-                        produkList.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-
-                        // Highlight produk yang dipilih
-                        const productCard = this.closest('.produk-unggulan-card');
-                        if (productCard) {
-                            const productType = productCard.querySelector('h3').textContent;
-                            highlightProductCategory(productType);
-                        }
-                    }
-                });
-            });
-
-            // Fungsi untuk highlight kategori produk
-            function highlightProductCategory(productType) {
-                const filterButtons = document.querySelectorAll('.filter-btn');
-                let targetFilter = 'all';
-
-                // Mapping product type ke filter category - DIUPDATE
-                const categoryMap = {
-                    'Madu Hitam Pahit': 'madu-hitam',
-                    'Madu Sari Kurma': 'sari-kurma',
-                    'Cuka Apel Royal': 'cuka-apel',
-                    'Cuka Nanas': 'cuka-nanas',
-                    'Madu Anak': 'madu-anak',
-                    'Jahe Merah': 'jahe-merah',
-                    'Susu Kambing Etawa': 'susu-etawa',
-                    'Virgin Coconut Oil': 'vco'
-                };
-
-                if (categoryMap[productType]) {
-                    targetFilter = categoryMap[productType];
-                }
-
-                console.log('Highlighting category:', productType, '->', targetFilter);
-
-                // Klik button filter yang sesuai
-                filterButtons.forEach(btn => {
-                    if (btn.getAttribute('data-filter') === targetFilter) {
-                        console.log('Clicking filter button:', btn.textContent);
-                        btn.click();
-                    }
-                });
-            }
-        }
     </script>
-
 </body>
 
 </html>
